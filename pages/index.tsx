@@ -1,4 +1,5 @@
 import { Grid } from '@material-ui/core'
+import Contact from 'components/main/home/Contact'
 import SectionPresentation from 'components/main/home/SectionPresentation'
 import SectionSkills from 'components/main/home/SectionSkills'
 import SectionWorks from 'components/main/home/SetcionWorks'
@@ -18,6 +19,9 @@ export default function HomePage(): JSX.Element {
         </Grid>
         <Grid item container>
           <SectionWorks />
+        </Grid>
+        <Grid item container>
+          <Contact />
         </Grid>
       </Grid>
     </LayoutDefault>

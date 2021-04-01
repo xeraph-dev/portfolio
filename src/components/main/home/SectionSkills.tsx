@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { motion, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
 import Image from 'next/image'
@@ -24,15 +24,7 @@ const skills = [
   'postgresql',
 ]
 
-const useStyles = () =>
-  makeStyles((theme) => ({
-    title: {
-      marginBottom: theme.spacing(4),
-    },
-  }))()
-
 export default function SectionSkills(): JSX.Element {
-  const classes = useStyles()
   const [ref, inView] = useInView()
   const controls = useAnimation()
 
@@ -66,7 +58,6 @@ export default function SectionSkills(): JSX.Element {
     <Grid ref={ref} container justify={'center'} alignItems={'center'}>
       <Grid item xs={12}>
         <Typography
-          className={classes.title}
           component={motion.h3}
           variant={'h3'}
           variants={title}
