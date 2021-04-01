@@ -3,8 +3,31 @@ import { motion, useAnimation } from 'framer-motion'
 import Link from 'components/Link'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Facebook, GitHub, LinkedIn, Telegram, WhatsApp } from '@material-ui/icons'
 import { boxShadow } from 'helper'
+import * as Icons from '@material-ui/icons'
+
+const socialsNetworks = [
+  {
+    href: 'https://github.com/adrianrl99',
+    icon: 'GitHub',
+  },
+  {
+    href: 'https://www.linkedin.com/in/adrian-ren%C3%A9-l%C3%B3pez-cintas-17b7a61a2/',
+    icon: 'LinkedIn',
+  },
+  {
+    href: 'https://www.facebook.com/profile.php?id=100027969153798',
+    icon: 'Facebook',
+  },
+  {
+    href: 'https://t.me/fourblues',
+    icon: 'Telegram',
+  },
+  {
+    href: 'https://wa.me/5354023389',
+    icon: 'WhatsApp',
+  },
+]
 
 const useStyles = () =>
   makeStyles((theme) => ({
@@ -72,61 +95,24 @@ export default function Contact(): JSX.Element {
         alignItems={'center'}
         initial={'hidden'}
         animate={controls}>
-        <Grid variants={item} component={motion.div} item>
-          <IconButton
-            className={classes.button}
-            component={Link}
-            href="https://github.com/adrianrl99"
-            style={{ color: 'inherit' }}
-            target="_blank"
-            aria-label="github">
-            <GitHub fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid variants={item} component={motion.div} item>
-          <IconButton
-            className={classes.button}
-            component={Link}
-            href="https://www.linkedin.com/in/adrian-ren%C3%A9-l%C3%B3pez-cintas-17b7a61a2/"
-            style={{ color: 'inherit' }}
-            target="_blank"
-            aria-label="linkedin">
-            <LinkedIn fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid variants={item} component={motion.div} item>
-          <IconButton
-            className={classes.button}
-            component={Link}
-            href="https://www.facebook.com/profile.php?id=100027969153798"
-            style={{ color: 'inherit' }}
-            target="_blank"
-            aria-label="facebook">
-            <Facebook fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid variants={item} component={motion.div} item>
-          <IconButton
-            className={classes.button}
-            component={Link}
-            href="https://t.me/fourblues"
-            style={{ color: 'inherit' }}
-            target="_blank"
-            aria-label="telegram">
-            <Telegram fontSize="large" />
-          </IconButton>
-        </Grid>
-        <Grid variants={item} component={motion.div} item>
-          <IconButton
-            className={classes.button}
-            component={Link}
-            href=" https://wa.me/5354023389"
-            style={{ color: 'inherit' }}
-            target="_blank"
-            aria-label="whatsapp">
-            <WhatsApp fontSize="large" />
-          </IconButton>
-        </Grid>
+        {socialsNetworks.map(({ href, icon }, index) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const Icon = Icons[icon]
+          if (typeof Icon !== 'undefined')
+            return (
+              <Grid key={icon + index.toString()} variants={item} component={motion.div} item>
+                <IconButton
+                  className={classes.button}
+                  component={Link}
+                  href={href}
+                  style={{ color: 'inherit' }}
+                  target="_blank"
+                  aria-label={icon}>
+                  <Icon fontSize="large" />
+                </IconButton>
+              </Grid>
+            )
+        })}
       </Grid>
     </Grid>
   )
