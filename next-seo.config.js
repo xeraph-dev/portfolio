@@ -1,5 +1,5 @@
 export default {
-  titleTemplate: "%s | LDAP",
-  defaultTitle: "LDAP",
-  description: "LDAP Portafolio"
-};
+  titleTemplate: '%s | Portfolio',
+  defaultTitle: 'Portfolio',
+  description: "Adrian's portfolio",
+}
