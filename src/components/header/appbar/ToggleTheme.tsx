@@ -1,11 +1,13 @@
 import { IconButton } from '@material-ui/core'
-import { NightsStay, WbSunny } from '@material-ui/icons'
 import { ThemeContext } from 'plugins/Theme'
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import TooltipButton from './TooltipButton'
+import dynamic from 'next/dynamic'
 
 export default function ToggleTheme(): JSX.Element {
   const { theme, setTheme } = useContext(ThemeContext)
+
+  const Icon = useMemo(() => dynamic(() => import('./IconTheme')), [theme])
 
   return (
     <TooltipButton title={'Cambiar tema'}>
@@ -14,7 +16,7 @@ export default function ToggleTheme(): JSX.Element {
           setTheme(theme === 'dark' ? 'light' : 'dark')
         }}
         aria-label="toggle the theme">
-        {theme === 'dark' ? <WbSunny /> : <NightsStay />}
+        <Icon theme={theme} />
       </IconButton>
     </TooltipButton>
   )
