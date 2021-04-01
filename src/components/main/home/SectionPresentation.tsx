@@ -83,8 +83,9 @@ export default function SectionPresentation(): JSX.Element {
         </Grid>
         <Grid component={motion.div} variants={variantsText} item xs={12}>
           <Typography variant={'h5'} align={'center'}>
+            Desarrollador{' '}
             <Typed
-              strings={['Desarrollador Front-end', 'Desarrollador Back-end Serverless']}
+              strings={['Front-end', 'Back-end Serverless']}
               typeSpeed={50}
               backSpeed={50}
               backDelay={2000}
