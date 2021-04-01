@@ -11,7 +11,7 @@ export default function GitHubButton(): JSX.Element {
         href="https://github.com/adrianrl99/porfolio"
         style={{ color: 'inherit' }}
         target="_blank"
-        aria-label="toggle the theme">
+        aria-label="github">
         <GitHub />
       </IconButton>
     </TooltipButton>
