@@ -6,7 +6,6 @@ export default function CVButton(): JSX.Element {
   return (
     <TooltipButton title={'Descargar CV'}>
       <Button
-        variant="text"
         component={Link}
         href="/CV-Adrian-Rene-Lopez-Cintas.pdf"
         download
