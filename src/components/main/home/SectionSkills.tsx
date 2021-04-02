@@ -13,6 +13,7 @@ const skills = [
   'typescript',
   'nodejs',
   'reactjs',
+  'material-ui',
   'nextjs',
   'redux',
   'graphql',
