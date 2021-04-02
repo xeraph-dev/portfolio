@@ -12,7 +12,7 @@ export default function GitHubButton(): JSX.Element {
         style={{ color: 'inherit' }}
         target="_blank"
         aria-label="github">
-        <GitHub />
+        <GitHub color="action" />
       </IconButton>
     </TooltipButton>
   )

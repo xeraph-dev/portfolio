@@ -1,11 +1,22 @@
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Typography } from '@material-ui/core'
 import { motion, useAnimation } from 'framer-motion'
+import { boxShadow } from 'helper'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Typed from 'react-typed'
 
+const useStyles = () =>
+  makeStyles((theme) => ({
+    img: {
+      backgroundColor: '#fafafa',
+      borderRadius: '5rem',
+      boxShadow: boxShadow(true, theme.palette.type),
+    },
+  }))()
+
 export default function SectionPresentation(): JSX.Element {
+  const classes = useStyles()
   const [ref, inView] = useInView()
   const controls = useAnimation()
 
@@ -51,13 +62,14 @@ export default function SectionPresentation(): JSX.Element {
   return (
     <Grid ref={ref} container justify={'center'} alignItems={'center'}>
       <Grid container justify={'center'} item xs={12} sm={6}>
-        <motion.div
-          animate={controls}
-          initial="hidden"
-          exit="hidden"
-          whileHover="hover"
-          variants={variantsImage}>
-          <Image src={'/images/avatar.png'} alt={'avatar'} height={200} width={200} />
+        <motion.div animate={controls} initial="hidden" exit="hidden" variants={variantsImage}>
+          <Image
+            className={classes.img}
+            src={'/images/avatar.png'}
+            alt={'avatar'}
+            height={300}
+            width={150}
+          />
         </motion.div>
       </Grid>
       <Grid

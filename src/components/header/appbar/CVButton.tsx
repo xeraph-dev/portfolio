@@ -3,6 +3,7 @@ import Link from 'components/Link'
 import TooltipButton from './TooltipButton'
 
 export default function CVButton(): JSX.Element {
+
   return (
     <TooltipButton title={'Descargar CV'}>
       <Button
