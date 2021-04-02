@@ -22,6 +22,7 @@ const skills = [
   'php',
   'drupal',
   'postgresql',
+  'mongodb',
 ]
 
 export default function SectionSkills(): JSX.Element {
