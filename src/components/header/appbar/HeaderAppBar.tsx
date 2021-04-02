@@ -17,7 +17,7 @@ export default function HeaderAppBar(): JSX.Element {
           <Box flexGrow={1} />
           <ToggleTheme />
           <GitHubButton />
-          <Button disabled>
+          <Button variant="text" disabled>
             <PageTitle />
           </Button>
         </Toolbar>
