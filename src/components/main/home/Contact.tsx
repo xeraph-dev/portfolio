@@ -16,16 +16,8 @@ const socialsNetworks = [
     icon: 'LinkedIn',
   },
   {
-    href: 'https://www.facebook.com/profile.php?id=100027969153798',
-    icon: 'Facebook',
-  },
-  {
     href: 'https://t.me/fourblues',
     icon: 'Telegram',
-  },
-  {
-    href: 'https://wa.me/5354023389',
-    icon: 'WhatsApp',
   },
 ]
 

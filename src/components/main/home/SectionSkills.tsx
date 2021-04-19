@@ -24,6 +24,8 @@ const skills = [
   'drupal',
   'postgresql',
   'mongodb',
+  'dart',
+  'flutter',
 ]
 
 export default function SectionSkills(): JSX.Element {
@@ -81,6 +83,7 @@ export default function SectionSkills(): JSX.Element {
         variants={title}
         alignItems={'center'}
         initial={'hidden'}
+        justify="center"
         animate={controls}>
         {skills.map((skill) => (
           <Grid

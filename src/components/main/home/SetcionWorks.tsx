@@ -107,6 +107,7 @@ export default function SectionWorks(): JSX.Element {
         variants={title}
         alignItems={'center'}
         initial={'hidden'}
+        justify="center"
         animate={controls}>
         {works.map((work, index) => (
           <Grid
