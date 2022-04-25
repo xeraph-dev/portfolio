@@ -1,0 +1,10 @@
+.AppLayout {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.AppLayout_NavbarRightMenus_button {
+  padding: 4px;
+}
