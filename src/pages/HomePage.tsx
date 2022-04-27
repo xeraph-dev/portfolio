@@ -231,7 +231,7 @@ const Knowledge: FC = () => (
 const ProfesionalExperience: FC = () => (
   <Card>
     <List flexDirection="column" gap="24px">
-      <h2>Profesional experience</h2>
+      <h2>Professional experience</h2>
       <Accordion
         initialExpanded={[0]}
         items={[
