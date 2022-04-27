@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react'
 import { MdMoreVert } from 'react-icons/md'
 import { Outlet } from 'react-router-dom'
 
+import { List } from '@/components/List'
 import { Menu } from '@/components/Menu'
 import { LanguageMenu } from '@/components/menus/LanguageMenu'
 import { ThemeMenu } from '@/components/menus/ThemeMenu'
@@ -45,9 +46,12 @@ const NavbarRightMenus = () => {
 }
 
 export const AppLayout: FC = () => (
-  <div className={styles.AppLayout}>
+  <List className={styles.AppLayout} flexDirection="column" gap="32px">
     <Navbar
       variant="sticky"
+      containerProps={{
+        className: styles.AppLayout_Navbar,
+      }}
       listProps={{
         gap: '8px',
       }}
@@ -56,6 +60,8 @@ export const AppLayout: FC = () => (
       <Spacer />
       <NavbarRightMenus />
     </Navbar>
-    <Outlet />
-  </div>
+    <div className={styles.AppLayout_content}>
+      <Outlet />
+    </div>
+  </List>
 )
