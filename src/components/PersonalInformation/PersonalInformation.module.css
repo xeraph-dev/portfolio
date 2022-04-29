@@ -1,0 +1,6 @@
+.PersonalInformation {
+  & section {
+    box-shadow: var(--shadow-inset);
+    padding: 64px 16px;
+  }
+}

@@ -1,0 +1,11 @@
+.Knowledge {
+  padding: 32px 16px;
+  flex-grow: 1;
+  height: fit-content;
+}
+
+@media screen and (min-width: 992px) {
+  .Knowledge {
+    max-width: 70%;
+  }
+}
