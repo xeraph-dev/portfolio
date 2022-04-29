@@ -108,9 +108,7 @@ const ExperienceContent: FC<ExperienceContentProps> = ({
   end,
 }) => (
   <List flexDirection="column" gap="16px">
-    <h4>
-      {start} - {end}
-    </h4>
+    <h4>{start === end ? start : `${start} - ${end}`}</h4>
     <Link to={companyUrl}>{companyUrl}</Link>
     <div>{children}</div>
     <List flexDirection="column" gap="16px">
@@ -229,12 +227,79 @@ const Knowledge: FC = () => (
 )
 
 const ProfesionalExperience: FC = () => (
-  <Card>
+  <Card className={styles.HomePage_section_experience}>
     <List flexDirection="column" gap="24px">
       <h2>Professional experience</h2>
       <Accordion
         initialExpanded={[0]}
         items={[
+          {
+            title: (
+              <ExperienceTitle
+                company="Divertimento"
+                start="2022-03"
+                end={(() => {
+                  let month = `${new Date().getMonth() + 1}`
+                  const year = new Date().getFullYear()
+                  if (+month < 10) month = `0${month}`
+                  return `${year}-${month}`
+                })()}
+              />
+            ),
+            content: (
+              <ExperienceContent
+                companyUrl="https://github.com/divertimento"
+                start={2022}
+                end={2022}
+                tecnologies={[
+                  <Card key="languages">
+                    <List gap="16px" flexWrap="wrap">
+                      <SkillIcon size={32} name="Html5" icon={SiHtml5} />
+                      <SkillIcon size={32} name="Css3" icon={SiCss3} />
+                      <SkillIcon
+                        size={32}
+                        name="JavaScript"
+                        icon={SiJavascript}
+                      />
+                      <SkillIcon
+                        size={32}
+                        name="TypeScript"
+                        icon={SiTypescript}
+                      />
+                    </List>
+                  </Card>,
+                  <Card key="react">
+                    <List gap="16px" flexWrap="wrap">
+                      <SkillIcon size={32} name="React.js" icon={SiReact} />
+                      <SkillIcon
+                        size={32}
+                        name="React Router"
+                        icon={SiReactrouter}
+                      />
+                    </List>
+                  </Card>,
+                  <Card key="vue">
+                    <List gap="16px" flexWrap="wrap">
+                      <SkillIcon size={32} name="Vue.js" icon={SiVuedotjs} />
+                    </List>
+                  </Card>,
+                  <Card key="api">
+                    <List gap="16px" flexWrap="wrap">
+                      <SkillIcon size={32} name="Node.js" icon={SiNodedotjs} />
+                      <SkillIcon size={32} name="Express.js" icon={SiExpress} />
+                      <SkillIcon size={32} name="Vite" icon={SiVite} />
+                    </List>
+                  </Card>,
+                  <Card key="git">
+                    <List gap="16px" flexWrap="wrap">
+                      <SkillIcon size={32} name="Git" icon={SiGit} />
+                      <SkillIcon size={32} name="GitHub" icon={SiGithub} />
+                    </List>
+                  </Card>,
+                ]}
+              />
+            ),
+          },
           {
             title: (
               <ExperienceTitle
@@ -360,7 +425,12 @@ const ProfesionalExperience: FC = () => (
 )
 
 const Contact: FC = () => (
-  <List flexDirection="column" alignItems="center" gap="16px">
+  <List
+    flexDirection="column"
+    alignItems="center"
+    gap="16px"
+    className={styles.HomePage_section_contact}
+  >
     <h2>Contact me</h2>
     <List gap="16px" justifyContent="center" flexWrap="wrap">
       <Link to="https://github.com/adrianrl99">GitHub</Link>

@@ -11,6 +11,14 @@
   height: fit-content;
 }
 
+.HomePage_section_experience {
+  padding: 32px 16px;
+}
+
+.HomePage_section_contact {
+  padding: 32px 16px;
+}
+
 @media screen and (min-width: 992px) {
   .HomePage_section_skills {
     max-width: 70%;
