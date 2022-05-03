@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import { DiHaskell, DiRust } from 'react-icons/di'
 import {
   SiArchlinux,
   SiBootstrap,
+  SiC,
   SiCss3,
   SiDocker,
   SiExpress,
@@ -10,6 +10,7 @@ import {
   SiGithub,
   SiGnubash,
   SiGraphql,
+  SiHaskell,
   SiHtml5,
   SiJavascript,
   SiJson,
@@ -24,6 +25,7 @@ import {
   SiReact,
   SiReactrouter,
   SiRedux,
+  SiRust,
   SiSass,
   SiTypescript,
   SiUbuntu,
@@ -121,8 +123,9 @@ export const Knowledge: FC = () => (
         <h2>Learning</h2>
         <section>
           <List gap="16px" flexWrap="wrap">
-            <SkillIcon name="Rust" icon={DiRust} />
-            <SkillIcon name="Haskell" icon={DiHaskell} />
+            <SkillIcon name="C" icon={SiC} />
+            <SkillIcon name="Rust" icon={SiRust} />
+            <SkillIcon name="Haskell" icon={SiHaskell} />
           </List>
         </section>
       </List>
