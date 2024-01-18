@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	name: {
-		fontSize: 24,
+		fontSize: FONT_SIZES.giant,
 		lineHeight: 1.2,
 	},
 });

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import Divider from "#/components/divider";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	educationTitle: {
@@ -10,13 +11,13 @@ const styles = StyleSheet.create({
 	},
 	educationContentTop: {
 		color: "#343a40",
-		fontSize: 8,
+		fontSize: FONT_SIZES.small,
 		flexDirection: "row",
 		justifyContent: "space-between",
 	},
 	educationContentBottom: {
 		marginTop: 8,
-		fontSize: 12,
+		fontSize: FONT_SIZES.medium,
 	},
 });
 

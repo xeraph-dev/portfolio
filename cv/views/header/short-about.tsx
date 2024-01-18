@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	shortAbout: {
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	shortAboutText: {
-		fontSize: 12,
+		fontSize: FONT_SIZES.medium,
 	},
 });
 

@@ -1,17 +1,17 @@
 # Tasks
 
 - [x] Create site and cv wireframes
-- [ ] Implement pdf generator
+- [x] Implement pdf generator
   - [x] header
     - [x] full name
     - [x] short about me
     - [x] contact links
-  - [ ] body
+  - [x] body
     - [x] about me
     - [x] education
-    - [ ] skills
+    - [x] skills
     - [x] languages
-    - [ ] work experience
+    - [x] work experience
 - [ ] Implement i18n in pdf generator using .po files for translations
   - <https://www.npmjs.com/package/gettext-parser>
   - <https://www.gnu.org/software/gettext/manual/gettext.html>

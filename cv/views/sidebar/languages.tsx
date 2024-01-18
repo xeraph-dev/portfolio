@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import Divider from "#/components/divider";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	languagesTitle: {
@@ -12,10 +13,12 @@ const styles = StyleSheet.create({
 	language: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		fontSize: 13,
+		fontSize: FONT_SIZES.medium,
+		alignItems: "center",
 	},
 	languageKnowledge: {
 		color: "#343a40",
+		fontSize: FONT_SIZES.small,
 	},
 });
 

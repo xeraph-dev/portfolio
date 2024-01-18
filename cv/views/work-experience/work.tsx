@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import { addDays, intervalToDuration } from "date-fns";
 import { useMemo } from "react";
-import BrandGithub from "#/icons/brand-github";
-import BrandLinkedIn from "#/icons/brand-linkedin";
-import WorldWww from "#/icons/world-www";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	work: {
@@ -13,30 +11,44 @@ const styles = StyleSheet.create({
 	},
 	info: {
 		gap: 5,
-		width: "30%",
+		flexBasis: "20%",
 	},
 	duration: {
-		fontSize: 10,
+		fontSize: FONT_SIZES.small,
 		color: "#343a40",
 	},
 	method: {
-		fontSize: 10,
+		fontSize: FONT_SIZES.small,
 		color: "#343a40",
+		flexGrow: 1,
 	},
 	company: {
-		fontSize: 14,
+		fontSize: FONT_SIZES.large,
 	},
 	skills: {
 		flexDirection: "row",
-		gap: 2,
+		gap: 4,
+		fontSize: FONT_SIZES.small,
+		flexWrap: "wrap",
+		marginTop: 4,
+	},
+	skill: {
+		backgroundColor: "#dfe5e3",
+		borderRadius: 3,
+		padding: 2,
 	},
 	title: {
-		fontSize: 12,
+		fontSize: FONT_SIZES.medium,
 		marginBottom: 5,
 	},
 	actions: {
-		fontSize: 10,
+		fontSize: FONT_SIZES.small,
 		gap: 2,
+		flexBasis: "35%",
+	},
+	action: {
+		flexDirection: "row",
+		gap: 4,
 	},
 });
 
@@ -47,6 +59,7 @@ type WorkProps = {
 	start: string;
 	end?: string;
 	actions: string[];
+	skills: string[];
 };
 
 export default function Work({
@@ -56,6 +69,7 @@ export default function Work({
 	start,
 	end,
 	actions,
+	skills,
 }: WorkProps) {
 	const duration = useMemo(() => {
 		const startDate = new Date(start);
@@ -69,7 +83,7 @@ export default function Work({
 		const interval =
 			startYear === endYear ? startYear : `${startYear} - ${endYear}`;
 		const yearsText = "year" + ((duration.years ?? 0) > 1 ? "s" : "");
-		const monthsText = "year" + ((duration.months ?? 0) > 1 ? "s" : "");
+		const monthsText = "month" + ((duration.months ?? 0) > 1 ? "s" : "");
 		let years = duration.years ? `${duration.years} ${yearsText}` : "";
 		let months = duration.months ? `${duration.months} ${monthsText}` : "";
 		if (years && months) {
@@ -86,15 +100,20 @@ export default function Work({
 				<Text style={styles.duration}>{duration}</Text>
 				<Text style={styles.method}>{method}</Text>
 				<View style={styles.skills}>
-					<BrandGithub />
-					<BrandLinkedIn />
-					<WorldWww />
+					{skills.map((skill) => (
+						<Text style={styles.skill} key={skill}>
+							{skill}
+						</Text>
+					))}
 				</View>
 			</View>
 			<View style={styles.actions}>
 				<Text style={styles.title}>{job}</Text>
 				{actions.map((action) => (
-					<Text key={action}>- {action}</Text>
+					<View key={action} style={styles.action}>
+						<Text>•</Text>
+						<Text>{action}</Text>
+					</View>
 				))}
 			</View>
 		</View>

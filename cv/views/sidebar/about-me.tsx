@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import Divider from "#/components/divider";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	aboutMeTitle: {
 		marginBottom: 4,
 	},
 	aboutMeContent: {
-		fontSize: 10,
+		fontSize: FONT_SIZES.small,
 		marginTop: 12,
 		textAlign: "justify",
+		lineHeight: 1.2,
 	},
 });
 

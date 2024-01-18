@@ -1,5 +1,6 @@
 import { Link, StyleSheet, View } from "@react-pdf/renderer";
 import Icons from "#/icons/icons";
+import { FONT_SIZES } from "#/utils/constants";
 
 const styles = StyleSheet.create({
 	contactLinks: {},
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
 		gap: 4,
 	},
 	contactLinkText: {
-		fontSize: 12,
+		fontSize: FONT_SIZES.medium,
 		textDecoration: "none",
 	},
 });
