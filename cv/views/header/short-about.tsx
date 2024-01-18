@@ -2,11 +2,11 @@ import { StyleSheet, Text, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
 	shortAbout: {
-		display: "flex",
 		gap: 5,
+		alignItems: "center",
 	},
 	shortAboutText: {
-		fontSize: 13,
+		fontSize: 12,
 	},
 });
 

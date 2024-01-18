@@ -4,9 +4,8 @@ import WorkExperience from "./work-experience/work-experience";
 
 const styles = StyleSheet.create({
 	body: {
-		display: "flex",
 		flexDirection: "row",
-		gap: 24,
+		gap: 32,
 		marginTop: 36,
 	},
 });

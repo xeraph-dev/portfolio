@@ -5,7 +5,6 @@ import ShortAbout from "./short-about";
 
 const styles = StyleSheet.create({
 	header: {
-		display: "flex",
 		flexDirection: "row",
 		justifyContent: "space-between",
 		marginBottom: 16,

@@ -1,7 +1,34 @@
 # Tasks
 
-### Translations
-
-- https://www.npmjs.com/package/gettext-parser
-- https://www.gnu.org/software/gettext/manual/gettext.html
-- https://docs.astro.build/en/guides/internationalization/
+- [x] Create site and cv wireframes
+- [ ] Implement pdf generator
+  - [x] header
+    - [x] full name
+    - [x] short about me
+    - [x] contact links
+  - [ ] body
+    - [x] about me
+    - [x] education
+    - [ ] skills
+    - [x] languages
+    - [ ] work experience
+- [ ] Implement i18n in pdf generator using .po files for translations
+  - <https://www.npmjs.com/package/gettext-parser>
+  - <https://www.gnu.org/software/gettext/manual/gettext.html>
+  - <https://docs.astro.build/en/guides/internationalization/>
+- [ ] Setup and configure biome
+- [ ] Configure tsconfig.json
+- [ ] Setup and configure astro
+- [ ] Setup tailwindcss
+- [ ] Implement site
+  - [ ] landing page (home)
+    - [ ] header
+    - [ ] short about me
+    - [ ] about me
+    - [ ] skills
+    - [ ] work experience
+    - [ ] projects
+    - [ ] tools
+    - [ ] contact links
+- [ ] Make general improvement to the generated pdf
+- [ ] Make general improvement to the landing page

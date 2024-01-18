@@ -1,10 +1,9 @@
 import { Link, StyleSheet, View } from "@react-pdf/renderer";
-import Icons from "../../icons/icons";
+import Icons from "#/icons/icons";
 
 const styles = StyleSheet.create({
 	contactLinks: {},
 	contactLink: {
-		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
 		gap: 4,

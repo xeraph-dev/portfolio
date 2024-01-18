@@ -5,7 +5,7 @@ import Header from "./views/header/header";
 
 const styles = StyleSheet.create({
 	page: {
-		padding: 20,
+		padding: 24,
 	},
 });
 

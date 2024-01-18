@@ -1,4 +1,3 @@
-import { watch } from "node:fs/promises";
 import { join } from "node:path";
 import { renderToFile } from "@react-pdf/renderer";
 import CV from "./cv";
