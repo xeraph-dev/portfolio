@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
 export default function ShortAbout() {
 	return (
 		<View style={styles.shortAbout}>
-			<Text style={styles.shortAboutText}>Front-end developer</Text>
-			<Text style={styles.shortAboutText}>Self-taught programmer</Text>
-			<Text style={styles.shortAboutText}>Functional programming lover</Text>
+			<Text style={styles.shortAboutText}>+4 years front-end developer</Text>
+			<Text style={styles.shortAboutText}>self-taught programmer</Text>
+			<Text style={styles.shortAboutText}>functional programming lover</Text>
 		</View>
 	);
 }
