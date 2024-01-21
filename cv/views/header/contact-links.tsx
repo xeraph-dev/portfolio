@@ -1,6 +1,6 @@
 import { Link, StyleSheet, View } from "@react-pdf/renderer";
-import Icons from "#/icons/icons";
-import { FONT_SIZES } from "#/utils/constants";
+import Icons from "#cv/icons/icons";
+import { FONT_SIZES } from "#cv/utils/constants";
 
 const styles = StyleSheet.create({
 	contactLinks: {},

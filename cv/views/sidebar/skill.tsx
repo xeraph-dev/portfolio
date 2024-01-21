@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import Divider from "#/components/divider";
-import { FONT_SIZES } from "#/utils/constants";
+import Divider from "#cv/components/divider";
+import { FONT_SIZES } from "#cv/utils/constants";
 
 type SkillProps = {
 	level: number;

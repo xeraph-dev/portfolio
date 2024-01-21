@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import { FONT_SIZES } from "#/utils/constants";
+import { FONT_SIZES } from "#cv/utils/constants";
 
 const styles = StyleSheet.create({
 	name: {

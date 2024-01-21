@@ -1,0 +1,22 @@
+{
+	"about-me": {
+		"title": "Sobre mi",
+		"paragraph-1": "Desarrollador web front-end autodidacta, apasionado por la programación y seguidor del paradigma funcional. Especializado en la creación y mejora de interfaces digitales, con enfoque en el mantenimiento de sitios web complejos, mediante la resolución de errores, implementación de nuevas características y asegurando un rendimiento óptimo.",
+		"paragraph-2": "Poseo un profundo dominio del ecosistema web front-end en general, con habilidades sólidas en HTML, CSS y JavaScript, respaldadas por una destacada experiencia en frameworks como React. Actualmente, explorando Golang para ampliar mis habilidades.",
+		"paragraph-3": "Más allá del ámbito técnico, mi interés abarca otros temas como filosofía, economía, política e historia, buscando tener mi propia visión del mundo."
+	},
+	"education": {
+		"title": "Educación",
+		"grade": "Bachiller General"
+	},
+	"skills": {
+		"title": "Habilidades"
+	},
+	"languages": {
+		"title": "Idiomas",
+		"native": "nativo",
+		"intermediate": "intermedio",
+		"spanish": "Español",
+		"english": "Inglés"
+	}
+}

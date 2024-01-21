@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import Divider from "#/components/divider";
-import { FONT_SIZES } from "#/utils/constants";
+import Divider from "#cv/components/divider";
+import { FONT_SIZES } from "#cv/utils/constants";
+import { t } from "#i18n";
 
 const styles = StyleSheet.create({
 	educationTitle: {
@@ -24,14 +25,18 @@ const styles = StyleSheet.create({
 export default function Education() {
 	return (
 		<View>
-			<Text style={styles.educationTitle}>Education</Text>
+			<Text style={styles.educationTitle}>
+				{t("cv.sidebar.education.title")}
+			</Text>
 			<Divider size={2} />
 			<View style={styles.educationContent}>
 				<View style={styles.educationContentTop}>
 					<Text>2014 - 2017</Text>
 					<Text>IPU Presencia de Celia</Text>
 				</View>
-				<Text style={styles.educationContentBottom}>Bachiller general</Text>
+				<Text style={styles.educationContentBottom}>
+					{t("cv.sidebar.education.grade")}
+				</Text>
 			</View>
 		</View>
 	);

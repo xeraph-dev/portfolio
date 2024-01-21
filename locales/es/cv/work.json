@@ -1,0 +1,34 @@
+{
+	"title": "Work experience",
+	"drupal-developer": "Drupal developer",
+	"front-end-developer": "Front-end developer",
+	"jobs": {
+		"divertimento-2": {
+			"action-1": "Metodologías ágiles",
+			"action-2": "Fuí parte del desarrollo del front-end, back-end y base de datos",
+			"action-3": "Estuve involucrado en el desarrollo de productos principales",
+			"action-4": "Realicé importantes optimizaciones de SQL",
+			"action-5": "Ayudé a desarrollar y mantener múltiples sitios web"
+		},
+		"freelance": {
+			"action-1": "Metodologías ágiles",
+			"action-2": "Mejoré el rendimiento general del sitio mediante el uso de buenas prácticas y técnicas avanzadas de React",
+			"action-3": "Estuve involucrado en el desarrollo de productos principales"
+		},
+		"divertimento-1": {
+			"action-1": "Ayudé a desarrollar y mantener múltiples sitios web"
+		},
+		"ijp-software": {
+			"action-1": "Metodologías ágiles",
+			"action-2": "Ayudé en el desarrollo de un producto complejo casi desde cero",
+			"action-3": "Ayudé a desarrollar y mantener múltiples sitios web",
+			"action-4": "Participé en un hackathon con parte del equipo principal"
+		},
+		"xetid": {
+			"action-1": "Metodologías en cascada",
+			"action-2": "Creé el sitio web www.epromap.cu",
+			"action-3": "Creé el sitio web www.minjus.gob.cu",
+			"action-4": "Ayudé a desarrollar y mantener múltiples sitios web"
+		}
+	}
+}

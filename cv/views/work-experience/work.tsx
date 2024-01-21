@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import { addDays, intervalToDuration } from "date-fns";
 import { useMemo } from "react";
-import { FONT_SIZES } from "#/utils/constants";
+import { FONT_SIZES } from "#cv/utils/constants";
 
 const styles = StyleSheet.create({
 	work: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 		fontSize: FONT_SIZES.small,
 		color: "#343a40",
 	},
-	method: {
+	location: {
 		fontSize: FONT_SIZES.small,
 		color: "#343a40",
 		flexGrow: 1,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
 type WorkProps = {
 	company: string;
-	method: string;
+	location: string;
 	job: string;
 	start: string;
 	end?: string;
@@ -64,7 +64,7 @@ type WorkProps = {
 
 export default function Work({
 	company,
-	method,
+	location,
 	job,
 	start,
 	end,
@@ -98,7 +98,7 @@ export default function Work({
 			<View style={styles.info}>
 				<Text style={styles.company}>{company}</Text>
 				<Text style={styles.duration}>{duration}</Text>
-				<Text style={styles.method}>{method}</Text>
+				<Text style={styles.location}>{location}</Text>
 				<View style={styles.skills}>
 					{skills.map((skill) => (
 						<Text style={styles.skill} key={skill}>

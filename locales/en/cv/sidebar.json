@@ -1,0 +1,22 @@
+{
+	"about-me": {
+		"title": "About me",
+		"paragraph-1": "Self-taught web developer, passionate about programming and follower to the functional paradigm. Specialized in creating and improving digital interfaces, with a focus on maintaining complex websites by troubleshooting, implementing new features, and ensuring optimal performance.",
+		"paragraph-2": "I have a deep understanding of the overall front-end web ecosystem, with strong skills in HTML, CSS, and JavaScript, backed by significant experience in frameworks like React. Currently, exploring Golang to expand my skill set.",
+		"paragraph-3": "Beyond the technical realm, my interests extend to philosophy, economics, politics, and history, aiming to shape my own worldview."
+	},
+	"education": {
+		"title": "Education",
+		"grade": "General Bachelor"
+	},
+	"skills": {
+		"title": "Skills"
+	},
+	"languages": {
+		"title": "Languages",
+		"native": "native",
+		"intermediate": "intermediate",
+		"spanish": "Spanish",
+		"english": "English"
+	}
+}

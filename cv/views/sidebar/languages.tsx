@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import Divider from "#/components/divider";
-import { FONT_SIZES } from "#/utils/constants";
+import Divider from "#cv/components/divider";
+import { FONT_SIZES } from "#cv/utils/constants";
+import { t } from "#i18n";
 
 const styles = StyleSheet.create({
 	languagesTitle: {
@@ -25,16 +26,22 @@ const styles = StyleSheet.create({
 export default function Languages() {
 	return (
 		<View>
-			<Text style={styles.languagesTitle}>Languages</Text>
+			<Text style={styles.languagesTitle}>
+				{t("cv.sidebar.languages.title")}
+			</Text>
 			<Divider size={2} />
 			<View style={styles.languagesContent}>
 				<View style={styles.language}>
-					<Text>Spanish</Text>
-					<Text style={styles.languageKnowledge}>native</Text>
+					<Text>{t("cv.sidebar.languages.spanish")}</Text>
+					<Text style={styles.languageKnowledge}>
+						{t("cv.sidebar.languages.native")}
+					</Text>
 				</View>
 				<View style={styles.language}>
-					<Text>English</Text>
-					<Text style={styles.languageKnowledge}>intermediate</Text>
+					<Text>{t("cv.sidebar.languages.english")}</Text>
+					<Text style={styles.languageKnowledge}>
+						{t("cv.sidebar.languages.intermediate")}
+					</Text>
 				</View>
 			</View>
 		</View>
