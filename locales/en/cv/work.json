@@ -5,7 +5,7 @@
 	"jobs": {
 		"divertimento-2": {
 			"action-1": "Agile methodologies",
-			"action-2": "Was part of the development of the front-end, back-end and database",
+			"action-2": "I was part of the development of the front-end, back-end and database",
 			"action-3": "Involved in core product development",
 			"action-4": "Made heavy SQL optimizations",
 			"action-5": "Helped to develop and maintain multiple websites"
@@ -26,8 +26,8 @@
 		},
 		"xetid": {
 			"action-1": "Waterfall methodologies",
-			"action-2": "Create the website www.epromap.cu",
-			"action-3": "Create the website www.minjus.gob.cu",
+			"action-2": "Created the website www.epromap.cu",
+			"action-3": "Created the website www.minjus.gob.cu",
 			"action-4": "Helped to develop and maintain multiple websites"
 		}
 	}
