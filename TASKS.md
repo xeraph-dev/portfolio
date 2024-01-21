@@ -12,10 +12,7 @@
     - [x] skills
     - [x] languages
     - [x] work experience
-- [ ] Implement i18n in pdf generator using .po files for translations
-  - <https://www.npmjs.com/package/gettext-parser>
-  - <https://www.gnu.org/software/gettext/manual/gettext.html>
-  - <https://docs.astro.build/en/guides/internationalization/>
+- [x] Implement i18n in pdf generator
 - [ ] Setup and configure biome
 - [ ] Configure tsconfig.json
 - [ ] Setup and configure astro
