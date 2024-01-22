@@ -13,7 +13,7 @@
     - [x] languages
     - [x] work experience
 - [x] Implement i18n in pdf generator
-- [ ] Setup and configure biome
+- [x] Setup and configure biome
 - [ ] Configure tsconfig.json
 - [ ] Setup and configure astro
 - [ ] Setup tailwindcss
