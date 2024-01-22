@@ -1,14 +1,14 @@
-import { StyleSheet, View } from "@react-pdf/renderer";
-import Sidebar from "./sidebar/sidebar";
-import WorkExperience from "./work-experience/work-experience";
+import { StyleSheet, View } from '@react-pdf/renderer'
+import Sidebar from './sidebar/sidebar'
+import WorkExperience from './work-experience/work-experience'
 
 const styles = StyleSheet.create({
 	body: {
-		flexDirection: "row",
+		flexDirection: 'row',
 		gap: 32,
 		marginTop: 28,
 	},
-});
+})
 
 export default function Body() {
 	return (
@@ -16,5 +16,5 @@ export default function Body() {
 			<Sidebar />
 			<WorkExperience />
 		</View>
-	);
+	)
 }

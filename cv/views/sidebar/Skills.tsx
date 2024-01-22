@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import Divider from "#cv/components/divider";
-import { t } from "#i18n";
-import Skill from "./skill";
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
+import Divider from '#cv/components/divider'
+import { t } from '#i18n'
+import Skill from './skill'
 
 const styles = StyleSheet.create({
 	skillsTitle: {
@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
 		marginTop: 12,
 		gap: 8,
 	},
-});
+})
 
 export default function Skills() {
 	return (
 		<View>
-			<Text style={styles.skillsTitle}>{t("cv.sidebar.skills.title")}</Text>
+			<Text style={styles.skillsTitle}>{t('cv.sidebar.skills.title')}</Text>
 			<Divider size={2} />
 			<View style={styles.skillsContent}>
 				<Skill level={95} name="HTML / CSS" />
@@ -26,5 +26,5 @@ export default function Skills() {
 				<Skill level={80} name="SQL" />
 			</View>
 		</View>
-	);
+	)
 }

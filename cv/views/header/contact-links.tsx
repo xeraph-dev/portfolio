@@ -1,19 +1,19 @@
-import { Link, StyleSheet, View } from "@react-pdf/renderer";
-import Icons from "#cv/icons/icons";
-import { FONT_SIZES } from "#cv/utils/constants";
+import { Link, StyleSheet, View } from '@react-pdf/renderer'
+import Icons from '#cv/icons/icons'
+import { FONT_SIZES } from '#cv/utils/constants'
 
 const styles = StyleSheet.create({
 	contactLinks: {},
 	contactLink: {
-		flexDirection: "row",
-		alignItems: "center",
+		flexDirection: 'row',
+		alignItems: 'center',
 		gap: 4,
 	},
 	contactLinkText: {
 		fontSize: FONT_SIZES.medium,
-		textDecoration: "none",
+		textDecoration: 'none',
 	},
-});
+})
 
 export default function ContactLinks() {
 	return (
@@ -26,19 +26,13 @@ export default function ContactLinks() {
 			</View>
 			<View style={styles.contactLink}>
 				<Icons.BrandGithub size={13} />
-				<Link
-					style={styles.contactLinkText}
-					src="https://github.com/xeraph-dev"
-				>
+				<Link style={styles.contactLinkText} src="https://github.com/xeraph-dev">
 					github.com/xeraph-dev
 				</Link>
 			</View>
 			<View style={styles.contactLink}>
 				<Icons.BrandLinkedIn size={13} />
-				<Link
-					style={styles.contactLinkText}
-					src="https://www.linkedin.com/in/adrian-l%C3%B3pez/"
-				>
+				<Link style={styles.contactLinkText} src="https://www.linkedin.com/in/adrian-l%C3%B3pez/">
 					linkedin.com/in/adrian-lópez
 				</Link>
 			</View>
@@ -49,5 +43,5 @@ export default function ContactLinks() {
 				</Link>
 			</View>
 		</View>
-	);
+	)
 }

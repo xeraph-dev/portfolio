@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import Divider from "#cv/components/divider";
-import { FONT_SIZES } from "#cv/utils/constants";
-import { t } from "#i18n";
+import { StyleSheet, Text, View } from '@react-pdf/renderer'
+import Divider from '#cv/components/divider'
+import { FONT_SIZES } from '#cv/utils/constants'
+import { t } from '#i18n'
 
 const styles = StyleSheet.create({
 	aboutMeTitle: {
@@ -10,22 +10,22 @@ const styles = StyleSheet.create({
 	aboutMeContent: {
 		fontSize: FONT_SIZES.small,
 		marginTop: 12,
-		textAlign: "justify",
+		textAlign: 'justify',
 		lineHeight: 1.2,
 		gap: 8,
 	},
-});
+})
 
 export default function AboutMe() {
 	return (
 		<View>
-			<Text style={styles.aboutMeTitle}>{t("cv.sidebar.about-me.title")}</Text>
+			<Text style={styles.aboutMeTitle}>{t('cv.sidebar.about-me.title')}</Text>
 			<Divider size={2} />
 			<View style={styles.aboutMeContent}>
-				<Text>{t("cv.sidebar.about-me.paragraph-1")}</Text>
-				<Text>{t("cv.sidebar.about-me.paragraph-2")}</Text>
-				<Text>{t("cv.sidebar.about-me.paragraph-3")}</Text>
+				<Text>{t('cv.sidebar.about-me.paragraph-1')}</Text>
+				<Text>{t('cv.sidebar.about-me.paragraph-2')}</Text>
+				<Text>{t('cv.sidebar.about-me.paragraph-3')}</Text>
 			</View>
 		</View>
-	);
+	)
 }

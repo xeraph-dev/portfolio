@@ -1,15 +1,15 @@
-import { StyleSheet, View } from "@react-pdf/renderer";
-import AboutMe from "./about-me";
-import Education from "./education";
-import Languages from "./languages";
-import Skills from "./skills";
+import { StyleSheet, View } from '@react-pdf/renderer'
+import AboutMe from './about-me'
+import Education from './education'
+import Languages from './languages'
+import Skills from './skills'
 
 const styles = StyleSheet.create({
 	sidebar: {
-		flexBasis: "35%",
+		flexBasis: '35%',
 		gap: 24,
 	},
-});
+})
 
 export default function Sidebar() {
 	return (
@@ -19,5 +19,5 @@ export default function Sidebar() {
 			<Skills />
 			<Languages />
 		</View>
-	);
+	)
 }

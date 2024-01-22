@@ -1,6 +1,6 @@
-import { G, Path } from "@react-pdf/renderer";
-import type { IconProps } from "./icon";
-import Icon from "./icon";
+import { G, Path } from '@react-pdf/renderer'
+import type { IconProps } from './icon'
+import Icon from './icon'
 
 export default function BrandGithub({ size }: IconProps) {
 	return (
@@ -16,5 +16,5 @@ export default function BrandGithub({ size }: IconProps) {
 				<Path d="M10.37 15.391c-.58.637-.869 1.24-.869 1.813V21m5.671-5.701c.549.719.823 1.364.823 1.936V21M3.5 15.668c.45.054.783.26 1 .618c.326.537 1.537 2.526 2.913 2.526H9.5" />
 			</G>
 		</Icon>
-	);
+	)
 }

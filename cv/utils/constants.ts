@@ -3,4 +3,4 @@ export const FONT_SIZES = {
 	medium: 12,
 	large: 14,
 	giant: 24,
-};
+}

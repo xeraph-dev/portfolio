@@ -1,6 +1,6 @@
-import { G, Path } from "@react-pdf/renderer";
-import type { IconProps } from "./icon";
-import Icon from "./icon";
+import { G, Path } from '@react-pdf/renderer'
+import type { IconProps } from './icon'
+import Icon from './icon'
 
 export default function BrandGMail({ size }: IconProps) {
 	return (
@@ -16,5 +16,5 @@ export default function BrandGMail({ size }: IconProps) {
 				<Path d="m4 6.5l8 7.5l8-7.5" />
 			</G>
 		</Icon>
-	);
+	)
 }

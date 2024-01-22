@@ -1,20 +1,18 @@
-import * as dom from "dts-dom";
-import type { flattenTranslationsKeys } from "./utils";
+import * as dom from 'dts-dom'
+import type { flattenTranslationsKeys } from './utils'
 
 export const generateTypesDefinitions = (
 	keys: Awaited<ReturnType<typeof flattenTranslationsKeys>>,
 ) => {
-	const ns = dom.create.namespace("globalThis");
+	const ns = dom.create.namespace('globalThis')
 
 	ns.members.push(
 		dom.create.alias(
-			"LocaleKeys",
-			dom.create.union(
-				Object.keys(keys).map((key) => dom.type.stringLiteral(key)),
-			),
+			'LocaleKeys',
+			dom.create.union(Object.keys(keys).map(key => dom.type.stringLiteral(key))),
 		),
 		dom.create.alias(
-			"LocaleOptions",
+			'LocaleOptions',
 			dom.create.objectType(
 				Object.entries(keys).map(([key, props]) =>
 					dom.create.property(
@@ -25,11 +23,7 @@ export const generateTypesDefinitions = (
 									Object.entries(props).map(([prop, types]) =>
 										dom.create.property(
 											prop,
-											dom.create.union(
-												[...types].map((type) =>
-													dom.create.typeParameter(type),
-												),
-											),
+											dom.create.union([...types].map(type => dom.create.typeParameter(type))),
 										),
 									),
 							  ),
@@ -37,7 +31,7 @@ export const generateTypesDefinitions = (
 				),
 			),
 		),
-	);
+	)
 
-	return dom.emit(ns);
-};
+	return dom.emit(ns)
+}

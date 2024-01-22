@@ -1,6 +1,6 @@
-import { G, Path } from "@react-pdf/renderer";
-import type { IconProps } from "./icon";
-import Icon from "./icon";
+import { G, Path } from '@react-pdf/renderer'
+import type { IconProps } from './icon'
+import Icon from './icon'
 
 export default function BrandLinkedIn({ size }: IconProps) {
 	return (
@@ -16,5 +16,5 @@ export default function BrandLinkedIn({ size }: IconProps) {
 				<Path d="M16 16v-3a2 2 0 0 0-4 0" />
 			</G>
 		</Icon>
-	);
+	)
 }

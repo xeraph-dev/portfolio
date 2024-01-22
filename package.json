@@ -1,26 +1,27 @@
 {
-  "name": "portfolio-v5",
-  "type": "module",
-  "scripts": {
-    "dev:cv": "bun cv/watch.ts",
-    "dev:i18n": "bun i18n/cli.ts generate --watch",
-    "build:cv": "bun cv/generate.tsx",
-    "build:i18n": "bun i18n/cli.ts generate",
-    "check:i18n": "bun i18n/cli.ts check"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.5.2",
-    "@react-pdf/renderer": "3.3.1",
-    "@types/react": "18.2.48",
-    "@types/react-pdf": "7.0.0",
-    "bun-types": "1.0.24",
-    "commander": "11.1.0",
-    "dts-dom": "3.7.0",
-    "typescript": "5.3.3"
-  },
-  "dependencies": {
-    "date-fns": "3.2.0",
-    "nanostores": "0.9.5",
-    "react": "18.2.0"
-  }
+	"name": "portfolio-v5",
+	"type": "module",
+	"scripts": {
+		"dev:cv": "bun cv/watch.ts",
+		"dev:i18n": "bun i18n/cli.ts generate --watch",
+		"build:cv": "bun cv/generate.tsx",
+		"build:i18n": "bun i18n/cli.ts generate",
+		"check:i18n": "bun i18n/cli.ts check",
+		"check:source": "biome check --apply {cv,i18n,locales} *.json"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.5.2",
+		"@react-pdf/renderer": "3.3.1",
+		"@types/react": "18.2.48",
+		"@types/react-pdf": "7.0.0",
+		"bun-types": "1.0.25",
+		"commander": "11.1.0",
+		"dts-dom": "3.7.0",
+		"typescript": "5.3.3"
+	},
+	"dependencies": {
+		"date-fns": "3.3.0",
+		"nanostores": "0.9.5",
+		"react": "18.2.0"
+	}
 }

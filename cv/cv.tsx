@@ -1,13 +1,13 @@
-import { Document, Page, StyleSheet } from "@react-pdf/renderer";
-import Divider from "./components/divider";
-import Body from "./views/body";
-import Header from "./views/header/header";
+import { Document, Page, StyleSheet } from '@react-pdf/renderer'
+import Divider from './components/divider'
+import Body from './views/body'
+import Header from './views/header/header'
 
 const styles = StyleSheet.create({
 	page: {
 		padding: 24,
 	},
-});
+})
 
 export default function CV() {
 	return (
@@ -24,5 +24,5 @@ export default function CV() {
 				<Body />
 			</Page>
 		</Document>
-	);
+	)
 }
