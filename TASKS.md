@@ -14,6 +14,7 @@
     - [x] work experience
 - [x] Implement i18n in pdf generator
 - [x] Setup and configure biome
+- [ ] Document i18n module
 - [ ] Configure tsconfig.json
 - [ ] Setup and configure astro
 - [ ] Setup tailwindcss
