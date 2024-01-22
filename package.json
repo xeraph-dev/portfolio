@@ -2,14 +2,20 @@
 	"name": "portfolio-v5",
 	"type": "module",
 	"scripts": {
+		"dev:site": "astro dev",
 		"dev:cv": "bun cv/watch.ts",
 		"dev:i18n": "bun i18n/cli.ts generate --watch",
+		"build": "bun check && bun build:i18n && bun build:cv && bun build:site",
+		"build:site": "astro build",
 		"build:cv": "bun cv/generate.tsx",
 		"build:i18n": "bun i18n/cli.ts generate",
+		"check": "bun check:i18n && bun check:biome && bun check:astro",
+		"check:astro": "astro check",
 		"check:i18n": "bun i18n/cli.ts check",
-		"check:source": "biome check --apply {cv,i18n,locales} *.json"
+		"check:biome": "biome check --apply {cv,i18n,locales} *.json"
 	},
 	"devDependencies": {
+		"@astrojs/check": "0.4.1",
 		"@biomejs/biome": "1.5.2",
 		"@react-pdf/renderer": "3.3.1",
 		"@types/react": "18.2.48",
@@ -20,6 +26,7 @@
 		"typescript": "5.3.3"
 	},
 	"dependencies": {
+		"astro": "4.2.1",
 		"date-fns": "3.3.0",
 		"nanostores": "0.9.5",
 		"react": "18.2.0"

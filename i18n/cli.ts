@@ -5,10 +5,12 @@ import { generateTypesDefinitions } from './types'
 import { flattenTranslationsKeys } from './utils'
 
 const generate = async (cwd: string) => {
+	console.time('i18n types generated successfully')
 	const definitionsPath = join(import.meta.dir, 'i18n.d.ts')
 	const keys = await flattenTranslationsKeys(cwd)
 	const definitions = generateTypesDefinitions(keys)
 	await writeFile(definitionsPath, definitions)
+	console.timeEnd('i18n types generated successfully')
 }
 
 program
@@ -25,9 +27,7 @@ program
 			const watcher = watch(locales, { recursive: true })
 			for await (const _ of watcher) {
 				try {
-					console.time('Generated i18n types')
 					await generate(locales)
-					console.timeEnd('Generated i18n types')
 				} catch (error) {
 					console.warn('Skipping due to error: ')
 					console.error(error)
