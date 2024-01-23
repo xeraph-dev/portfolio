@@ -17,7 +17,7 @@
 - [ ] Configure tsconfig.json
 - [ ] Document i18n module
 - [x] Setup and configure astro
-- [ ] Setup tailwindcss
+- [x] Setup tailwindcss
 - [ ] Implement site
   - [ ] landing page (home)
     - [ ] header
