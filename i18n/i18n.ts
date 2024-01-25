@@ -3,6 +3,10 @@ import { extract, flattenTranslations } from './utils'
 
 export type Locale = 'en' | 'es'
 export const LOCALES: Locale[] = ['en', 'es']
+export const LOCALE_NAMES: Record<Locale, string> = {
+	en: 'English',
+	es: 'Español',
+}
 export const DEFAULT_LOCALE = LOCALES[0]
 
 export const locale = atom(DEFAULT_LOCALE)

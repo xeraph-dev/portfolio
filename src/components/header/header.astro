@@ -1,0 +1,18 @@
+---
+import { LOCALES } from "#i18n";
+import DefaultNavbar from "./default-navbar.astro";
+import HomeNavbar from "./home-navbar.astro";
+import LanguageButton from "./language-button.astro";
+import ThemeButton from "./theme-button.astro";
+
+const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?$`);
+const isHome = LOCALE_REGEX.test(Astro.url.pathname);
+---
+
+<header
+	class="sticky top-0 z-50 flex items-center justify-center w-full gap-2 p-4 mx-auto text-lg"
+>
+	<LanguageButton />
+	{isHome ? <HomeNavbar /> : <DefaultNavbar />}
+	<ThemeButton />
+</header>

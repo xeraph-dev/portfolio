@@ -1,0 +1,41 @@
+---
+import HeaderLink from "./header-link.astro";
+
+type Link = {
+	name: string;
+	href: string;
+};
+
+interface Props {
+	links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav
+	class="overflow-hidden rounded-3xl bg-opacity-50 shadow shadow-slate-900 bg-slate-600 backdrop-blur-lg p-0.5"
+>
+	<ul
+		class="flex h-full bg-opacity-50 shadow-inner rounded-3xl shadow-slate-950 bg-slate-900 overflow-x-auto"
+	>
+		{
+			links.map(({ href, name }, i) => (
+				<li>
+					<HeaderLink
+						href={href}
+						class={
+							i === 0
+								? "pl-3 rounded-l-3xl"
+								: i === links.length - 1
+									? "pr-3 rounded-r-3xl"
+									: ""
+						}
+					>
+						{name}
+					</HeaderLink>
+				</li>
+			))
+		}
+	</ul>
+</nav>

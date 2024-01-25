@@ -1,0 +1,28 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Popover from "../popover.astro";
+import HeaderButton from "./header-button.astro";
+import { DEFAULT_LOCALE, LOCALES, type Locale, LOCALE_NAMES } from "#i18n";
+
+export const LOCALE_ICONS: Record<Locale, string> = {
+	en: "icon-[flag--gb-4x3]",
+	es: "icon-[flag--es-4x3]",
+};
+const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
+const href = Astro.url.pathname.replace(LOCALE_REGEX, "");
+const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
+
+const items = LOCALES.map((code) => ({
+	id: code,
+	text: LOCALE_NAMES[code],
+	icon: LOCALE_ICONS[code],
+	href: getRelativeLocaleUrl(code, href),
+	active: code === locale,
+}));
+---
+
+<Popover title="Change site's language" placement="bottom" items={items}>
+	<language-button>
+		<HeaderButton icon="icon-[tabler--language]" />
+	</language-button>
+</Popover>

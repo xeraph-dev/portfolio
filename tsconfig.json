@@ -28,10 +28,11 @@
 
 		"types": ["./i18n/i18n.d.ts", "bun-types"],
 
+		"baseUrl": ".",
 		"paths": {
 			"#cv/*": ["./cv/*"],
 			"#i18n": ["./i18n/i18n.ts"],
 			"~/*": ["./src/*"]
-		}
+		},
 	}
 }

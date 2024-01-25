@@ -18,6 +18,7 @@
     "@astrojs/check": "0.4.1",
     "@astrojs/tailwind": "5.1.0",
     "@biomejs/biome": "1.5.3",
+    "@floating-ui/dom": "1.5.4",
     "@iconify/json": "2.2.172",
     "@iconify/tailwind": "0.1.4",
     "@react-pdf/renderer": "3.3.2",

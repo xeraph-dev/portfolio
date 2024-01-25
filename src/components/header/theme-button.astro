@@ -1,0 +1,67 @@
+---
+import Popopver from "../popover.astro";
+import HeaderButton from "./header-button.astro";
+---
+
+<Popopver title="Change site's theme (not implemented)" placement="bottom">
+	<theme-button class="flex">
+		<button disabled class="cursor-not-allowed">
+			<HeaderButton icon="icon-[tabler--sun]" />
+		</button>
+	</theme-button>
+</Popopver>
+
+<script>
+	class ThemeButton extends HTMLElement {
+		button: HTMLButtonElement;
+		icon: HTMLSpanElement;
+
+		constructor() {
+			super();
+			const button = this.querySelector("button");
+			const icon = this.querySelector<HTMLSpanElement>('span[class|="icon"]');
+			if (!button) {
+				throw new Error("[theme-button] Missing inner button");
+			}
+			if (!icon) {
+				throw new Error("[theme-button] Missing inner icon (span element)");
+			}
+			this.button = button;
+			this.icon = icon;
+
+			this.button.addEventListener("click", this.onClick.bind(this));
+
+			this.onChange(localStorage.getItem("theme"));
+			window.addEventListener("storage", (ev) => {
+				if (ev.key !== "theme") return;
+				this.onChange(ev.newValue);
+			});
+		}
+
+		onChange(newValue: string | null) {
+			if (newValue === "dark") {
+				this.icon.classList.remove("icon-[tabler--moon]");
+				this.icon.classList.add("icon-[tabler--sun]");
+			} else {
+				this.icon.classList.remove("icon-[tabler--sun]");
+				this.icon.classList.add("icon-[tabler--moon]");
+			}
+		}
+
+		onClick() {
+			const key = "theme";
+			const oldValue = localStorage.getItem(key);
+			const newValue = oldValue === "dark" ? "light" : "dark";
+			localStorage.setItem(key, newValue);
+			window.dispatchEvent(
+				new StorageEvent("storage", {
+					key,
+					oldValue,
+					newValue,
+				}),
+			);
+		}
+	}
+
+	customElements.define("theme-button", ThemeButton);
+</script>

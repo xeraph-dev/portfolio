@@ -1,0 +1,32 @@
+---
+const links = [
+	{
+		href: "https://github.com/xeraph-dev",
+		icon: "icon-[simple-icons--github]",
+	},
+	{
+		href: "https://www.linkedin.com/in/adrian-l%C3%B3pez/",
+		icon: "icon-[logos--linkedin-icon]",
+	},
+	{
+		href: "https://t.me/xeraphdev",
+		icon: "icon-[logos--telegram]",
+	},
+	{
+		href: "https://x.com/xeraphdev",
+		icon: "icon-[simple-icons--x]",
+	},
+];
+---
+
+<footer class="flex flex-col items-center justify-center gap-10 p-16">
+	<ul class="flex gap-6 text-3xl">
+		{
+			links.map(({ href, icon }) => (
+				<li>
+					<a href={href} class={icon} target="_blank" rel="noreferrer" />
+				</li>
+			))
+		}
+	</ul>
+</footer>

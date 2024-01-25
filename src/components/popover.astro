@@ -1,0 +1,183 @@
+---
+import type { Placement } from "@floating-ui/dom";
+
+type Item = {
+	id: string;
+	href: string;
+	icon?: string;
+	text: string;
+	active?: boolean;
+};
+
+interface Props {
+	title: string;
+	placement: Placement;
+	items?: Item[];
+}
+
+const { title, placement, items } = Astro.props;
+---
+
+<x-popover class="flex group" data-placement={placement}>
+	{
+		items?.length ? (
+			<button aria-describedby="tooltip">
+				<slot />
+			</button>
+		) : (
+			<div class="flex" aria-describedby="tooltip">
+				<slot />
+			</div>
+		)
+	}
+	<div
+		role="tooltip"
+		class="absolute top-0 left-0 hidden px-2 py-1 text-xs bg-opacity-50 rounded-md shadow-lg max-w-[20ch] text-center bg-slate-700 backdrop-blur-lg text-light"
+	>
+		{title}
+	</div>
+	{
+		!items?.length ? null : (
+			<div
+				role="list"
+				class="absolute top-0 left-0 hidden p-1 rounded-md bg-opacity-50 shadow shadow-slate-900 bg-slate-700 backdrop-blur-lg max-w-max"
+			>
+				<ul class="flex flex-col gap-1 text-sm">
+					{items.map(({ id, text, href, icon, active }) => {
+						return (
+							<li>
+								<a
+									id={id}
+									href={href}
+									class:list={[
+										"flex gap-1.5 items-center py-1 px-2 hover:bg-slate-600 hover:bg-opacity-50 hover:shadow hover:shadow-slate-900 rounded-md",
+										"active:shadow-inner active:shadow-slate-950 active:bg-opacity-50 active:bg-slate-900",
+										active
+											? "bg-slate-900 shadow-inner shadow-slate-950 bg-opacity-50"
+											: "",
+									]}
+								>
+									<span class:list={[icon, "text-xs"]} />
+									<span>{text}</span>
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
+		)
+	}
+</x-popover>
+
+<script>
+	import {
+		computePosition,
+		flip,
+		shift,
+		offset,
+		type Placement,
+	} from "@floating-ui/dom";
+	class XTooltip extends HTMLElement {
+		base: HTMLElement;
+		tooltip: HTMLElement | null;
+		dropdown: HTMLElement | null;
+		placement: Placement;
+
+		get tooltipOpen() {
+			return (
+				this.tooltip !== null && !this.tooltip.classList.contains("hidden")
+			);
+		}
+
+		get dropdownOpen() {
+			return (
+				this.dropdown !== null && !this.dropdown.classList.contains("hidden")
+			);
+		}
+
+		constructor() {
+			super();
+
+			const base = this.querySelector<HTMLElement>(
+				'*[aria-describedby="tooltip"]',
+			);
+			const placement = this.dataset["placement"];
+
+			if (!base) throw new Error("[x-popover] Missing base element");
+			if (!placement) throw new Error("[x-popover] Missing placement");
+
+			this.base = base;
+			this.placement = placement as Placement;
+
+			this.tooltip = this.querySelector<HTMLElement>('div[role="tooltip"]');
+			this.dropdown = this.querySelector<HTMLElement>('div[role="list"]');
+
+			this.listen();
+		}
+
+		listen() {
+			(
+				[
+					["mouseenter", this.showTooltip],
+					["mouseleave", this.hideTooltip],
+					["focus", this.showTooltip],
+					["blur", this.hideTooltip],
+				] as [string, () => void][]
+			).forEach(([event, listener]) => {
+				this.base.addEventListener(event, listener.bind(this));
+			});
+
+			this.base.addEventListener("click", this.toggleDropdown.bind(this));
+
+			document.addEventListener("click", (ev) => {
+				if (
+					this.base.contains(ev.target as HTMLElement) ||
+					!this.dropdownOpen
+				) {
+					return;
+				}
+				this.toggleDropdown();
+				this.hideTooltip();
+			});
+		}
+
+		update(el: HTMLElement | null) {
+			if (!el) return;
+
+			computePosition(this.base, el, {
+				placement: this.placement,
+				middleware: [offset(4), flip(), shift()],
+			}).then(({ x, y }) => {
+				Object.assign(el.style, {
+					left: `${x}px`,
+					top: `${y}px`,
+				});
+			});
+		}
+
+		showTooltip() {
+			if (!this.tooltip || this.dropdownOpen) return;
+			this.tooltip.classList.remove("hidden");
+			this.update(this.tooltip);
+		}
+
+		hideTooltip() {
+			if (!this.tooltip) return;
+			this.tooltip.classList.add("hidden");
+		}
+
+		toggleDropdown() {
+			if (!this.dropdown) return;
+			if (this.dropdownOpen) {
+				this.dropdown.classList.add("hidden");
+				if (!this.tooltipOpen) this.showTooltip();
+			} else {
+				if (this.tooltipOpen) this.hideTooltip();
+				this.dropdown.classList.remove("hidden");
+				this.update(this.dropdown);
+			}
+		}
+	}
+
+	customElements.define("x-popover", XTooltip);
+</script>
