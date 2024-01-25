@@ -5,7 +5,7 @@
     "dev:site": "astro dev",
     "dev:cv": "bun cv/watch.ts",
     "dev:i18n": "bun i18n/cli.ts generate --watch",
-    "build": "bun build:i18n && bun build:cv && bun build:site",
+    "build": "bun build:site",
     "build:site": "astro build",
     "build:cv": "bun cv/generate.tsx",
     "build:i18n": "bun i18n/cli.ts generate",
