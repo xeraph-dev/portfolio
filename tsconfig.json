@@ -34,5 +34,10 @@
 			"#i18n": ["./i18n/i18n.ts"],
 			"~/*": ["./src/*"]
 		},
+		"plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      },
+    ],
 	}
 }
