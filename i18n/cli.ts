@@ -6,7 +6,7 @@ import { flattenTranslationsKeys } from './utils'
 
 const generate = async (cwd: string) => {
 	console.time('i18n types generated successfully')
-	const definitionsPath = join(import.meta.dir, 'i18n.d.ts')
+	const definitionsPath = join(import.meta.dir, '..', 'types', 'i18n.d.ts')
 	const keys = await flattenTranslationsKeys(cwd)
 	const definitions = generateTypesDefinitions(keys)
 	await writeFile(definitionsPath, definitions)
