@@ -4,26 +4,26 @@ import BackgorundEnd from "../background/backgorund-bottom.astro";
 const links = [
 	{
 		href: "https://github.com/xeraph-dev",
-		icon: "icon-[simple-icons--github]",
+		icon: "icon-[tabler--brand-github]",
 	},
 	{
 		href: "https://www.linkedin.com/in/adrian-l%C3%B3pez/",
-		icon: "icon-[logos--linkedin-icon]",
+		icon: "icon-[tabler--brand-linkedin]",
 	},
 	{
 		href: "https://t.me/xeraphdev",
-		icon: "icon-[logos--telegram]",
+		icon: "icon-[tabler--brand-telegram]",
 	},
 	{
 		href: "https://x.com/xeraphdev",
-		icon: "icon-[simple-icons--x]",
+		icon: "icon-[tabler--brand-x]",
 	},
 ];
 ---
 
 <footer class="relative flex flex-col items-center justify-center gap-10 py-24">
 	<BackgorundEnd />
-	<ul class="flex gap-6 text-3xl">
+	<ul class="flex gap-6 text-4xl">
 		{
 			links.map(({ href, icon }) => (
 				<li>
