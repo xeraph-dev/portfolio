@@ -1,5 +1,4 @@
 ---
-import Background from "~/components/background.astro";
 import Contact from "~/components/contact/contact.astro";
 import Header from "~/components/header/header.astro";
 
@@ -22,8 +21,9 @@ const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 	</head>
 	<body class="flex flex-col min-h-screen bg-slate-950 dark:text-slate-50">
 		<Header />
-		<main class="grow max-w-[75ch] w-full px-4 mx-auto"><slot /></main>
+		<main class="grow">
+			<slot />
+		</main>
 		<Contact />
-		<Background />
 	</body>
 </html>
