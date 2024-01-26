@@ -1,5 +1,5 @@
-import { watch, writeFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
+import { mkdir, watch, writeFile } from 'node:fs/promises'
+import { dirname, join, resolve } from 'node:path'
 import { program } from 'commander'
 import { generateTypesDefinitions } from './types'
 import { flattenTranslationsKeys } from './utils'
@@ -7,6 +7,7 @@ import { flattenTranslationsKeys } from './utils'
 const generate = async (cwd: string) => {
 	console.time('i18n types generated successfully')
 	const definitionsPath = join(import.meta.dir, '..', 'types', 'i18n.d.ts')
+	await mkdir(dirname(definitionsPath), { recursive: true })
 	const keys = await flattenTranslationsKeys(cwd)
 	const definitions = generateTypesDefinitions(keys)
 	await writeFile(definitionsPath, definitions)
