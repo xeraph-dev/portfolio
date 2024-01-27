@@ -1,4 +1,6 @@
 ---
+import { t } from "#i18n";
+
 interface Props {
 	name: string;
 	short?: string;
@@ -11,7 +13,11 @@ const circumference = 32 * 2 * Math.PI;
 const percent = +(level.match(/^w-\[(\d+)%\]$/)?.[1] ?? 0);
 ---
 
-<div class="flex-col items-end hidden md:flex">
+<span class="sr-only"
+	>{t("site.about-me.skill-level", { skill: name, level: percent })}</span
+>
+
+<div class="flex-col items-end hidden md:flex" aria-hidden="true">
 	<span>{name}</span>
 	<div
 		class={`${level} rounded-full rotate-180 shadow shadow-slate-950 ${color} h-2`}
@@ -20,7 +26,7 @@ const percent = +(level.match(/^w-\[(\d+)%\]$/)?.[1] ?? 0);
 	</div>
 </div>
 
-<div class="flex items-center justify-center md:hidden">
+<div class="flex items-center justify-center md:hidden" aria-hidden="true">
 	<svg class="w-20 h-20">
 		<circle
 			class={`${color}`}

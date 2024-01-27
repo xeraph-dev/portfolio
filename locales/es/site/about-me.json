@@ -1,3 +1,4 @@
 {
-	"download-cv": "Descargar CV"
+	"download-cv": "Descargar CV",
+	"skill-level": "Habilidad {{skill:string}}, nivel {{level:number}}%"
 }

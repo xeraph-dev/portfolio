@@ -31,9 +31,8 @@ const { links } = Astro.props;
 									? "pr-3 rounded-r-full"
 									: ""
 						}
-					>
-						{name}
-					</HeaderLink>
+						name={name}
+					></HeaderLink>
 				</li>
 			))
 		}

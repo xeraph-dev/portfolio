@@ -6,7 +6,11 @@ import HeaderButton from "./header-button.astro";
 
 <Popopver title={t("site.header.change-site-theme")} placement="bottom">
 	<theme-button class="flex">
-		<button disabled class="cursor-not-allowed">
+		<button
+			disabled
+			class="cursor-not-allowed"
+			aria-label={t("site.header.change-site-theme")}
+		>
 			<HeaderButton icon="icon-[tabler--moon]" />
 		</button>
 	</theme-button>

@@ -1,0 +1,7 @@
+{
+	"work-at": "Trabajo en {{company:string}}",
+	"site": "Sitio de {{company:string}}",
+	"worked": "Trabajé desde {{startYear}} hasta {{endYear}}, {{duration}}, en {{location}}",
+	"what-did": "Que hice en {{company}}",
+	"skills-at": "Habilidades en {{company}}"
+}

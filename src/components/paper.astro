@@ -1,3 +1,15 @@
-<div class="rounded-md shadow shadow-slate-900 bg-slate-900 p-3 flex flex-col">
+---
+interface Props {
+	class?: string;
+	label?: string;
+}
+
+const { class: className, label } = Astro.props;
+---
+
+<div
+	class={`rounded-md shadow shadow-slate-900 bg-slate-900 p-3 flex flex-col ${className}`}
+	aria-label={label}
+>
 	<slot />
 </div>

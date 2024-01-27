@@ -3,6 +3,7 @@ import { addDays, intervalToDuration } from "date-fns";
 import SkillIcon from "../skill-icon.astro";
 import { type Skill, skill } from "~/constants/skills";
 import Paper from "../paper.astro";
+import { t } from "#i18n";
 
 interface Props {
 	company: string;
@@ -12,9 +13,11 @@ interface Props {
 	end?: string;
 	location: string;
 	job: string;
+	site?: string;
 }
 
-const { company, actions, skills, start, end, location, job } = Astro.props;
+const { company, actions, skills, start, end, location, job, site } =
+	Astro.props;
 
 const startDate = new Date(start);
 const endDate = new Date(end ?? Date.now());
@@ -37,21 +40,56 @@ if (years && months) {
 const durationText = `${interval} | ${years}${months}`;
 ---
 
-<Paper>
+<Paper class="h-full" label={t("site.work.work-at", { company })}>
 	<div class="flex justify-between text-xl">
 		<h4 class="font-bold">{company}</h4>
-		<span class="icon-[tabler--link]"></span>
+		{
+			site && (
+				<a
+					class="icon-[tabler--link]"
+					aria-label={t("site.work.site", { company })}
+					href={site}
+					target="_blank"
+					rel="noreferrer"
+				/>
+			)
+		}
 	</div>
-	<div class="text-xs font-light mt-1">
+	<span class="sr-only">
+		{
+			t("site.work.worked", {
+				startYear,
+				endYear,
+				duration: years || months,
+				location,
+			})
+		}
+	</span>
+	<div class="mt-1 text-xs font-light" aria-hidden="true">
 		<time>{durationText}</time>
 		-
 		<span>{location}</span>
 	</div>
-	<h5 class="text-md mt-3">{job}</h5>
-	<ul class="list-disc text-sm grow font-light">
+	<h5 class="mt-3 text-md">{job}</h5>
+	<ul
+		class="text-sm font-light list-disc grow"
+		aria-label={t("site.work.what-did", { company })}
+	>
 		{actions.map((action) => <li class="ml-6">{action}</li>)}
 	</ul>
-	<ul class="flex gap-1.5 mt-4 px-4 flex-wrap-reverse flex-row-reverse">
+	<ul class="sr-only" aria-label={t("site.work.skills-at", { company })}>
+		{
+			skills.map((item) => (
+				<li>
+					<span>{item}</span>
+				</li>
+			))
+		}
+	</ul>
+	<ul
+		aria-hidden="true"
+		class="flex gap-1.5 mt-4 px-4 flex-wrap-reverse flex-row-reverse"
+	>
 		{
 			skills.reverse().map((item) => (
 				<li>

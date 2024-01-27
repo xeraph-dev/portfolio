@@ -4,5 +4,6 @@
 	"projects": "proyectos",
 	"tools": "herramientas",
 	"change-site-language": "Cambiar el idioma del sitio",
-	"change-site-theme": "Cambiar el tema del sitio (no implementado)"
+	"change-site-theme": "Cambiar el tema del sitio (no implementado)",
+	"go-to-section": "Ir a la sección {{name:string}}"
 }

@@ -1,10 +1,13 @@
 ---
+import { t } from "#i18n";
+
 interface Props {
 	href: string;
 	class?: string;
+	name: string;
 }
 
-const { href, class: className = "" } = Astro.props;
+const { href, class: className = "", name } = Astro.props;
 ---
 
 <header-link>
@@ -14,8 +17,9 @@ const { href, class: className = "" } = Astro.props;
 			className,
 		]}
 		href={href}
+		aria-label={t("site.header.go-to-section", { name })}
 	>
-		<slot />
+		{name}
 	</a>
 </header-link>
 
