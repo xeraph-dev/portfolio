@@ -6,7 +6,7 @@ import HeaderButton from "./header-button.astro";
 <Popopver title="Change site's theme (not implemented)" placement="bottom">
 	<theme-button class="flex">
 		<button disabled class="cursor-not-allowed">
-			<HeaderButton icon="icon-[tabler--sun]" />
+			<HeaderButton icon="icon-[tabler--moon]" />
 		</button>
 	</theme-button>
 </Popopver>
@@ -40,11 +40,11 @@ import HeaderButton from "./header-button.astro";
 
 		onChange(newValue: string | null) {
 			if (newValue === "dark") {
-				this.icon.classList.remove("icon-[tabler--moon]");
-				this.icon.classList.add("icon-[tabler--sun]");
-			} else {
 				this.icon.classList.remove("icon-[tabler--sun]");
 				this.icon.classList.add("icon-[tabler--moon]");
+			} else {
+				this.icon.classList.remove("icon-[tabler--moon]");
+				this.icon.classList.add("icon-[tabler--sun]");
 			}
 		}
 
