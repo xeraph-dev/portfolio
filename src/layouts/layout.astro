@@ -1,6 +1,7 @@
 ---
 import Contact from "~/components/contact/contact.astro";
 import Header from "~/components/header/header.astro";
+import { init, locale, LOCALES, DEFAULT_LOCALE, type Locale } from "#i18n";
 
 interface Props {
 	title?: string;
@@ -9,6 +10,13 @@ interface Props {
 const { title } = Astro.props;
 const baseTitle = "Adrian López Portfolio";
 const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
+
+const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
+const localeCode =
+	Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
+
+await init();
+locale.set(localeCode as Locale);
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -16,6 +24,7 @@ const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="color-scheme" content="light dark" />
 		<title>{fullTitle}</title>
 		<script src="~/scripts/theme.ts"></script>
 	</head>

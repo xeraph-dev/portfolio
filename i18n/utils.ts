@@ -1,9 +1,9 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { globSync } from 'glob'
+
 export const searchTranslations = (cwd: string) => {
-	return new Bun.Glob('**/*.json').scan({
-		cwd,
-		absolute: true,
-		onlyFiles: true,
-	})
+	return globSync(join(cwd, '**/*.json'))
 }
 
 export const extract = (str: string) =>
@@ -41,7 +41,7 @@ export const flattenTranslations = async (cwd: string) => {
 	const keys: Record<string, string> = {}
 
 	for await (const file of searchTranslations(cwd)) {
-		let json = JSON.parse(await Bun.file(file).text())
+		let json = JSON.parse(readFileSync(file, 'utf-8'))
 		json = flattenObject(json, isPluralizable)
 		for (const [key, value] of Object.entries<any>(json)) {
 			if (!['string', 'object'].includes(typeof value)) continue
@@ -65,7 +65,7 @@ export const flattenTranslationsKeys = async (cwd: string) => {
 	const keys: Record<string, Record<string, Set<string>>> = {}
 
 	for await (const file of searchTranslations(cwd)) {
-		let json = JSON.parse(await Bun.file(file).text())
+		let json = JSON.parse(readFileSync(file, 'utf-8'))
 		json = flattenObject(json, isPluralizable)
 
 		for (const [key, value] of Object.entries<any>(json)) {

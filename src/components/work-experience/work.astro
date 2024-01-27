@@ -1,0 +1,63 @@
+---
+import { addDays, intervalToDuration } from "date-fns";
+import SkillIcon from "../skill-icon.astro";
+import { type Skill, skill } from "~/constants/skills";
+import Paper from "../paper.astro";
+
+interface Props {
+	company: string;
+	actions: string[];
+	skills: Skill[];
+	start: string;
+	end?: string;
+	location: string;
+	job: string;
+}
+
+const { company, actions, skills, start, end, location, job } = Astro.props;
+
+const startDate = new Date(start);
+const endDate = new Date(end ?? Date.now());
+const startYear = startDate.getFullYear();
+const endYear = endDate.getFullYear();
+const duration = intervalToDuration({
+	start: startDate,
+	end: addDays(endDate, 1),
+});
+const interval =
+	startYear === endYear ? startYear : `${startYear} - ${endYear}`;
+const yearsText = "year" + ((duration.years ?? 0) > 1 ? "s" : "");
+const monthsText = "month" + ((duration.months ?? 0) > 1 ? "s" : "");
+let years = duration.years ? `${duration.years} ${yearsText}` : "";
+let months = duration.months ? `${duration.months} ${monthsText}` : "";
+if (years && months) {
+	years = `+${years}`;
+	months = "";
+}
+const durationText = `${interval} | ${years}${months}`;
+---
+
+<Paper>
+	<div class="flex justify-between text-xl">
+		<h4>{company}</h4>
+		<span class="icon-[tabler--link]"></span>
+	</div>
+	<div class="text-xs font-light mt-1">
+		<time>{durationText}</time>
+		-
+		<span>{location}</span>
+	</div>
+	<h5 class="text-md mt-3">{job}</h5>
+	<ul class="list-disc text-sm grow font-light">
+		{actions.map((action) => <li class="ml-6">{action}</li>)}
+	</ul>
+	<ul class="flex gap-1.5 mt-4 px-4 flex-wrap-reverse flex-row-reverse">
+		{
+			skills.reverse().map((item) => (
+				<li>
+					<SkillIcon {...skill(item)} />
+				</li>
+			))
+		}
+	</ul>
+</Paper>

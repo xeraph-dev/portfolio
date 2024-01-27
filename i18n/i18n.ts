@@ -22,7 +22,7 @@ export async function init() {
 	} else {
 		const { readdir } = await import('node:fs/promises')
 		const { join } = await import('node:path')
-		const locales = join(import.meta.dir, '..', 'locales')
+		const locales = join(process.cwd(), 'locales')
 		for await (const _locale of (await readdir(locales)) as Locale[]) {
 			if (!LOCALES.includes(_locale)) continue
 			const root = join(locales, _locale)

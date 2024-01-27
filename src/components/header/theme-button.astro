@@ -1,9 +1,10 @@
 ---
+import { t } from "#i18n";
 import Popopver from "../popover.astro";
 import HeaderButton from "./header-button.astro";
 ---
 
-<Popopver title="Change site's theme (not implemented)" placement="bottom">
+<Popopver title={t("site.header.change-site-theme")} placement="bottom">
 	<theme-button class="flex">
 		<button disabled class="cursor-not-allowed">
 			<HeaderButton icon="icon-[tabler--moon]" />

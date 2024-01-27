@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Popover from "../popover.astro";
 import HeaderButton from "./header-button.astro";
-import { DEFAULT_LOCALE, LOCALES, type Locale, LOCALE_NAMES } from "#i18n";
+import { DEFAULT_LOCALE, LOCALES, type Locale, LOCALE_NAMES, t } from "#i18n";
 
 export const LOCALE_ICONS: Record<Locale, string> = {
 	en: "icon-[flag--gb-4x3]",
@@ -21,7 +21,11 @@ const items = LOCALES.map((code) => ({
 }));
 ---
 
-<Popover title="Change site's language" placement="bottom" items={items}>
+<Popover
+	title={t("site.header.change-site-language")}
+	placement="bottom"
+	items={items}
+>
 	<language-button>
 		<HeaderButton icon="icon-[tabler--language]" />
 	</language-button>

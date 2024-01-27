@@ -1,0 +1,14 @@
+---
+import Popover from "./popover.astro";
+
+interface Props {
+	name: string;
+	icon: string;
+}
+
+const { name, icon } = Astro.props;
+---
+
+<Popover title={name} placement="top">
+	<span class={`${icon}`}></span>
+</Popover>

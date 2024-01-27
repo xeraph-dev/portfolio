@@ -1,5 +1,5 @@
 ---
-import { DEFAULT_LOCALE, LOCALES } from "#i18n";
+import { DEFAULT_LOCALE, LOCALES, t } from "#i18n";
 import Section from "../section.astro";
 import Skill from "./skill.astro";
 
@@ -7,28 +7,16 @@ const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
 const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
 ---
 
-<Section id="about-me" title="About me">
+<Section id="about-me" title={t("cv.sidebar.about-me.title")}>
 	<div class="grid gap-8 md:grid-cols-2">
 		<div class="flex flex-col gap-2 text-sm px-4 md:px-0 text-pretty">
-			<p>
-				Self-taught web developer, passionate about programming and follower to
-				the functional paradigm. Specialized in creating and improving digital
-				interfaces, with a focus on maintaining complex websites by
-				troubleshooting, implementing new features, and ensuring optimal
-				performance.
-			</p>
-			<p>
-				I have a deep understanding of the overall front-end web ecosystem, with
-				strong skills in HTML, CSS, and JavaScript, backed by significant
-				experience in frameworks like React. Currently, exploring Golang to
-				expand my skill set.
-			</p>
-			<p>
-				Beyond the technical realm, my interests extend to philosophy,
-				economics, politics, and history, aiming to shape my own worldview.
-			</p>
+			<p>{t("cv.sidebar.about-me.paragraph-1")}</p>
+			<p>{t("cv.sidebar.about-me.paragraph-2")}</p>
+			<p>{t("cv.sidebar.about-me.paragraph-3")}</p>
 		</div>
-		<div class="flex md:flex md:flex-col gap-2 justify-center flex-wrap">
+		<div
+			class="flex md:flex md:flex-col gap-2 justify-center md:justify-start flex-wrap"
+		>
 			<Skill
 				level="w-[95%]"
 				color="bg-gradient-to-l from-orange-700 to-blue-700 text-orange-700"
@@ -54,7 +42,8 @@ const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
 			href={`/cv-${locale}.pdf`}
 			class="grow-0 px-2.5 py-1.5 text-lg rounded-md shadow shadow-slate-900 bg-slate-800 flex items-center gap-2"
 		>
-			Download CV <span class="icon-[tabler--download] w-5 h-5"></span>
+			{t("site.about-me.download-cv")}
+			<span class="icon-[tabler--download] w-5 h-5"></span>
 		</a>
 	</div>
 </Section>

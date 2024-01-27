@@ -1,5 +1,119 @@
 ---
+import { t } from "#i18n";
 import Section from "../section.astro";
+import Work from "./work.astro";
 ---
 
-<Section id="work-experience" title="Work experience" />
+<Section id="work-experience" title="Work experience">
+	<div class="grid md:grid-cols-2 gap-8">
+		<Work
+			company="Divertimento"
+			location={t("common.remote")}
+			job="Web developer"
+			start="2022-11"
+			skills={[
+				"HTML",
+				"CSS",
+				"JavaScript",
+				"TypeScript",
+				"React",
+				"Bootstrap",
+				"Material-UI",
+				"Go",
+				"PHP",
+				"MySQL",
+				"PostgreSQL",
+				"Git",
+				"GitHub",
+				"GitLab",
+			]}
+			actions={[
+				t("cv.work.jobs.divertimento-2.action-1"),
+				t("cv.work.jobs.divertimento-2.action-2"),
+				t("cv.work.jobs.divertimento-2.action-3"),
+				t("cv.work.jobs.divertimento-2.action-4"),
+				t("cv.work.jobs.divertimento-2.action-5"),
+			]}
+		/>
+		<Work
+			company="Freelance"
+			location={t("common.remote")}
+			job={t("cv.work.front-end-developer")}
+			start="2022-9"
+			end="2022-11"
+			skills={["HTML", "CSS", "JavaScript", "React", "Ant-Design", "SAP"]}
+			actions={[
+				t("cv.work.jobs.freelance.action-1"),
+				t("cv.work.jobs.freelance.action-2"),
+				t("cv.work.jobs.freelance.action-3"),
+			]}
+		/>
+		<Work
+			company="Divertimento"
+			location={t("common.remote")}
+			job={t("cv.work.front-end-developer")}
+			start="2022-3"
+			end="2022-8"
+			skills={[
+				"HTML",
+				"CSS",
+				"JavaScript",
+				"TypeScript",
+				"React",
+				"Vue",
+				"Charka-UI",
+				"Node.js",
+				"Express.js",
+				"Git",
+				"GitHub",
+			]}
+			actions={[t("cv.work.jobs.divertimento-1.action-1")]}
+		/>
+		<Work
+			company="IJP Software"
+			location={t("common.remote")}
+			job={t("cv.work.front-end-developer")}
+			start="2021-7"
+			end="2022-7"
+			skills={[
+				"HTML",
+				"CSS",
+				"JavaScript",
+				"TypeScript",
+				"React",
+				"Next.js",
+				"Vue",
+				"Material-UI",
+				"Charka-UI",
+				"Sass",
+				"Redux",
+				"Node.js",
+				"Express.js",
+				"Git",
+				"GitHub",
+				"Bash",
+				"Docker",
+			]}
+			actions={[
+				t("cv.work.jobs.ijp-software.action-1"),
+				t("cv.work.jobs.ijp-software.action-2"),
+				t("cv.work.jobs.ijp-software.action-3"),
+				t("cv.work.jobs.ijp-software.action-4"),
+			]}
+		/>
+		<Work
+			company="Xetid"
+			location={`${t("common.havana")} / Cuba`}
+			job={t("cv.work.drupal-developer")}
+			start="2019-10"
+			end="2021-8"
+			skills={["HTML", "CSS", "jQuery", "PHP", "Drupal", "PostgreSQL", "Linux"]}
+			actions={[
+				t("cv.work.jobs.xetid.action-1"),
+				t("cv.work.jobs.xetid.action-2"),
+				t("cv.work.jobs.xetid.action-3"),
+				t("cv.work.jobs.xetid.action-4"),
+			]}
+		/>
+	</div>
+</Section>

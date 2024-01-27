@@ -1,12 +1,13 @@
 ---
+import { t } from "#i18n";
 import HeaderNavbar from "./header-navbar.astro";
 ---
 
 <HeaderNavbar
 	links={[
-		{ name: "about", href: "#about-me" },
-		{ name: "work", href: "#work-experience" },
-		{ name: "projects", href: "#projects" },
-		{ name: "tools", href: "#tools" },
+		{ name: t("site.header.about"), href: "#about-me" },
+		{ name: t("site.header.work"), href: "#work-experience" },
+		{ name: t("site.header.projects"), href: "#projects" },
+		{ name: t("site.header.tools"), href: "#tools" },
 	]}
 />
