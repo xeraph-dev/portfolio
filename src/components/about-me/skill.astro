@@ -1,0 +1,40 @@
+---
+interface Props {
+	name: string;
+	short?: string;
+	level: string;
+	color: string;
+}
+
+const { name, short, level, color } = Astro.props;
+const circumference = 32 * 2 * Math.PI;
+const percent = +(level.match(/^w-\[(\d+)%\]$/)?.[1] ?? 0);
+---
+
+<div class="flex-col items-end hidden md:flex">
+	<span>{name}</span>
+	<div
+		class={`${level} rounded-full rotate-180 shadow shadow-slate-950 ${color} h-2`}
+		role="progressbar"
+	>
+	</div>
+</div>
+
+<div class="flex items-center justify-center md:hidden">
+	<svg class="w-20 h-20">
+		<circle
+			class={`${color}`}
+			stroke-width="6"
+			stroke-dasharray={circumference}
+			stroke-dashoffset={circumference - (percent / 100) * circumference}
+			stroke-linecap="round"
+			stroke="currentColor"
+			fill="transparent"
+			r="32"
+			cx="50%"
+			cy="50%"></circle>
+	</svg>
+	<span class="absolute flex flex-col items-center text-lg">
+		{short?.split(" / ").map((el) => <span class="text-xs">{el}</span>) ?? name}
+	</span>
+</div>

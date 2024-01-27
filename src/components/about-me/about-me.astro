@@ -1,5 +1,60 @@
 ---
+import { DEFAULT_LOCALE, LOCALES } from "#i18n";
 import Section from "../section.astro";
+import Skill from "./skill.astro";
+
+const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
+const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
 ---
 
-<Section id="about-me" title="About me" />
+<Section id="about-me" title="About me">
+	<div class="grid gap-8 md:grid-cols-2">
+		<div class="flex flex-col gap-2 text-sm px-4 md:px-0 text-pretty">
+			<p>
+				Self-taught web developer, passionate about programming and follower to
+				the functional paradigm. Specialized in creating and improving digital
+				interfaces, with a focus on maintaining complex websites by
+				troubleshooting, implementing new features, and ensuring optimal
+				performance.
+			</p>
+			<p>
+				I have a deep understanding of the overall front-end web ecosystem, with
+				strong skills in HTML, CSS, and JavaScript, backed by significant
+				experience in frameworks like React. Currently, exploring Golang to
+				expand my skill set.
+			</p>
+			<p>
+				Beyond the technical realm, my interests extend to philosophy,
+				economics, politics, and history, aiming to shape my own worldview.
+			</p>
+		</div>
+		<div class="flex md:flex md:flex-col gap-2 justify-center flex-wrap">
+			<Skill
+				level="w-[95%]"
+				color="bg-gradient-to-l from-orange-700 to-blue-700 text-orange-700"
+				name="HTML / CSS"
+				short="HTML / CSS"
+			/>
+			<Skill
+				level="w-[90%]"
+				color="bg-gradient-to-l from-yellow-700 via-yellow-700 to-blue-700 text-yellow-700"
+				name="JavaScript / TypeScript"
+				short="JS / TS"
+			/>
+			<Skill level="w-[85%]" color="text-blue-700 bg-blue-700" name="React" />
+			<Skill level="w-[60%]" color="text-green-700 bg-green-700" name="Vue" />
+			<Skill level="w-[75%]" color="text-cyan-700 bg-cyan-700" name="Go" />
+			<Skill level="w-[80%]" color="text-teal-700 bg-teal-700" name="SQL" />
+			<Skill level="w-[70%]" color="text-gray-700 bg-gray-700" name="Linux" />
+		</div>
+	</div>
+	<div class="flex justify-center mt-8">
+		<a
+			download
+			href={`/cv-${locale}.pdf`}
+			class="grow-0 px-2.5 py-1.5 text-lg rounded-md shadow shadow-slate-900 bg-slate-800"
+		>
+			Download CV
+		</a>
+	</div>
+</Section>
