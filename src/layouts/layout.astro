@@ -1,4 +1,6 @@
 ---
+import "@fontsource/nunito";
+import "@fontsource/nunito/300.css";
 import Contact from "~/components/contact/contact.astro";
 import Header from "~/components/header/header.astro";
 import { init, locale, LOCALES, DEFAULT_LOCALE, type Locale } from "#i18n";
@@ -28,7 +30,9 @@ locale.set(localeCode as Locale);
 		<title>{fullTitle}</title>
 		<script src="~/scripts/theme.ts"></script>
 	</head>
-	<body class="flex flex-col min-h-screen bg-slate-950 dark:text-slate-50">
+	<body
+		class="flex flex-col min-h-screen bg-slate-950 dark:text-slate-50 font-nunito"
+	>
 		<Header />
 		<main class="grow">
 			<slot />
