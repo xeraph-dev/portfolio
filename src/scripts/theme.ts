@@ -14,3 +14,6 @@ window.addEventListener('storage', ev => {
 	if (ev.newValue === 'dark') document.documentElement.classList.add('dark')
 	else document.documentElement.classList.remove('dark')
 })
+
+// Temporally force dark theme until light theme is implemented
+localStorage.setItem('theme', 'dark')
