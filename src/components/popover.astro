@@ -10,7 +10,7 @@ type Item = {
 };
 
 interface Props {
-	title: string;
+	title?: string;
 	placement: Placement;
 	items?: Item[];
 }
@@ -30,13 +30,17 @@ const { title, placement, items } = Astro.props;
 			</div>
 		)
 	}
-	<div
-		role="tooltip"
-		aria-hidden="true"
-		class="absolute top-0 left-0 hidden px-2 py-1 text-xs rounded-md max-w-[24ch] shadow shadow-slate-900 text-center bg-slate-800 text-light z-40"
-	>
-		{title}
-	</div>
+	{
+		title && (
+			<div
+				role="tooltip"
+				aria-hidden="true"
+				class="absolute top-0 left-0 hidden px-2 py-1 text-xs rounded-md max-w-[24ch] shadow shadow-slate-900 text-center bg-slate-800 text-light z-40"
+			>
+				{title}
+			</div>
+		)
+	}
 	{
 		!items?.length ? null : (
 			<div

@@ -1,4 +1,6 @@
 ---
+import Popover from "../popover.astro";
+import HeaderButton from "./header-button.astro";
 import HeaderLink from "./header-link.astro";
 
 type Link = {
@@ -14,10 +16,10 @@ const { links } = Astro.props;
 ---
 
 <nav
-	class="overflow-hidden rounded-full shadow shadow-slate-900 bg-slate-700 p-0.5"
+	class="rounded-full shadow shadow-slate-900 bg-slate-700 p-0.5 hidden sm:block"
 >
 	<ul
-		class="flex h-full overflow-x-auto rounded-full shadow-inner shadow-slate-950 bg-slate-800"
+		class="flex h-full rounded-full shadow-inner shadow-slate-950 bg-slate-800"
 	>
 		{
 			links.map(({ href, name }, i) => (
@@ -32,9 +34,22 @@ const { links } = Astro.props;
 									: ""
 						}
 						name={name}
-					></HeaderLink>
+					/>
 				</li>
 			))
 		}
 	</ul>
 </nav>
+
+<div class="sm:hidden">
+	<Popover
+		placement="bottom"
+		items={links.map(({ href, name }) => ({
+			id: `link-${href.replace("#", "")}`,
+			href: href,
+			text: name,
+		}))}
+	>
+		<HeaderButton icon="icon-[tabler--menu]" />
+	</Popover>
+</div>
