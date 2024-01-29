@@ -1,4 +1,6 @@
 {
 	"download-cv": "Descargar CV",
-	"skill-level": "Habilidad {{skill:string}}, nivel {{level:number}}%"
+	"skill-level": "Habilidad {{skill:string}}, nivel {{level:number}}%",
+	"bars-represents-1": "Estas barras solo representan la diferencia de conocimiento entre las habilidades.",
+	"bars-represents-2": "El porcentaje en si mismo no significa nada."
 }

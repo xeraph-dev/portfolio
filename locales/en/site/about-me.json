@@ -1,4 +1,6 @@
 {
 	"download-cv": "Download CV",
-	"skill-level": "Skill {{skill:string}}, level {{level:number}}%"
+	"skill-level": "Skill {{skill:string}}, level {{level:number}}%",
+	"bars-represents-1": "These bars just represents the difference in knowledge between the skills.",
+	"bars-represents-2": "The percentage itself means nothing."
 }

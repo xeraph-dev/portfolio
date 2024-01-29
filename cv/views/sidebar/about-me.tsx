@@ -24,7 +24,6 @@ export default function AboutMe() {
 			<View style={styles.aboutMeContent}>
 				<Text>{t('cv.sidebar.about-me.paragraph-1')}</Text>
 				<Text>{t('cv.sidebar.about-me.paragraph-2')}</Text>
-				<Text>{t('cv.sidebar.about-me.paragraph-3')}</Text>
 			</View>
 		</View>
 	)
