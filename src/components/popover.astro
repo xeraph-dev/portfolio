@@ -35,7 +35,7 @@ const { title, placement, items } = Astro.props;
 			<div
 				role="tooltip"
 				aria-hidden="true"
-				class="absolute top-0 left-0 hidden px-2 py-1 text-xs rounded-md max-w-[24ch] shadow shadow-slate-900 text-center bg-slate-800 text-light z-40"
+				class="absolute top-0 left-0 hidden px-2 py-1 text-sm rounded-md max-w-[24ch] shadow shadow-slate-900 text-center bg-slate-800 text-light z-40"
 			>
 				{title}
 			</div>
@@ -47,7 +47,7 @@ const { title, placement, items } = Astro.props;
 				role="list"
 				class="absolute top-0 left-0 hidden p-1 rounded-md shadow shadow-slate-900 bg-slate-800 max-w-max"
 			>
-				<ul class="flex flex-col gap-1 text-sm">
+				<ul class="flex flex-col gap-1">
 					{items.map(({ id, text, href, icon, active }) => {
 						return (
 							<li>
@@ -62,7 +62,7 @@ const { title, placement, items } = Astro.props;
 											: "",
 									]}
 								>
-									<span class:list={[icon, "text-xs"]} />
+									<span class:list={[icon, "text-sm"]} />
 									<span>{text}</span>
 								</a>
 							</li>

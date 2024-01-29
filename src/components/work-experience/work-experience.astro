@@ -5,8 +5,8 @@ import Work from "./work.astro";
 ---
 
 <Section id="work-experience" title="Work experience">
-	<ul class="grid md:grid-cols-2 gap-8">
-		<li>
+	<ul class="grid md:grid-cols-4 gap-8">
+		<li class="col-span-2">
 			<Work
 				site="https://github.com/divertimento"
 				company="Divertimento"
@@ -38,7 +38,7 @@ import Work from "./work.astro";
 				]}
 			/>
 		</li>
-		<li>
+		<li class="col-span-2">
 			<Work
 				company="Freelance"
 				location={t("common.remote")}
@@ -53,7 +53,7 @@ import Work from "./work.astro";
 				]}
 			/>
 		</li>
-		<li>
+		<li class="col-span-2">
 			<Work
 				site="https://github.com/divertimento"
 				company="Divertimento"
@@ -77,7 +77,7 @@ import Work from "./work.astro";
 				actions={[t("cv.work.jobs.divertimento-1.action-1")]}
 			/>
 		</li>
-		<li>
+		<li class="col-span-2">
 			<Work
 				site="https://github.com/IJPSoftware"
 				company="IJP Software"
@@ -112,7 +112,7 @@ import Work from "./work.astro";
 				]}
 			/>
 		</li>
-		<li>
+		<li class="col-span-2 md:col-start-2">
 			<Work
 				site="https://www.xetid.cu/"
 				company="Xetid"
