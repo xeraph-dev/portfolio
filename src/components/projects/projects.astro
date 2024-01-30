@@ -1,5 +1,254 @@
 ---
+import type { Skill } from "~/constants/skills";
 import Section from "../section.astro";
+import Project from "./project.astro";
+import type { Category } from "~/constants/categories";
+
+const projects: {
+	project: string;
+	skills: Skill[];
+	description?: string;
+	github?: string;
+	site?: string;
+	categories: Category[];
+}[] = [
+	{
+		project: "Portfolio v5",
+		description: "Version 5 of my portfolio (this)",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"React",
+			"Astro",
+			"TailwindCSS",
+			"Iconify",
+			"Bun",
+			"Vercel",
+		],
+		categories: ["web", "portfolio"],
+		site: "v5.xeraph.dev",
+		github: "portfolio-v5",
+	},
+	{
+		project: "Portfolio v4",
+		description: "Version 4 of my portfolio",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"Astro",
+			"TailwindCSS",
+			"Iconify",
+			"Vercel",
+		],
+		categories: ["web", "portfolio"],
+		site: "v4.xeraph.dev",
+		github: "portfolio-v4",
+	},
+	{
+		project: "Sudoku",
+		description: "A simple sudoku desktop app",
+		skills: ["HTML", "CSS", "JavaScript", "TypeScript", "Svelte", "Tauri"],
+		categories: ["web", "desktop", "game"],
+		github: "sudoku",
+	},
+	{
+		project: "Channel watcher bot",
+		description:
+			"Telegram bot to watch groups and channels and notify you when it matches a configured filter",
+		skills: ["Python", "Docker", "Prisma"],
+		categories: ["bot"],
+		github: "channels-watcher-bot",
+	},
+	{
+		project: "Blog markup example",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"Swiper.js",
+			"Iconify",
+			"Alpine.js",
+			"Vercel",
+		],
+		categories: ["web", "example"],
+		site: "blog-markup-example.xeraph.dev",
+		github: "blog-markup-example",
+	},
+	{
+		project: "Portfolio v3",
+		description: "Version 3 of my portfolio",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"Astro",
+			"TailwindCSS",
+			"Vercel",
+		],
+		categories: ["web", "portfolio"],
+		site: "v3.xeraph.dev",
+		github: "portfolio-v3",
+	},
+	{
+		project: "Challenge Search flights",
+		skills: ["HTML", "CSS", "JavaScript", "TypeScript", "Sass", "Vercel"],
+		categories: ["web", "challenge"],
+		site: "challenge-search-flights.xeraph.dev",
+		github: "challenge-search-flights",
+	},
+	{
+		project: "Challenge Chart",
+		skills: ["HTML", "CSS", "JavaScript", "TypeScript", "Sass", "Vercel"],
+		categories: ["web", "challenge"],
+		site: "challenge-chart.xeraph.dev",
+		github: "challenge-chart",
+	},
+	{
+		project: "VM Translator",
+		description: "A VM Translator for Hack VM",
+		skills: ["Haskell"],
+		categories: ["compiler", "cli", "tool"],
+		github: "vm-translator",
+	},
+	{
+		project: "Hack Assembler",
+		description: "An Assembler for Hack Assembly",
+		skills: ["Haskell"],
+		categories: ["compiler", "cli", "tool"],
+		github: "hack-assembler",
+	},
+	{
+		project: "Space Invaders",
+		description: "Simple Space Invaders game written in Racket",
+		skills: ["Racket"],
+		categories: ["game"],
+		github: "space-invaders.rkt",
+	},
+	{
+		project: "Portfolio v2",
+		description: "Version 2 of my portfolio",
+		skills: ["HTML", "CSS", "React", "Vercel"],
+		categories: ["web", "portfolio"],
+		site: "v2.xeraph.dev",
+		github: "portfolio",
+	},
+	{
+		project: "Challenge accordion",
+		skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Vercel"],
+		categories: [],
+		site: "accordion-challenge.xeraph.dev",
+		github: "challenge-accordion",
+	},
+	{
+		project: "Challenge vacations api",
+		skills: ["JavaScript", "TypeScript", "Node.js", "Express.js"],
+		categories: ["server", "challenge"],
+		github: "challenge-vacations-api",
+	},
+	{
+		project: "Full-stack interview",
+		skills: ["HTML", "CSS", "JavaScript", "TypeScript", "React"],
+		categories: ["web", "challenge"],
+		github: "full-stack-interview",
+	},
+	{
+		project: "Dual repo",
+		description: "An utility to update a repo from another repo",
+		skills: ["JavaScript", "Node.js"],
+		categories: ["cli", "tool"],
+		github: "dual_repo",
+	},
+	{
+		project: "Auth with tweetnacl",
+		description: "Simple auth example with tweetnacl",
+		skills: ["HTML", "JavaScript", "Node.js"],
+		categories: ["web", "server", "example"],
+		github: "auth-with-tweetnacl",
+	},
+	{
+		project: "Client CRUD Challenge",
+		description: "Client of a CRUD application challenge",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"React",
+			"Next.js",
+			"Material-UI",
+		],
+		categories: ["web", "challenge"],
+		github: "challenge-crud-students-admin",
+	},
+	{
+		project: "Server CRUD Challenge",
+		description: "Server of a CRUD application challenge",
+		skills: ["JavaScript", "TypeScript", "Node.js", "Express.js", "MongoDB"],
+		categories: ["server", "challenge"],
+		github: "challenge-crud-students-server",
+	},
+	{
+		project: "Slidercards",
+		description: "Slidecards challenge",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"React",
+			"Next.js",
+			"Styled Components",
+			"Vercel",
+		],
+		categories: ["web", "challenge"],
+		github: "slidercards",
+		site: "slidercards.xeraph.dev",
+	},
+	{
+		project: "BettyCook",
+		description: "A recipe book",
+		skills: ["Dart", "Flutter"],
+		categories: ["mobile"],
+		github: "bettycook",
+	},
+	{
+		project: "Portfolio v1",
+		description: "My first portfolio",
+		skills: [
+			"HTML",
+			"CSS",
+			"JavaScript",
+			"TypeScript",
+			"React",
+			"Next.js",
+			"Material-UI",
+			"Framer",
+			"Vercel",
+		],
+		categories: ["portfolio", "web"],
+		github: "porfolio",
+		site: "v1.xeraph.dev",
+	},
+];
 ---
 
-<Section id="projects" title="Projects" />
+<Section id="projects" title="Projects">
+	<ul class="grid gap-8 md:grid-cols-4">
+		{
+			projects.map((item, i) => (
+				<li
+					class={`col-span-2 ${
+						i % 2 === 0 && i === projects.length - 1 ? "md:col-start-2" : ""
+					}`}
+				>
+					<Project {...item} />
+				</li>
+			))
+		}
+	</ul>
+</Section>

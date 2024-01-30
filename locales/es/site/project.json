@@ -1,0 +1,6 @@
+{
+	"project-at": "Proyecto {{project:string}}",
+	"site": "Sitio del project {{project:string}}",
+	"github": "Repositorio de GitHub del project {{project:string}}",
+	"skills-at": "Habilidades en el project {{project:string}}"
+}

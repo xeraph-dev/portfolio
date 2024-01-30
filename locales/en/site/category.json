@@ -1,0 +1,14 @@
+{
+	"web": "web",
+	"desktop": "desktop",
+	"mobile": "mobile",
+	"server": "server",
+	"game": "game",
+	"challenge": "challenge",
+	"portfolio": "portfolio",
+	"tool": "tool",
+	"cli": "cli",
+	"compiler": "compiler",
+	"example": "example",
+	"bot": "bot"
+}

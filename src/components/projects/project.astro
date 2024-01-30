@@ -1,0 +1,82 @@
+---
+import { t } from "#i18n";
+import { skill, type Skill } from "~/constants/skills";
+import type { Category } from "~/constants/categories";
+import Paper from "../paper.astro";
+import SkillIcon from "../skill-icon.astro";
+
+interface Props {
+	project: string;
+	skills: Skill[];
+	description?: string;
+	github?: string;
+	site?: string;
+	categories: Category[];
+}
+
+const { project, skills, description, github, site, categories } = Astro.props;
+const baseGithub = "https://github.com/xeraph-dev";
+---
+
+<Paper class="h-full" label={t("site.project.project-at", { project })}>
+	<div class="flex justify-between text-xl">
+		<h4 class="font-bold">{project}</h4>
+		<div class="flex gap-1">
+			{
+				site && (
+					<a
+						class="icon-[tabler--link]"
+						aria-label={t("site.project.site", { project })}
+						href={`https://${site}`}
+						target="_blank"
+						rel="noreferrer"
+					/>
+				)
+			}
+			{
+				github && (
+					<a
+						class="icon-[tabler--brand-github]"
+						aria-label={t("site.project.github", { project })}
+						href={`${baseGithub}/${github}`}
+						target="_blank"
+						rel="noreferrer"
+					/>
+				)
+			}
+		</div>
+	</div>
+	<ul class="flex flex-wrap gap-1 text-sm mt-1 text-gray-200">
+		{
+			categories.sort().map((item) => (
+				<li>
+					<span class="bg-slate-700 py-0.5 px-1.5 rounded-full">
+						{t(`site.category.${item}`)}
+					</span>
+				</li>
+			))
+		}
+	</ul>
+	{description && <p class="mt-3">{description}</p>}
+	<ul class="sr-only" aria-label={t("site.project.skills-at", { project })}>
+		{
+			skills.map((item) => (
+				<li>
+					<span>{item}</span>
+				</li>
+			))
+		}
+	</ul>
+	<ul
+		aria-hidden="true"
+		class="flex gap-1.5 mt-4 flex-wrap-reverse flex-row-reverse"
+	>
+		{
+			skills.reverse().map((item) => (
+				<li>
+					<SkillIcon {...skill(item)} />
+				</li>
+			))
+		}
+	</ul>
+</Paper>

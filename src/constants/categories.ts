@@ -1,0 +1,13 @@
+export type Category =
+	| 'web'
+	| 'desktop'
+	| 'mobile'
+	| 'server'
+	| 'game'
+	| 'challenge'
+	| 'portfolio'
+	| 'tool'
+	| 'cli'
+	| 'compiler'
+	| 'example'
+	| 'bot'

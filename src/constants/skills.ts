@@ -44,6 +44,7 @@ const SKILLS = {
 	Dart: 'icon-[logos--dart]',
 	Flutter: 'icon-[logos--flutter]',
 	Framer: 'icon-[simple-icons--framer]',
+	Bun: 'icon-[logos--bun]',
 } as const
 
 export type Skill = keyof typeof SKILLS

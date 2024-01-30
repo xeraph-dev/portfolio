@@ -1,0 +1,14 @@
+{
+	"web": "web",
+	"desktop": "escritorio",
+	"mobile": "móvil",
+	"server": "servidor",
+	"game": "juego",
+	"challenge": "desafío",
+	"portfolio": "portafolio",
+	"tool": "herramienta",
+	"cli": "cli",
+	"compiler": "compilador",
+	"example": "ejemplo",
+	"bot": "bot"
+}
