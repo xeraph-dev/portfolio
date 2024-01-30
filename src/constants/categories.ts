@@ -11,3 +11,5 @@ export type Category =
 	| 'compiler'
 	| 'example'
 	| 'bot'
+	| 'practice'
+	| 'package'

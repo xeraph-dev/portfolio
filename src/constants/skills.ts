@@ -45,6 +45,16 @@ const SKILLS = {
 	Flutter: 'icon-[logos--flutter]',
 	Framer: 'icon-[simple-icons--framer]',
 	Bun: 'icon-[logos--bun]',
+	Swift: 'icon-[logos--swift]',
+	GraphQL: 'icon-[logos--graphql]',
+	NextUI: 'icon-[simple-icons--nextui]',
+	Apollo: 'icon-[simple-icons--apollographql]',
+	SQLite: 'icon-[devicon--sqlite]',
+	JWT: 'icon-[logos--jwt-icon]',
+	TypeORM: 'icon-[logos--typeorm]',
+	WebComponents: 'icon-[logos--webcomponents]',
+	Lua: 'icon-[logos--lua]',
+	Zig: 'icon-[devicon--zig]',
 } as const
 
 export type Skill = keyof typeof SKILLS

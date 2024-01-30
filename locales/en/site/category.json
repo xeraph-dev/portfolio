@@ -10,5 +10,7 @@
 	"cli": "cli",
 	"compiler": "compiler",
 	"example": "example",
-	"bot": "bot"
+	"bot": "bot",
+	"practice": "practice",
+	"package": "package"
 }
