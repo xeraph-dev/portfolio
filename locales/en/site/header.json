@@ -2,7 +2,7 @@
 	"about": "about me",
 	"work": "work",
 	"projects": "projects",
-	"tools": "tools",
+	"contact": "contact",
 	"change-site-language": "Change site's language",
 	"change-site-theme": "Change site's theme (not implemented)",
 	"go-to-section": "Go to {{name:string}} section"
