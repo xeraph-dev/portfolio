@@ -2,17 +2,17 @@
 	"name": "portfolio-v5",
 	"type": "module",
 	"scripts": {
-		"dev:site": "astro dev",
+		"dev:site": "bun astro dev",
 		"dev:cv": "bun cv/watch.ts",
 		"dev:i18n": "bun i18n/cli.ts generate --watch",
 		"build": "bun build:i18n && bun build:cv && bun build:site",
-		"build:site": "astro build",
+		"build:site": "bun astro build",
 		"build:cv": "bun cv/generate.tsx",
 		"build:i18n": "bun i18n/cli.ts generate",
 		"check": "bun check:i18n && bun check:biome && bun check:astro",
-		"check:astro": "astro check",
+		"check:astro": "bun astro check",
 		"check:i18n": "bun i18n/cli.ts check",
-		"check:biome": "biome check --apply {cv,i18n,locales,src} *.{json,ts,mjs}"
+		"check:biome": "bun biome check --apply {cv,i18n,locales,src} *.{json,ts,mjs}"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.4.1",
