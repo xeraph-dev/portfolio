@@ -21,19 +21,28 @@ if (years && (!duration.months || duration.months > 0)) {
 <section class="relative flex flex-col text-center gap-2 pt-32 pb-32 font-bold">
 	<BackgroundTop />
 	<span class="text-3xl sm:text-4xl">{t("cv.header.short-about.i-am")}</span>
-	<Mark word={t("common.front-end")} color="text-blue-700">
+	<Mark
+		word={t("common.front-end")}
+		color="text-blue-700 text-shadow-sm shadow-blue-900/50"
+	>
 		<span class="text-2xl sm:text-3xl">
 			{years}
 			{t("cv.header.short-about.front-end-developer")}
 		</span>
 	</Mark>
-	<Mark word={t("common.self-taught")} color="text-cyan-700">
+	<Mark
+		word={t("common.self-taught")}
+		color="text-cyan-700 text-shadow-sm shadow-cyan-900/50"
+	>
 		<span class="text-xl sm:text-2xl">
 			{t("cv.header.short-about.self-taught-programmer")}
 		</span>
 	</Mark>
 
-	<Mark word={t("common.functional")} color="text-teal-700">
+	<Mark
+		word={t("common.functional")}
+		color="text-teal-700 text-shadow-sm shadow-teal-900/50"
+	>
 		<span class="text-xl sm:text-2xl">
 			{t("cv.header.short-about.functional-programming-lover")}
 		</span>

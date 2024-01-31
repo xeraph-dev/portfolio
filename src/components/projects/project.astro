@@ -18,7 +18,7 @@ const { project, skills, description, github, site, categories } = Astro.props;
 const baseGithub = "https://github.com/xeraph-dev";
 ---
 
-<Paper class="h-full" label={t("site.project.project-at", { project })}>
+<Paper class="h-full" aria-label={t("site.project.project-at", { project })}>
 	<div class="flex justify-between text-xl">
 		<h4 class="font-bold">{project}</h4>
 		<div class="flex gap-2">

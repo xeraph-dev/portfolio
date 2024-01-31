@@ -1,15 +1,14 @@
 ---
-interface Props {
-	class?: string;
-	label?: string;
-}
+import type { HTMLAttributes } from "astro/types";
 
-const { class: className, label } = Astro.props;
+interface Props extends HTMLAttributes<"div"> {}
+
+const { class: className, ...props } = Astro.props;
 ---
 
 <div
 	class={`rounded-md shadow shadow-slate-900 bg-slate-900 p-3 flex flex-col ${className}`}
-	aria-label={label}
+	{...props}
 >
 	<slot />
 </div>
