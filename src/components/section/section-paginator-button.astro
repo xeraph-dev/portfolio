@@ -1,0 +1,28 @@
+---
+interface Props {
+	icon: "next" | "prev";
+	disabled: boolean;
+}
+
+const { icon, disabled } = Astro.props;
+const iconClass = {
+	next: "icon-[tabler--chevron-right]",
+	prev: "icon-[tabler--chevron-left]",
+}[icon];
+---
+
+<button
+	data-prev={icon === "prev"}
+	data-next={icon === "next"}
+	disabled={disabled}
+>
+	<span
+		class="group flex items-center justify-center p-0.5 rounded-full shadow shadow-slate-900 bg-slate-700 group-hover:bg-slate-600"
+	>
+		<span
+			class="flex p-1.5 rounded-full shadow-inner shadow-slate-950 bg-slate-800 group-hover:bg-slate-700"
+		>
+			<span class={iconClass}></span>
+		</span>
+	</span>
+</button>

@@ -1,0 +1,123 @@
+---
+import SectionPaginatorButton from "./section-paginator-button.astro";
+
+interface Props {
+	items: number;
+}
+
+const { items } = Astro.props;
+
+const page = 1;
+const total = Math.ceil(items / 4);
+---
+
+<section-paginator data-total={total}>
+	<div class="flex gap-2 items-center">
+		<span class="mr-2" data-counter>{page} / {total}</span>
+		<SectionPaginatorButton icon="prev" disabled />
+		<SectionPaginatorButton icon="next" disabled={total <= 4} />
+	</div>
+</section-paginator>
+
+<script>
+	class SectionPaginator extends HTMLElement {
+		items: HTMLLIElement[] = [];
+		prev: HTMLButtonElement;
+		next: HTMLButtonElement;
+		count = 4;
+		page = 1;
+		total: number;
+		counter: HTMLElement;
+
+		constructor() {
+			super();
+
+			const section = this.closest("section");
+			if (!section) {
+				throw new Error(
+					"[section-paginator] Should be inside a section element",
+				);
+			}
+			const items = section.querySelectorAll<HTMLLIElement>(
+				"ul[data-paginated] > li",
+			);
+			this.items = Array.from(items);
+
+			const prev = this.querySelector<HTMLButtonElement>("button[data-prev]");
+			if (!prev) throw new Error("[section-paginator] Missing prev button");
+			this.prev = prev;
+
+			const next = this.querySelector<HTMLButtonElement>("button[data-next]");
+			if (!next) throw new Error("[section-paginator] Missing next button");
+			this.next = next;
+
+			const total = this.dataset["total"];
+			if (!total) {
+				throw new Error("[section-paginator] Missing total attribute");
+			}
+			if (Number.isNaN(+total)) {
+				throw new TypeError(
+					"[section-paginator] Total attribute should be a valid number",
+				);
+			}
+			if (!Number.isInteger(+total)) {
+				throw new TypeError(
+					"[section-paginator] Total attribute should be a valid integer",
+				);
+			}
+			this.total = +total;
+
+			const counter = this.querySelector<HTMLElement>("[data-counter]");
+			if (!counter) {
+				throw new Error("[section-paginator] Missing counter element");
+			}
+			this.counter = counter;
+
+			this.prev.addEventListener("click", this.doPrev.bind(this));
+			this.next.addEventListener("click", this.doNext.bind(this));
+		}
+
+		doPrev() {
+			if (this.prev.disabled) return;
+			for (
+				let i = this.page * this.count - 1;
+				i >= this.page * this.count - this.count;
+				i--
+			) {
+				this.items[i]?.classList.add("hidden");
+				this.items[i - this.count]?.classList.remove("hidden");
+			}
+			this.page--;
+			this.updateCounter();
+			this.updateButtons();
+		}
+
+		doNext() {
+			if (this.next.disabled) return;
+			for (
+				let i = this.page * this.count - this.count;
+				i < this.page * this.count;
+				i++
+			) {
+				this.items[i]?.classList.add("hidden");
+				this.items[i + this.count]?.classList.remove("hidden");
+			}
+			this.page++;
+			this.updateCounter();
+			this.updateButtons();
+		}
+
+		updateCounter() {
+			this.counter.innerHTML = `${this.page} / ${this.total}`;
+		}
+
+		updateButtons() {
+			if (this.page === 1) this.prev.disabled = true;
+			else this.prev.disabled = false;
+			if (this.page === this.total) this.next.disabled = true;
+			else this.next.disabled = false;
+		}
+	}
+
+	customElements.define("section-paginator", SectionPaginator);
+</script>

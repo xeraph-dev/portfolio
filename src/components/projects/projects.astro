@@ -1,6 +1,6 @@
 ---
 import type { Skill } from "~/constants/skills";
-import Section from "../section.astro";
+import Section from "../section/section.astro";
 import Project from "./project.astro";
 import type { Category } from "~/constants/categories";
 
@@ -353,14 +353,14 @@ const projects: {
 ];
 ---
 
-<Section id="projects" title="Projects">
-	<ul class="grid gap-8 md:grid-cols-4">
+<Section id="projects" title="Projects" pagination={projects.length}>
+	<ul class="grid gap-8 md:grid-cols-4" data-paginated>
 		{
 			projects.map((item, i) => (
 				<li
 					class={`col-span-2 ${
 						i % 2 === 0 && i === projects.length - 1 ? "md:col-start-2" : ""
-					}`}
+					} ${i >= 4 ? "hidden" : ""}`}
 				>
 					<Project {...item} />
 				</li>
