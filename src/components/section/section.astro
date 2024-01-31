@@ -15,7 +15,7 @@ const { id, title, pagination = false } = Astro.props;
 	<Background />
 	<div class="max-w-[80ch] w-full px-6 sm:px-8 mx-auto">
 		<div class="pb-8 flex justify-between gap-2 items-end">
-			<h2 class="text-3xl font-bold md:-ml-2">{title}</h2>
+			<h2 class="text-3xl font-bold">{title}</h2>
 			{pagination && <Paginator items={pagination} />}
 		</div>
 		<slot />
