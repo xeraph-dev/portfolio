@@ -16,55 +16,36 @@ const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
 			<p>{t("cv.sidebar.about-me.paragraph-3")}</p>
 		</div>
 		<div class="flex flex-col gap-2 md:col-span-3">
-			<SkillsNote hidden="md">
-				<div slot="note">
-					<span>
-						{t("site.about-me.bars-represents-1")}
-					</span>
-					<span class="md:block"> {t("site.about-me.bars-represents-2")}</span>
-				</div>
-				<div
-					class="flex md:flex-col gap-2 justify-center md:justify-start flex-wrap"
-				>
-					<Skill
-						level="w-[95%]"
-						color="bg-gradient-to-l from-orange-700 to-blue-700 text-orange-700"
-						name="HTML / CSS"
-						short="HTML / CSS"
-					/>
-					<Skill
-						level="w-[90%]"
-						color="bg-gradient-to-l from-yellow-700 via-yellow-700 to-blue-700 text-yellow-700"
-						name="JavaScript / TypeScript"
-						short="JS / TS"
-					/>
-					<Skill
-						level="w-[85%]"
-						color="text-blue-700 bg-blue-700"
-						name="React"
-					/>
-					<Skill
-						level="w-[60%]"
-						color="text-green-700 bg-green-700"
-						name="Vue"
-					/>
-					<Skill level="w-[75%]" color="text-cyan-700 bg-cyan-700" name="Go" />
-					<Skill level="w-[80%]" color="text-teal-700 bg-teal-700" name="SQL" />
-					<Skill
-						level="w-[70%]"
-						color="text-gray-700 bg-gray-700"
-						name="Linux"
-					/>
-				</div>
-				<div
-					class="text-xs text-gray-400 mt-2 text-center max-w-[50ch] mx-auto md:hidden"
-				>
-					<span>
-						{t("site.about-me.bars-represents-1")}
-					</span>
-					<span class="md:block"> {t("site.about-me.bars-represents-2")}</span>
-				</div>
-			</SkillsNote>
+			<div
+				class="flex md:flex-col gap-2 justify-center md:justify-start flex-wrap relative"
+			>
+				<Skill
+					level="w-[95%]"
+					color="bg-gradient-to-l from-orange-700 to-blue-700 text-orange-700"
+					name="HTML / CSS"
+					short="HTML / CSS"
+				/>
+				<Skill
+					level="w-[90%]"
+					color="bg-gradient-to-l from-yellow-700 via-yellow-700 to-blue-700 text-yellow-700"
+					name="JavaScript / TypeScript"
+					short="JS / TS"
+				/>
+				<Skill level="w-[85%]" color="text-blue-700 bg-blue-700" name="React" />
+				<Skill level="w-[60%]" color="text-green-700 bg-green-700" name="Vue" />
+				<Skill level="w-[75%]" color="text-cyan-700 bg-cyan-700" name="Go" />
+				<Skill level="w-[80%]" color="text-teal-700 bg-teal-700" name="SQL" />
+				<Skill level="w-[70%]" color="text-gray-700 bg-gray-700" name="Linux" />
+				<SkillsNote />
+			</div>
+			<div
+				class="text-xs text-gray-400 mt-2 text-center max-w-[50ch] mx-auto md:hidden"
+			>
+				<span>
+					{t("site.about-me.bars-represents-1")}
+				</span>
+				<span class="md:block"> {t("site.about-me.bars-represents-2")}</span>
+			</div>
 		</div>
 	</div>
 	<div class="flex justify-center mt-8">

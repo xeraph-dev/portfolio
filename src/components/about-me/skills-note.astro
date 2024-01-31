@@ -1,26 +1,39 @@
 ---
-import ArrowLine from "../arrow-line.astro";
-
-interface Props {
-	hidden?: "md";
-}
-
-const { hidden } = Astro.props;
-
-const hiddenClass = {
-	"": "",
-	md: "hidden md:flex",
-}[hidden ?? ""];
+import { t } from "#i18n";
 ---
 
-<div class="relative">
-	<div
-		class={`absolute text-gray-400 bottom-[100%] -translate-y-2 -translate-x-[50%] left-0 ${hiddenClass} flex-col items-end gap-2`}
-	>
-		<span class="text-xs text-center max-w-[50ch] mx-auto translate-x-[25%]">
-			<slot name="note" />
+<div
+	class={`absolute text-gray-400 bottom-[100%] -translate-y-2 -translate-x-[50%] left-0 hidden md:flex flex-col items-end gap-2`}
+>
+	<div class="text-xs text-center max-w-[50ch] mx-auto translate-x-[9ch]">
+		<span>
+			{t("site.about-me.bars-represents-1")}
 		</span>
-		<ArrowLine width="15mm" height="15mm" />
+		<span class="md:block"> {t("site.about-me.bars-represents-2")}</span>
 	</div>
-	<slot />
+	<svg width="15mm" height="15mm" viewBox="0 0 50 50" version="1.1">
+		<defs>
+			<marker
+				style="overflow:visible"
+				id="arrow-line-dart"
+				refX="0"
+				refY="0"
+				orient="auto-start-reverse"
+				markerWidth="1"
+				markerHeight="1"
+				viewBox="0 0 1 1"
+				preserveAspectRatio="xMidYMid"
+			>
+				<path
+					style="fill:currentColor;fill-rule:evenodd;stroke:none;stroke-width:0.5"
+					d="M 0,0 -2.5,2.5 6.25,0 -2.5,-2.5 Z"></path>
+			</marker>
+		</defs>
+		<g transform="translate(-50,-50)">
+			<path
+				style="fill:none;stroke:currentColor;stroke-width:0.628361;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:2.51345, 2.51345;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#arrow-line-dart);paint-order:normal"
+				d="m 50.314181,50.314181 c 0,44.675889 48.117032,1.399229 48.114843,45.758564"
+			></path>
+		</g>
+	</svg>
 </div>

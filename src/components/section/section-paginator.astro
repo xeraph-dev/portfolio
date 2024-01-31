@@ -1,5 +1,6 @@
 ---
 import SectionPaginatorButton from "./section-paginator-button.astro";
+import SectionPaginatorCounter from "./section-paginator-counter.astro";
 
 interface Props {
 	items: number;
@@ -7,13 +8,12 @@ interface Props {
 
 const { items } = Astro.props;
 
-const page = 1;
 const total = Math.ceil(items / 4);
 ---
 
 <section-paginator data-total={total}>
-	<div class="flex gap-2 items-center">
-		<span slot="mr-2" data-counter>{page} / {total}</span>
+	<div class="flex gap-2 items-center relative">
+		<SectionPaginatorCounter total={total} />
 		<SectionPaginatorButton icon="prev" disabled />
 		<SectionPaginatorButton icon="next" disabled={total <= 4} />
 	</div>

@@ -1,0 +1,46 @@
+---
+interface Props {
+	total: number;
+}
+
+const { total } = Astro.props;
+---
+
+<div
+	class={`absolute text-gray-400 bottom-[100%] flex items-start gap-2 -translate-x-[2ch] -left-[2ch]`}
+>
+	<div class="translate-y-0.5">
+		<span data-counter>1 / {total}</span>
+	</div>
+	<svg
+		width="10mm"
+		height="20mm"
+		viewBox="0 0 28.747742 37.294567"
+		version="1.1"
+	>
+		<defs>
+			<marker
+				style="overflow:visible"
+				id="section-paginator-counter-arrow"
+				refX="0"
+				refY="0"
+				orient="auto-start-reverse"
+				markerWidth="1"
+				markerHeight="1"
+				viewBox="0 0 1 1"
+				preserveAspectRatio="xMidYMid"
+			>
+				<path
+					style="fill:currentColor;fill-rule:evenodd;stroke:none"
+					d="M 0,0 5,-5 -12.5,0 5,5 Z"
+					transform="scale(-0.5)"></path>
+			</marker>
+		</defs>
+		<g transform="translate(-28.893761,-50.204115)">
+			<path
+				style="fill:none;stroke:currentColor;stroke-width:0.794;stroke-linecap:round;stroke-dasharray:3.17603, 3.17603;stroke-dashoffset:0;marker-end:url(#section-paginator-counter-arrow)"
+				d="m 29.290761,50.633817 c 30.875772,-0.46151 26.816346,3.016346 26.332797,31.903058"
+			></path>
+		</g>
+	</svg>
+</div>
