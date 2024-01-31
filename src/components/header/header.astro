@@ -10,7 +10,7 @@ const isHome = LOCALE_REGEX.test(Astro.url.pathname);
 ---
 
 <header
-	class="fixed top-0 z-50 flex items-center justify-center gap-2 p-4 left-[50%] translate-x-[-50%] text-lg"
+	class="fixed top-0 z-50 flex items-center justify-center w-full gap-2 p-4 mx-auto text-lg"
 >
 	<ThemeButton />
 	{isHome ? <HomeNavbar /> : <DefaultNavbar />}
