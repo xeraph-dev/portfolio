@@ -2,6 +2,7 @@
 import { addDays, intervalToDuration } from "date-fns";
 import BackgroundTop from "./background/background-top.astro";
 import { t } from "#i18n";
+import Mark from "./mark.astro";
 
 const duration = intervalToDuration({
 	start: new Date("2019-04"),
@@ -20,14 +21,21 @@ if (years && (!duration.months || duration.months > 0)) {
 <section class="relative flex flex-col text-center gap-2 pt-32 pb-32 font-bold">
 	<BackgroundTop />
 	<span class="text-3xl sm:text-4xl">{t("cv.header.short-about.i-am")}</span>
-	<span class="text-2xl sm:text-3xl">
-		{years}
-		{t("cv.header.short-about.front-end-developer")}
-	</span>
-	<span class="text-xl sm:text-2xl">
-		{t("cv.header.short-about.self-taught-programmer")}
-	</span>
-	<span class="text-xl sm:text-2xl">
-		{t("cv.header.short-about.functional-programming-lover")}
-	</span>
+	<Mark word={t("common.front-end")} color="text-blue-700">
+		<span class="text-2xl sm:text-3xl">
+			{years}
+			{t("cv.header.short-about.front-end-developer")}
+		</span>
+	</Mark>
+	<Mark word={t("common.self-taught")} color="text-cyan-700">
+		<span class="text-xl sm:text-2xl">
+			{t("cv.header.short-about.self-taught-programmer")}
+		</span>
+	</Mark>
+
+	<Mark word={t("common.functional")} color="text-teal-700">
+		<span class="text-xl sm:text-2xl">
+			{t("cv.header.short-about.functional-programming-lover")}
+		</span>
+	</Mark>
 </section>

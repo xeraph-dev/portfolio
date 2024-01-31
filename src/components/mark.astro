@@ -1,0 +1,13 @@
+---
+interface Props {
+	word: string;
+	color: string;
+}
+
+const { word, color } = Astro.props;
+
+let html = await Astro.slots.render("default");
+html = html.replace(word, `<span class="${color}">${word}</span>`);
+---
+
+<Fragment set:html={html} />
