@@ -15,11 +15,9 @@ const hiddenClass = {
 
 <div class="relative">
 	<div
-		class={`absolute bottom-[100%] -translate-y-2 -translate-x-[50%] left-0 ${hiddenClass} flex-col items-end gap-2`}
+		class={`absolute text-gray-400 bottom-[100%] -translate-y-2 -translate-x-[50%] left-0 ${hiddenClass} flex-col items-end gap-2`}
 	>
-		<span
-			class="text-xs text-gray-400 text-center max-w-[50ch] mx-auto translate-x-[25%]"
-		>
+		<span class="text-xs text-center max-w-[50ch] mx-auto translate-x-[25%]">
 			<slot name="note" />
 		</span>
 		<ArrowLine width="15mm" height="15mm" />
