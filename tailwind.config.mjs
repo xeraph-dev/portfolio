@@ -11,6 +11,7 @@ export default {
 		extend: {
 			fontFamily: {
 				nunito: ['Nunito', 'sans-serif'],
+				amita: ['Amita', 'serif'],
 			},
 
 			textShadow: {
