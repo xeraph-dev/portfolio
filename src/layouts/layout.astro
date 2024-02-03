@@ -5,15 +5,15 @@ import "@fontsource/nunito/700.css";
 import "@fontsource/amita/700.css";
 import Contact from "~/components/contact.astro";
 import Header from "~/components/header/header.astro";
-import { init, locale, LOCALES, DEFAULT_LOCALE, type Locale } from "#i18n";
+import { init, locale, LOCALES, DEFAULT_LOCALE, type Locale, t } from "#i18n";
+import BaseHead from "~/components/base-head.astro";
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
-const baseTitle = "Adrian López Portfolio";
-const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
+const { title, description } = Astro.props;
 
 const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
 const localeCode =
@@ -21,16 +21,17 @@ const localeCode =
 
 await init();
 locale.set(localeCode as Locale);
+
+const baseTitle = t("common.title");
+const fullTitle = title ? `${title} | ${baseTitle}` : baseTitle;
 ---
 
 <html lang="en" class="scroll-smooth">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="color-scheme" content="dark" />
-		<title>{fullTitle}</title>
-		<script src="~/scripts/theme.ts"></script>
+		<BaseHead
+			title={fullTitle}
+			description={description ?? t("common.description")}
+		/>
 	</head>
 	<body
 		class="flex flex-col min-h-screen bg-slate-950 dark:text-slate-50 font-nunito"

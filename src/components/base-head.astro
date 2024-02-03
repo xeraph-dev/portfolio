@@ -1,0 +1,67 @@
+---
+import { DEFAULT_LOCALE, LOCALES } from "#i18n";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { description, image, title } = Astro.props;
+
+const LOCALE_REGEX = new RegExp(`^\/((${LOCALES.join("|")})\/)?`);
+const href = Astro.url.pathname.replace(LOCALE_REGEX, "");
+const locale = Astro.url.pathname.match(LOCALE_REGEX)?.[2] ?? DEFAULT_LOCALE;
+const alternativeURLs = LOCALES.map((code) => {
+	if (code === locale) return { code, href };
+	else return { code, href: `${code}/${href}` };
+}).map((item) => ({
+	...item,
+	href: new URL(item.href, Astro.site).toString(),
+}));
+---
+
+<!-- GLobal Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<!-- TODO: Update when implement light theme -->
+<meta name="color-scheme" content="dark" />
+
+<!-- Languages -->
+{
+	alternativeURLs.map(({ href, code }) => (
+		<link rel="alternate" href={href} hreflang={code} />
+	))
+}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
+
+<!-- Theme -->
+<script src="~/scripts/theme.ts"></script>
