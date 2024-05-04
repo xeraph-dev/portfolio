@@ -8,7 +8,7 @@ export default function GitHubButton(): JSX.Element {
     <TooltipButton title={'Ver en GitHub'}>
       <IconButton
         component={Link}
-        href="https://github.com/adrianrl99/porfolio"
+        href="https://github.com/xeraph-dev/portfolio/tree/v1"
         style={{ color: 'inherit' }}
         target="_blank"
         aria-label="github">

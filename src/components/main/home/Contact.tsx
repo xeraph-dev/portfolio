@@ -1,23 +1,19 @@
 import { Grid, IconButton, makeStyles, Typography } from '@material-ui/core'
-import { motion, useAnimation } from 'framer-motion'
+import * as Icons from '@material-ui/icons'
 import Link from 'components/Link'
+import { motion, useAnimation } from 'framer-motion'
+import { boxShadow } from 'helper'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { boxShadow } from 'helper'
-import * as Icons from '@material-ui/icons'
 
 const socialsNetworks = [
   {
-    href: 'https://github.com/adrianrl99',
+    href: 'https://github.com/xeraph-dev',
     icon: 'GitHub',
   },
   {
-    href: 'https://www.linkedin.com/in/adrian-ren%C3%A9-l%C3%B3pez-cintas-17b7a61a2/',
+    href: 'https://www.linkedin.com/in/adrian-l%C3%B3pez/',
     icon: 'LinkedIn',
-  },
-  {
-    href: 'https://t.me/fourblues',
-    icon: 'Telegram',
   },
 ]
 
@@ -59,7 +55,7 @@ export default function Contact(): JSX.Element {
   }, [inView])
 
   return (
-    <Grid ref={ref} container justify={'center'} alignItems={'center'}>
+    <Grid ref={ref} container justifyContent={'center'} alignItems={'center'}>
       <Grid item xs={12}>
         <Typography
           component={motion.h3}
@@ -82,7 +78,7 @@ export default function Contact(): JSX.Element {
         container
         spacing={3}
         xs={12}
-        justify="center"
+        justifyContent="center"
         variants={title}
         alignItems={'center'}
         initial={'hidden'}

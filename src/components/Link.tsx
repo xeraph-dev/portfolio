@@ -1,7 +1,7 @@
-import clsx from 'clsx'
-import { useRouter } from 'next/router'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link'
+import clsx from 'clsx'
+import NextLink, { LinkProps as NextLinkProps } from 'next/link'
+import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
 
 type NextComposedProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & NextLinkProps
@@ -11,6 +11,7 @@ const NextComposed = forwardRef<HTMLAnchorElement, NextComposedProps>((props, re
 
   return (
     <NextLink
+      legacyBehavior
       href={href}
       prefetch={prefetch}
       as={as}

@@ -60,8 +60,8 @@ export default function SectionPresentation(): JSX.Element {
   }, [inView])
 
   return (
-    <Grid ref={ref} container justify={'center'} alignItems={'center'}>
-      <Grid container justify={'center'} item xs={12} sm={6}>
+    <Grid ref={ref} container justifyContent={'center'} alignItems={'center'}>
+      <Grid container justifyContent={'center'} item xs={12} sm={6}>
         <motion.div animate={controls} initial="hidden" exit="hidden" variants={variantsImage}>
           <Image
             className={classes.img}

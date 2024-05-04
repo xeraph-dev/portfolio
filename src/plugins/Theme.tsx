@@ -1,14 +1,14 @@
 import {
+  CssBaseline,
   ThemeProvider as Provider,
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   useMediaQuery,
-  CssBaseline,
 } from '@material-ui/core'
 import {
-  createContext,
   Dispatch,
   SetStateAction,
+  createContext,
   useCallback,
   useEffect,
   useMemo,
@@ -51,7 +51,7 @@ export default function MUIThemeProvider({ children }: IThemeProviderProps): JSX
   const muiTheme = useMemo(
     () =>
       responsiveFontSizes(
-        createMuiTheme({
+        createTheme({
           palette: {
             type: theme === 'dark' ? 'dark' : 'light',
           },

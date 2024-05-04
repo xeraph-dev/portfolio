@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@material-ui/core'
 import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 const skills = [
@@ -61,7 +61,7 @@ export default function SectionSkills(): JSX.Element {
   }, [inView])
 
   return (
-    <Grid ref={ref} container justify={'center'} alignItems={'center'}>
+    <Grid ref={ref} container justifyContent={'center'} alignItems={'center'}>
       <Grid item xs={12}>
         <Typography
           component={motion.h3}
@@ -85,7 +85,7 @@ export default function SectionSkills(): JSX.Element {
         variants={title}
         alignItems={'center'}
         initial={'hidden'}
-        justify="center"
+        justifyContent="center"
         animate={controls}>
         {skills.map((skill) => (
           <Grid
@@ -97,7 +97,7 @@ export default function SectionSkills(): JSX.Element {
             xs={3}
             sm={2}
             md={1}>
-            <Image alt={skill} src={`/skills/${skill}.svg`} height={126} width={126} />
+            <Image alt={skill} src={`/skills/${skill}.svg`} height={126} width={126} style={{ maxWidth: '100%', height: 'auto' }} />
           </Grid>
         ))}
       </Grid>

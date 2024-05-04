@@ -11,10 +11,10 @@ export default function HeaderAppBar(): JSX.Element {
       <Container style={{ padding: 0 }}>
         <Toolbar variant="dense">
           <Button disabled>
-            <Image src="/marca.png" height={35} width={158} />
+            <Image src="/marca.png" height={35} width={158} alt='logo' />
           </Button>
           <CVButton />
-          <Box flexGrow={1} />
+          <Box sx={{ flexGrow: 1 }} />
           <ToggleTheme />
           <GitHubButton />
           <Hidden only="xs" implementation="css">

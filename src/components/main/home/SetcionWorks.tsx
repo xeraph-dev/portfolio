@@ -1,10 +1,10 @@
 import { Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core'
-import { motion, useAnimation } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'components/Link'
+import { motion, useAnimation } from 'framer-motion'
+import { boxShadow } from 'helper'
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { boxShadow } from 'helper'
 
 const works = [
   {
@@ -81,7 +81,7 @@ export default function SectionWorks(): JSX.Element {
   }, [inView])
 
   return (
-    <Grid ref={ref} container justify={'center'} alignItems={'center'}>
+    <Grid ref={ref} container justifyContent={'center'} alignItems={'center'}>
       <Grid item xs={12}>
         <Typography
           component={motion.h3}
@@ -107,7 +107,7 @@ export default function SectionWorks(): JSX.Element {
         variants={title}
         alignItems={'center'}
         initial={'hidden'}
-        justify="center"
+        justifyContent="center"
         animate={controls}>
         {works.map((work, index) => (
           <Grid
@@ -121,7 +121,7 @@ export default function SectionWorks(): JSX.Element {
             <Link className={classes.link} href={work.url} target="_blank">
               <Card className={classes.card}>
                 <CardContent className={classes.content}>
-                  <Image src={work.image} alt={work.name} height={282} width={500} />
+                  <Image src={work.image} alt={work.name} height={282} width={500} style={{ maxWidth: '100%', objectFit: 'cover' }} />
                   <Typography className={classes.text} align={'center'} variant={'h5'}>
                     {work.name}
                   </Typography>
