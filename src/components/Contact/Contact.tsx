@@ -14,8 +14,7 @@ export const Contact: FC = () => (
   >
     <h2>Contact me</h2>
     <List gap="16px" justifyContent="center" flexWrap="wrap">
-      <Link to="https://github.com/adrianrl99">GitHub</Link>
-      <Link to="https://t.me/fourblues">Telegram</Link>
+      <Link to="https://github.com/xeraph-dev">GitHub</Link>
       <Link to="https://www.linkedin.com/in/adrian-l%C3%B3pez/">Linkedin</Link>
     </List>
   </List>

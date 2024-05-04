@@ -7,11 +7,11 @@
   },
   "scripts": {
     "dev:vite": "vite",
-    "dev:css": "yarn tcm -p '**/*.module.css' -w src",
-    "dev": "concurrently yarn:dev:*",
+    "dev:css": "pnpm exec tcm -p '**/*.module.css' -w src",
+    "dev": "concurrently pnpm:dev:*",
     "build:vite": "tsc && vite build",
-    "build:css": "yarn tcm -p '**/*.module.css' src",
-    "build": "yarn lint && yarn build:css && yarn build:vite",
+    "build:css": "pnpm exec tcm -p '**/*.module.css' src",
+    "build": "pnpm lint && pnpm build:css && pnpm build:vite",
     "preview": "vite preview",
     "lint": "eslint --fix",
     "deploy": "vercel deploy --prod"

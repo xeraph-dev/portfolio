@@ -12,7 +12,7 @@ import {
   SiHtml5,
   SiJavascript,
   SiLinux,
-  SiMaterialui,
+  SiMui,
   SiNextdotjs,
   SiNodedotjs,
   SiPhp,
@@ -148,7 +148,7 @@ export const ProfesionalExperience: FC = () => (
                       <SkillIcon
                         size={32}
                         name="Material-UI"
-                        icon={SiMaterialui}
+                        icon={SiMui}
                       />
                       <SkillIcon size={32} name="Charka-UI" icon={SiChakraui} />
                       <SkillIcon size={32} name="Next.js" icon={SiNextdotjs} />

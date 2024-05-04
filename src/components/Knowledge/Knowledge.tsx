@@ -16,7 +16,7 @@ import {
   SiJson,
   SiLinux,
   SiMarkdown,
-  SiMaterialui,
+  SiMui,
   SiNextdotjs,
   SiNixos,
   SiNodedotjs,
@@ -67,7 +67,7 @@ export const Knowledge: FC = () => (
               <List gap="16px" flexWrap="wrap">
                 <SkillIcon name="React.js" icon={SiReact} />
                 <SkillIcon name="React Router" icon={SiReactrouter} />
-                <SkillIcon name="Material-UI" icon={SiMaterialui} />
+                <SkillIcon name="Material-UI" icon={SiMui} />
                 <SkillIcon name="Next.js" icon={SiNextdotjs} />
                 <SkillIcon name="Redux" icon={SiRedux} />
               </List>
