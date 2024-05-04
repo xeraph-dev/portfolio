@@ -4,7 +4,6 @@
   "scripts": {
     "prepare": "husky install"
   },
-  "workspaces": ["site", "packages/*"],
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "husky": "^8.0.0"
