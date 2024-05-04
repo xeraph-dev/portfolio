@@ -1,6 +1,6 @@
 ---
-import Icon from './Icon.astro'
 import Card from './Card.astro'
+import Icon from './Icon.astro'
 
 interface Props {
   title: string
@@ -22,7 +22,7 @@ const { repo, skills, title, web } = Astro.props as Props
         </a>
       )}
       {repo && (
-        <a href={`https://github.com/adrianrl99/${repo}`} target="_blank">
+        <a href={`https://github.com/xeraph-dev/${repo}`} target="_blank">
           <Icon pack="simple-icons" name="github" />
         </a>
       )}

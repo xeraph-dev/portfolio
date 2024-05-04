@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 url: str = "https://marketplace.visualstudio.com/items?itemName="
-exts_url = "https://raw.githubusercontent.com/adrianrl99/dotfiles/main/scripts/vscode-extensions/vscode-extensions.yml"
+exts_url = "https://raw.githubusercontent.com/xeraph-dev/dotfiles/main/scripts/vscode-extensions/vscode-extensions.yml"
 imports: str = """\
 ---
 import CardList from '~/components/CardList.astro'
@@ -45,7 +45,7 @@ try:
 
     img = Tag(name="img")
     img["class"] = "container p-2 flex rounded-2xl"
-    img["src"] = "https://raw.githubusercontent.com/adrianrl99/dotfiles/main/screenshots/vscode.png"
+    img["src"] = "https://raw.githubusercontent.com/xeraph-dev/dotfiles/main/screenshots/vscode.png"
     img["alt"] = "vscode screenshot"
     layout.append(img)
 

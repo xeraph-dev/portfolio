@@ -15,7 +15,7 @@
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
     "astro": "^1.0.0-rc.6",
-    "astro-compress": "^0.0.18",
+    "astro-compress": "^2.2.22",
     "astro-robots-txt": "^0.3.7",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.21.0",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "astro-icon": "^0.7.3",
-    "luxon": "^3.0.1"
+    "luxon": "^3.0.1",
+    "svgo": "^2.8.0"
   }
 }

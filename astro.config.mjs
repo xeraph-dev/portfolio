@@ -1,12 +1,12 @@
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import { defineConfig } from 'astro/config'
 import compress from 'astro-compress'
 import robotsTxt from 'astro-robots-txt'
+import { defineConfig } from 'astro/config'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://adrianlopez.site/',
+  site: 'https://v3.xeraph.dev/',
   experimental: {
     integrations: true,
   },
