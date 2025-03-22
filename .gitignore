@@ -179,3 +179,4 @@ dist
 
 # generated types
 .astro/
+.vercel
