@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="{{.Meta.Language}}">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{.Info.Name}}</title>
+    </head>
+    <body>
+        <header>
+            <h1>{{.Info.Name}}</h1>
+            <p>
+                {{.Info.Title}} &middot; {{range $i, $s := .Info.Skills}}{{if
+                $i}} &middot; {{end}}{{$s}}{{end}}
+            </p>
+            <p>{{.Info.Location}}</p>
+            <ul>
+                {{range .Info.Links}}
+                <li><a href="{{.URL}}">{{.Label}}</a></li>
+                {{end}}
+            </ul>
+        </header>
+
+        <main>
+            <section>
+                <h2>{{.Summary.Title}}</h2>
+                <p>{{.Summary.Data}}</p>
+            </section>
+
+            <section>
+                <h2>{{.Experience.Title}}</h2>
+                {{range .Experience.Data}}
+                <article>
+                    <h3>{{.Title}}, {{.Employer}}</h3>
+                    <p>
+                        <time>{{.StartDate.Month}} {{.StartDate.Year}}</time>
+                        &ndash; {{if .EndDate}}<time
+                            >{{.EndDate.Month}} {{.EndDate.Year}}</time
+                        >{{else}}Present{{end}} &middot; {{.Location}} {{if
+                        .Note}} &middot; {{.Note}}{{end}}
+                    </p>
+                    {{range .Projects}}
+                    <section>
+                        {{if .Title}}
+                        <h4>{{.Title}}</h4>
+                        {{end}}
+                        <ul>
+                            {{range .Items}}
+                            <li>{{.}}</li>
+                            {{end}}
+                        </ul>
+                    </section>
+                    {{end}}
+                </article>
+                {{end}}
+            </section>
+
+            <section>
+                <h2>{{.Projects.Title}}</h2>
+                <ul>
+                    {{range .Projects.Data}}
+                    <li><a href="{{.Link.URL}}">{{.Name}}</a>: {{.Description}}</li>
+                    {{end}}
+                </ul>
+            </section>
+
+            <section>
+                <h2>{{.Educations.Title}}</h2>
+                {{range .Educations.Data}}
+                <article>
+                    <h3>{{.Name}}{{if .Status}} ({{.Status}}){{end}}</h3>
+                    <p>
+                        {{.Institution}} &middot;
+                        <time>{{.StartDate.Month}} {{.StartDate.Year}}</time>
+                    </p>
+                </article>
+                {{end}}
+            </section>
+
+            <section>
+                <h2>{{.Skills.Title}}</h2>
+                <dl>
+                    {{range .Skills.Data}}
+                    <dt>{{.Name}}</dt>
+                    <dd>
+                        {{range $i, $item := .Items}}{{if $i}},
+                        {{end}}{{$item}}{{end}}
+                    </dd>
+                    {{end}}
+                </dl>
+            </section>
+
+            <section>
+                <h2>{{.Languages.Title}}</h2>
+                <ul>
+                    {{range .Languages.Data}}
+                    <li>{{.Name}} ({{.Level}})</li>
+                    {{end}}
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>

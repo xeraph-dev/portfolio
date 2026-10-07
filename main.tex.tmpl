@@ -1,0 +1,109 @@
+\documentclass[10pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.8cm,top=1.5cm,bottom=1.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
+
+\hypersetup{
+  pdftitle={<<tex .Info.Name>> - CV},
+  pdfauthor={<<tex .Info.Name>>},
+  pdflang={<<.Meta.Language>>}
+}
+
+\definecolor{accent}{HTML}{1F3A5F}
+\definecolor{muted}{HTML}{555555}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.04}
+
+% ---------- Section style ----------
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0pt}
+  {}
+  [\vspace{-0.6em}\color{accent}\rule{\linewidth}{0.5pt}]
+\titlespacing*{\section}{0pt}{1em}{0.5em}
+
+% ---------- Lists ----------
+\setlist[itemize]{leftmargin=1.2em,itemsep=1.5pt,topsep=2pt,parsep=0pt,partopsep=0pt}
+
+% ---------- Helpers ----------
+% \job{title}{dates}{subtitle}
+\newcommand{\job}[3]{%
+  \vspace{0.55em}
+  {\bfseries #1}\hfill{\small\color{muted}#2}\par
+  \ifx\relax#3\relax\else{\small\itshape\color{muted}#3}\par\fi
+  \vspace{0.15em}
+}
+\newcommand{\subhead}[1]{\vspace{0.3em}{\small\bfseries\color{accent}#1}\par\vspace{0.1em}}
+
+\begin{document}
+
+% ---------- Header ----------
+\begin{center}
+  {\Huge\bfseries <<tex .Info.Name>>}\\[0.35em]
+  {\large\color{accent}<<tex .Info.Title>><<range .Info.Skills>> \textbullet{} <<tex .>><<end>>}\\[0.35em]
+  {\small <<tex .Info.Location>>}\\[0.2em]
+  {\small <<range $i, $l := .Info.Links>><<if $i>> \textbullet{} <<end>>\href{<<$l.URL>>}{<<tex $l.Label>>}<<end>>}
+\end{center}
+
+% ---------- Summary ----------
+\section*{<<tex .Summary.Title>>}
+<<tex .Summary.Data>>
+
+% ---------- Experience ----------
+\section*{<<tex .Experience.Title>>}
+<<- range .Experience.Data>>
+\job{<<tex .Title>>, <<tex .Employer>>}{<<slice .StartDate.Month 0 3>> <<.StartDate.Year>>--<<with .EndDate>><<slice .Month 0 3>> <<.Year>><<else>>Present<<end>> \textbullet{} <<tex .Location>><<if .Note>> \textbullet{} <<tex .Note>><<end>>}{}
+  <<- range .Projects>>
+    <<- if .Title>>
+\subhead{<<tex .Title>>}
+    <<- end>>
+\begin{itemize}
+    <<- range .Items>>
+  \item <<tex .>>
+    <<- end>>
+\end{itemize}
+  <<- end>>
+<<- end>>
+
+% ---------- Projects ----------
+\section*{<<tex .Projects.Title>>}
+\begin{itemize}
+<<- range .Projects.Data>>
+  \item \textbf{<<tex .Name>>}: <<tex .Description>><<if .Link>> \href{<<.Link.URL>>}{<<tex .Link.Label>>}<<end>>
+<<- end>>
+\end{itemize}
+
+% ---------- Education ----------
+\section*{<<tex .Educations.Title>>}
+<<- range .Educations.Data>>
+\textbf{<<tex .Name>>}<<if .Status>> (<<tex .Status>>)<<end>>, <<tex .Institution>> \hfill {\small\color{muted}<<slice .StartDate.Month 0 3>> <<.StartDate.Year>>--Present}\par
+<<- end>>
+
+% ---------- Skills ----------
+\section*{<<tex .Skills.Title>>}
+\begin{itemize}
+<<- range .Skills.Data>>
+  \item[] \textbf{<<tex .Name>>:} <<range $i, $s := .Items>><<if $i>>, <<end>><<tex $s>><<end>>
+<<- end>>
+\end{itemize}
+
+% ---------- Languages ----------
+\section*{<<tex .Languages.Title>>}
+<<range $i, $l := .Languages.Data>><<if $i>> \textbullet{} <<end>><<tex $l.Name>> (<<tex $l.Level>>)<<end>>
+
+\end{document}

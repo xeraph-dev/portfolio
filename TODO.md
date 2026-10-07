@@ -1,0 +1,3 @@
+- agregar enlace para descargar el CV desde el portfolio
+- agregar enlace en el CV al portfolio
+- agregar estilo al portfolio
