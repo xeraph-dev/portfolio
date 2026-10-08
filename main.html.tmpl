@@ -4,15 +4,17 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{{.Info.Name}}</title>
+
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
         <header>
             <h1>{{.Info.Name}}</h1>
-            <p>
+            <p class="main-skills">
                 {{.Info.Title}} &middot; {{range $i, $s := .Info.Skills}}{{if
                 $i}} &middot; {{end}}{{$s}}{{end}}
             </p>
-            <p>{{.Info.Location}}</p>
+            <p class="location">{{.Info.Location}}</p>
             <ul>
                 {{range .Info.Links}}
                 <li><a href="{{.URL}}">{{.Label}}</a></li>
@@ -21,12 +23,12 @@
         </header>
 
         <main>
-            <section>
+            <section id="summary">
                 <h2>{{.Summary.Title}}</h2>
                 <p>{{.Summary.Data}}</p>
             </section>
 
-            <section>
+            <section id="experience">
                 <h2>{{.Experience.Title}}</h2>
                 {{range .Experience.Data}}
                 <article>
@@ -54,16 +56,18 @@
                 {{end}}
             </section>
 
-            <section>
+            <section id="projects">
                 <h2>{{.Projects.Title}}</h2>
                 <ul>
                     {{range .Projects.Data}}
-                    <li><a href="{{.Link.URL}}">{{.Name}}</a>: {{.Description}}</li>
+                    <li>
+                        <a href="{{.Link.URL}}">{{.Name}}</a>: {{.Description}}
+                    </li>
                     {{end}}
                 </ul>
             </section>
 
-            <section>
+            <section id="education">
                 <h2>{{.Educations.Title}}</h2>
                 {{range .Educations.Data}}
                 <article>
@@ -76,7 +80,7 @@
                 {{end}}
             </section>
 
-            <section>
+            <section id="skills">
                 <h2>{{.Skills.Title}}</h2>
                 <dl>
                     {{range .Skills.Data}}
@@ -89,7 +93,7 @@
                 </dl>
             </section>
 
-            <section>
+            <section id="languages">
                 <h2>{{.Languages.Title}}</h2>
                 <ul>
                     {{range .Languages.Data}}

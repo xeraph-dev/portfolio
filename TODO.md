@@ -1,3 +1,5 @@
 - agregar enlace para descargar el CV desde el portfolio
 - agregar enlace en el CV al portfolio
 - agregar estilo al portfolio
+- agregar archivo de configuración de nginx para hostear el portfolio
+- agregar screenshots de los proyectos para el portfolio

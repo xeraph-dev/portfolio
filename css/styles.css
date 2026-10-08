@@ -1,0 +1,483 @@
+:root {
+    color-scheme: light dark;
+
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --text: #1a1d23;
+    --muted: #5b6472;
+    --border: #e1e6ee;
+    --heading: #1f3a5f;
+    --link: #2b5da8;
+    --marker: #2b5da8;
+
+    --hero-from: #1f3a5f;
+    --hero-to: #2f6bc4;
+    --hero-text: #ffffff;
+    --hero-accent: #bcd6ff;
+    --hero-pill: rgba(255, 255, 255, 0.14);
+    --hero-pill-hover: rgba(255, 255, 255, 0.26);
+
+    --shadow:
+        0 1px 2px rgba(20, 30, 50, 0.06), 0 6px 18px rgba(20, 30, 50, 0.06);
+    --shadow-hover:
+        0 2px 4px rgba(20, 30, 50, 0.08), 0 12px 28px rgba(20, 30, 50, 0.12);
+
+    --font-sans:
+        ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    --font-serif:
+        "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+        Georgia, serif;
+    --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0e1117;
+        --surface: #161b22;
+        --text: #e6e9ef;
+        --muted: #9aa4b2;
+        --border: #262d38;
+        --heading: #a9c8ff;
+        --link: #7fb0ff;
+        --marker: #7fb0ff;
+
+        --hero-from: #14213a;
+        --hero-to: #234a85;
+        --hero-text: #f4f7fc;
+        --hero-accent: #a9c8ff;
+        --hero-pill: rgba(255, 255, 255, 0.1);
+        --hero-pill-hover: rgba(255, 255, 255, 0.2);
+
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3);
+        --shadow-hover:
+            0 2px 4px rgba(0, 0, 0, 0.5), 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #0e1117;
+    --surface: #161b22;
+    --text: #e6e9ef;
+    --muted: #9aa4b2;
+    --border: #262d38;
+    --heading: #a9c8ff;
+    --link: #7fb0ff;
+    --marker: #7fb0ff;
+
+    --hero-from: #14213a;
+    --hero-to: #234a85;
+    --hero-text: #f4f7fc;
+    --hero-accent: #a9c8ff;
+    --hero-pill: rgba(255, 255, 255, 0.1);
+    --hero-pill-hover: rgba(255, 255, 255, 0.2);
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.3);
+    --shadow-hover:
+        0 2px 4px rgba(0, 0, 0, 0.5), 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: clamp(1rem, 4vw, 2.5rem);
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 62rem;
+    margin-inline: auto;
+}
+
+a {
+    color: var(--link);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--link);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+time {
+    font-variant-numeric: tabular-nums;
+}
+
+body > header {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.75rem, 6vw, 3.5rem);
+    border-radius: calc(var(--radius) + 6px);
+    background:
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(255, 255, 255, 0.18),
+            transparent 45%
+        ),
+        linear-gradient(135deg, var(--hero-from), var(--hero-to));
+    color: var(--hero-text);
+    box-shadow: var(--shadow);
+}
+
+body > header h1 {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+body > header p.main-skills {
+    margin: 0;
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    font-weight: 600;
+    color: var(--hero-accent);
+}
+
+body > header p.location {
+    margin: 0.2rem 0 0;
+    opacity: 0.85;
+}
+
+body > header ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+body > header a {
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: var(--hero-pill);
+    color: var(--hero-text);
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+body > header a:hover {
+    background: var(--hero-pill-hover);
+    transform: translateY(-1px);
+}
+
+body > header a:focus-visible {
+    outline-color: var(--hero-text);
+}
+
+main > section {
+    margin-top: clamp(2rem, 6vw, 3.25rem);
+}
+
+main > section > h2 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    color: var(--heading);
+}
+
+main > section > h2::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+main > section#summary > p {
+    margin: 0;
+    max-width: 70ch;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+article {
+    position: relative;
+    margin: 0 0 1.75rem;
+    padding: 0 0 0 1.6rem;
+    border-left: 2px solid var(--border);
+}
+
+article::before {
+    content: "";
+    position: absolute;
+    left: -0.45rem;
+    top: 0.45rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--link);
+    box-shadow: 0 0 0 4px var(--bg);
+}
+
+article > h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+article > .experience-dates {
+    margin: 0.15rem 0 0.75rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+/* Bloques por proyecto dentro de un empleo */
+article > section {
+    margin-top: 0.9rem;
+}
+
+article > section > h4 {
+    margin: 0 0 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--heading);
+}
+
+article ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+article li {
+    margin-bottom: 0.4rem;
+    padding-left: 0.15rem;
+}
+
+article li::marker {
+    color: var(--marker);
+}
+
+/* ---------- Proyectos: tarjetas ----------
+   Se aplica a la lista de la seccion que contiene enlaces.
+   Con el marcado recomendado: <li><h3><a>..</a></h3><p>..</p></li> */
+main > section > ul:has(> li > a),
+main > section > ul:has(> li > h3) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+main > section > ul:has(> li > a) > li,
+main > section > ul:has(> li > h3) > li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease;
+}
+
+main > section > ul:has(> li > a) > li:hover,
+main > section > ul:has(> li > h3) > li:hover {
+    transform: translateY(-2px);
+    border-color: var(--link);
+    box-shadow: var(--shadow-hover);
+}
+
+main > section > ul > li > h3 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+main > section > ul > li > h3 a {
+    text-decoration: none;
+    color: var(--heading);
+}
+
+main > section > ul > li > h3 a:hover {
+    text-decoration: underline;
+}
+
+main > section > ul > li > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* ---------- Habilidades ---------- */
+dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.6rem 1.5rem;
+    margin: 0;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+dt {
+    font-weight: 700;
+    color: var(--heading);
+}
+
+dd {
+    margin: 0;
+    color: var(--text);
+}
+
+main > section#languages > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+main > section#languages > ul > li {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.95rem;
+}
+
+/* ---------- Boton de tema (opcional) ---------- */
+#theme {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+}
+
+#theme:hover {
+    transform: scale(1.08);
+}
+
+/* ---------- Pantallas pequenas ---------- */
+@media (max-width: 40rem) {
+    dl {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+    }
+
+    dd {
+        margin-bottom: 0.7rem;
+    }
+
+    main > section > h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ---------- Menos movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
+/* ---------- Impresion: siempre claro y sin adornos ---------- */
+@media print {
+    :root {
+        --bg: #fff;
+        --surface: #fff;
+        --text: #000;
+        --muted: #444;
+        --border: #ccc;
+        --heading: #1f3a5f;
+        --link: #1f3a5f;
+        --marker: #1f3a5f;
+        --shadow: none;
+        --shadow-hover: none;
+    }
+
+    body {
+        padding: 0;
+        max-width: none;
+        font-size: 10.5pt;
+    }
+
+    body > header {
+        background: none;
+        color: #000;
+        padding: 0 0 1rem;
+        box-shadow: none;
+        border-bottom: 2px solid var(--heading);
+        border-radius: 0;
+    }
+
+    body > header p:first-of-type {
+        color: var(--heading);
+    }
+
+    body > header a {
+        background: none;
+        color: var(--link);
+        padding: 0;
+    }
+
+    #theme {
+        display: none;
+    }
+
+    article,
+    main > section > ul > li {
+        break-inside: avoid;
+    }
+}

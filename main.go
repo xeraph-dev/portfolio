@@ -93,6 +93,42 @@ type Data struct {
 	Languages  Section[[]Language]
 }
 
+func generateHTML(dir string, data Data, tmpl *htmlTemplate.Template) {
+	fileName := filepath.Join(dir, fmt.Sprintf("index-%s.html", data.Meta.Language))
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	if err = tmpl.Execute(file, data); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func generateTeX(dir string, data Data, tmpl *textTemplate.Template) {
+	fileName := filepath.Join(dir, fmt.Sprintf("cv-%s.tex", data.Meta.Language))
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	if err = tmpl.Execute(file, data); err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func ensureDir(dir string) {
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		os.RemoveAll(dir)
+	}
+	if err := os.Mkdir(dir, os.ModePerm); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
 	const HTML_DIR = "html"
 	const CV_DIR = "cv"
@@ -108,19 +144,8 @@ func main() {
 		).Replace,
 	}
 
-	if _, err := os.Stat(HTML_DIR); !os.IsNotExist(err) {
-		os.RemoveAll(HTML_DIR)
-	}
-	if err := os.Mkdir(HTML_DIR, os.ModePerm); err != nil {
-		log.Fatal(err)
-	}
-
-	if _, err := os.Stat(CV_DIR); !os.IsNotExist(err) {
-		os.RemoveAll(CV_DIR)
-	}
-	if err := os.Mkdir(CV_DIR, os.ModePerm); err != nil {
-		log.Fatal(err)
-	}
+	ensureDir(HTML_DIR)
+	ensureDir(CV_DIR)
 
 	htmlTmpl, err := htmlTemplate.ParseFiles(MAIN_HTML_FILE)
 	if err != nil {
@@ -305,11 +330,6 @@ func main() {
 						Link:        Link{"github.com/xeraph-dev/space-invaders.rkt", "https://github.com/xeraph-dev/space-invaders.rkt"},
 					},
 					{
-						Name:        "Calendar Generator",
-						Description: "calendar generator in Swift that outputs calendars in several formats.",
-						Link:        Link{"github.com/xeraph-dev/calendar-generator", "https://github.com/xeraph-dev/calendar-generator"},
-					},
-					{
 						Name:        "VSCode Profile Manager",
 						Description: "macOS app in Swift for managing Visual Studio Code profiles.",
 						Link:        Link{"github.com/xeraph-dev/vscode-profile-manager-macos", "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
@@ -346,15 +366,19 @@ func main() {
 					},
 					{
 						Name:  "Front-end",
-						Items: []string{"React", "React Native", "TypeScript", "Next.js", "Vue", "accessibility (WCAG AA)", "end-to-end testing (Cypress)"},
+						Items: []string{"React", "React Native", "JavaScript", "TypeScript", "Next.js", "Vue", "accessibility (WCAG AA)", "end-to-end testing (Cypress)"},
 					},
 					{
 						Name:  "Other",
-						Items: []string{"Tcl/Tk", "PHP", "Drupal", "Git", "Haskell", "Racket", "Python", "Swift", "Flutter", "Java (basic)"},
+						Items: []string{"Git", "Tcl/Tk", "Python", "Bash", "PHP", "Haskell", "Racket", "Swift", "Flutter", "Drupal"},
 					},
 					{
-						Name:  "Process",
-						Items: []string{"Scrum", "Jira"},
+						Name:  "Platforms",
+						Items: []string{"GitHub", "Vercel", "Hostinger", "Jira"},
+					},
+					{
+						Name:  "Metodologies",
+						Items: []string{"Scrum", "Waterfall"},
 					},
 				},
 			},
@@ -373,30 +397,7 @@ func main() {
 			},
 		},
 	} {
-		htmlFileName := filepath.Join(HTML_DIR, fmt.Sprintf("index-%s.html", data.Meta.Language))
-		texFileName := filepath.Join(CV_DIR, fmt.Sprintf("cv-%s.tex", data.Meta.Language))
-
-		htmlFile, err := os.OpenFile(htmlFileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
-		if err != nil {
-			log.Fatal(err)
-		}
-		texFile, err := os.OpenFile(texFileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		if err = htmlTmpl.Execute(htmlFile, data); err != nil {
-			log.Fatal(err)
-		}
-		if err = texTmpl.Execute(texFile, data); err != nil {
-			log.Fatal(err)
-		}
-
-		if err = htmlFile.Close(); err != nil {
-			log.Fatal(err)
-		}
-		if err = texFile.Close(); err != nil {
-			log.Fatal(err)
-		}
+		generateHTML(HTML_DIR, data, htmlTmpl)
+		generateTeX(CV_DIR, data, texTmpl)
 	}
 }
