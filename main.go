@@ -204,8 +204,8 @@ func main() {
 							{
 								Title: "Healthcare care-management platform",
 								Items: []string{
-									"Developed a Go microservice acting as a backend-for-frontend that served the platform's web application exclusively, loading large volumes of data from another microservice.",
-									"Built the back-end logic of a task-generation system: staff define patient criteria, the system generates follow-up lists, and a detail view lets them contact patients and record outcomes.",
+									"Worked on a Go microservice acting as a backend-for-frontend (gateway) for the platform's web application, loading large volumes of data from another microservice.",
+									"Helped implement the back-end logic of a task-generation system: staff define patient criteria, the system generates follow-up lists, and a detail view lets them contact patients and record outcomes.",
 									"Implemented caching strategies in the service's own PostgreSQL database to avoid repeatedly loading large datasets from the upstream service.",
 									"Fixed a production report page that timed out on every request: it joined 10 tables over millions of rows against a 30 s limit. Redesigned the queries with CTEs and tighter joins, plus pagination and precise filters, bringing response times to 5–20 s depending on the filter volume. Before, it was slow regardless of how few results it returned.",
 									"Designed a reusable Go abstraction for dynamic filtering and pagination over large tables.",
@@ -216,7 +216,7 @@ func main() {
 								Title: "Other Projects",
 								Items: []string{
 									"Built a full portal from scratch in Astro, implementing a provided design.",
-									"Helped build a product launch landing page in Laravel, nearly from scratch.",
+									"Built the landing page for a product launch using Laravel.",
 									"Worked on the front end of migrating a legacy .NET application to React.",
 									"Migrated an end-to-end test suite from Cucumber to Cypress.",
 								},
@@ -232,7 +232,7 @@ func main() {
 						Projects: []JobProject{
 							{
 								Items: []string{
-									"Built a web page for designing databases without needing to know SQL.",
+									"Contributed to the front end of a web page for designing databases without needing to know SQL.",
 									"Wrote Cypress end-to-end tests for every new feature and bug fix, so that fixed issues could not regress.",
 									"Improved site performance with React best practices; contributed to core product development.",
 								},
@@ -268,7 +268,7 @@ func main() {
 							{
 								Items: []string{
 									"Worked on a platform built around dynamically generated forms: forms arrived as structured data and the front end rebuilt the UI from them at runtime.",
-									"Built the front end of an e-commerce site in Vue.",
+									"Contributed to the front end of an e-commerce site built with Vue.",
 									"Built a mobile app with the core team in a hackathon, working on both the front end (React Native) and the back end (Express).",
 									"Contributed to a React Native music-purchasing app.",
 								},
@@ -405,6 +405,245 @@ func main() {
 					{
 						Name:  "English",
 						Level: "intermediate",
+					},
+				},
+			},
+		},
+		{
+			Meta: Meta{
+				Language: "es",
+				Site:     Link{"www.xeraph.dev", "https://www.xeraph.dev"},
+			},
+			Info: Info{
+				Name:     "Adrian René López Cintas",
+				Slug:     "adrian-rene-lopez-cintas",
+				Title:    "Ingeniero Fullstack",
+				Skills:   []string{"Go", "React", "SQL"},
+				Location: "La Habana, Cuba",
+				Links: []Link{
+					{Label: "xeraphdev@gmail.com", URL: "mailto:xeraphdev@gmail.com"},
+					{Label: "github.com/xeraph-dev", URL: "https://github.com/xeraph-dev"},
+					{Label: "linkedin.com/in/adrian-lópez", URL: "https://www.linkedin.com/in/adrian-l%C3%B3pez/"},
+				},
+			},
+			Summary: Section[string]{
+				Title: "Resumen",
+				Data:  "Ingeniero fullstack autodidacta con 3 años de Go y SQL en el back end y 6 años de React en el front end, con experiencia en optimización del rendimiento de consultas sobre grandes conjuntos de datos, interfaces web accesibles y migración de aplicaciones heredadas a React. Actualmente cursando el segundo año de una Licenciatura en Matemáticas.",
+			},
+			Experience: Section[[]Job]{
+				Title: "Experiencia",
+				Data: []Job{
+					{
+						Title:     "Desarrollador Web (Go / React)",
+						Employer:  "Divertimento",
+						Location:  "Remoto",
+						StartDate: Date{2022, "noviembre"},
+						EndDate:   &Date{2025, "noviembre"},
+						Projects: []JobProject{
+							{
+								Title: "Plataforma de gestión de atención médica",
+								Items: []string{
+									"Trabajé en un microservicio en Go que actuaba como backend-for-frontend (gateway) para la aplicación web de la plataforma, cargando grandes volúmenes de datos desde otro microservicio.",
+									"Ayudé a implementar la lógica de back end de un sistema de generación de tareas: el personal define criterios de pacientes, el sistema genera listas de seguimiento y una vista de detalle les permite contactar a los pacientes y registrar resultados.",
+									"Implementé estrategias de caché en la base de datos PostgreSQL propia del servicio para evitar cargar repetidamente grandes conjuntos de datos desde el servicio upstream.",
+									"Arreglé una página de reportes en producción que excedía el tiempo de espera en cada petición: unía 10 tablas sobre millones de filas contra un límite de 30 s. Rediseñé las consultas con CTEs y joins más ajustados, además de paginación y filtros precisos, reduciendo los tiempos de respuesta a 5–20 s según el volumen de filtros. Antes era lenta independientemente de cuán pocos resultados devolviera.",
+									"Diseñé una abstracción reutilizable en Go para filtrado dinámico y paginación sobre tablas grandes.",
+									"Reduje la carga en muchas otras consultas al acotar el conjunto de trabajo desde el inicio en lugar de expandir filas y filtrar después.",
+								},
+							},
+							{
+								Title: "Otros proyectos",
+								Items: []string{
+									"Construí un portal completo desde cero en Astro, implementando un diseño proporcionado.",
+									"Construí la landing page para el lanzamiento de un producto usando Laravel.",
+									"Trabajé en el front end de la migración de una aplicación heredada en .NET a React.",
+									"Migré una suite de pruebas end-to-end de Cucumber a Cypress.",
+								},
+							},
+						},
+					},
+					{
+						Title:     "Desarrollador Front-end (React)",
+						Employer:  "Freelance",
+						Location:  "Remoto",
+						StartDate: Date{2022, "septiembre"},
+						EndDate:   &Date{2022, "noviembre"},
+						Projects: []JobProject{
+							{
+								Items: []string{
+									"Contribuí al front end de una página web para diseñar bases de datos sin necesidad de saber SQL.",
+									"Escribí pruebas end-to-end con Cypress para cada nueva funcionalidad y corrección de errores, para que los problemas corregidos no volvieran a aparecer.",
+									"Mejoré el rendimiento del sitio con buenas prácticas de React; contribuí al desarrollo del producto principal.",
+								},
+							},
+						},
+					},
+					{
+						Title:     "Desarrollador Web (PHP / React)",
+						Employer:  "Divertimento",
+						Location:  "Remoto",
+						StartDate: Date{2022, "marzo"},
+						EndDate:   &Date{2022, "agosto"},
+						Projects: []JobProject{
+							{
+								Title: "Plataforma de aprendizaje en línea para una escuela",
+								Items: []string{
+									"Construí funcionalidades centrales de una plataforma de cursos en línea desarrollada para una sola escuela.",
+									"Trabajé bajo estrictos requisitos de accesibilidad WCAG AA, probando con lectores de pantalla en Windows y VoiceOver en macOS para reproducir y corregir problemas de tecnologías de asistencia.",
+									"Implementé desde cero una librería interna de resaltado de texto como parte del conjunto de componentes propios del proyecto.",
+									"Me integré con microservicios Java/Spring Boot, modificando ocasionalmente su código.",
+								},
+							},
+						},
+					},
+					{
+						Title:     "Desarrollador Front-end (React)",
+						Employer:  "IJP Software",
+						Location:  "Remoto",
+						Note:      "Medio tiempo al principio",
+						StartDate: Date{2021, "julio"},
+						EndDate:   &Date{2022, "julio"},
+						Projects: []JobProject{
+							{
+								Items: []string{
+									"Trabajé en una plataforma construida en torno a formularios generados dinámicamente: los formularios llegaban como datos estructurados y el front end reconstruía la interfaz a partir de ellos en tiempo de ejecución.",
+									"Contribuí al front end de un sitio de comercio electrónico construido con Vue.",
+									"Construí una aplicación móvil con el equipo principal en un hackathon, trabajando tanto en el front end (React Native) como en el back end (Express).",
+									"Contribuí a una aplicación de compra de música en React Native.",
+								},
+							},
+						},
+					},
+					{
+						Title:     "Desarrollador Front-end (React)",
+						Employer:  "Freelance",
+						Location:  "Remoto",
+						Note:      "Medio tiempo",
+						StartDate: Date{2020, "julio"},
+						EndDate:   &Date{2021, "julio"},
+						Projects: []JobProject{
+							{
+								Items: []string{
+									"Construí pequeños proyectos en JavaScript y React para clientes.",
+									"Escribí un script para agregar marcas de agua a videos, lo que hizo que un cliente volviera a contactarme dos años después.",
+								},
+							},
+						},
+					},
+					{
+						Title:     "Desarrollador Drupal",
+						Employer:  "Xetid",
+						Location:  "La Habana, Cuba",
+						StartDate: Date{2019, "octubre"},
+						EndDate:   &Date{2021, "agosto"},
+						Projects: []JobProject{
+							{
+								Items: []string{
+									"Construí dos sitios web gubernamentales desde cero.",
+									"Desarrollé un módulo de Drupal para autenticación de usuarios a través de EnZona, una plataforma cubana de pagos digitales.",
+									"Mantuve y amplié sitios web gubernamentales existentes agregando nuevas funcionalidades.",
+								},
+							},
+						},
+					},
+				},
+			},
+			Projects: Section[[]Project]{
+				Title: "Proyectos",
+				Data: []Project{
+					{
+						Name:        "Guardias",
+						Description: "aplicación de escritorio multiplataforma para gestión de horarios en Tcl/Tk, compilada como un único binario estático; en desarrollo activo.",
+						Link:        Link{"github.com/xeraph-dev/guardias", "https://github.com/xeraph-dev/guardias"},
+					},
+					{
+						Name:        "Sudoku",
+						Description: "juego de sudoku de escritorio construido con Svelte y Tauri.",
+						Link:        Link{"github.com/xeraph-dev/sudoku", "https://github.com/xeraph-dev/sudoku"},
+					},
+					{
+						Name:        "text-highlighter",
+						Description: "librería de resaltado de texto escrita desde cero para la plataforma de aprendizaje en línea.",
+						Link:        Link{"github.com/xeraph-dev/text-highlighter", "https://github.com/xeraph-dev/text-highlighter"},
+					},
+					{
+						Name:        "Channels Watcher Bot",
+						Description: "bot de Telegram (Python, Prisma, Docker) que observa canales y reenvía mensajes que coinciden con los filtros de cada usuario.",
+						Link:        Link{"github.com/xeraph-dev/channels-watcher-bot", "https://github.com/xeraph-dev/channels-watcher-bot"},
+					},
+					{
+						Name:        "SRI",
+						Description: "sistema de recuperación de información para documentos basado en el modelo de espacio vectorial (Python), construido en mi primer año de universidad.",
+						Link:        Link{"github.com/xeraph-dev/sri", "https://github.com/xeraph-dev/sri"},
+					},
+					{
+						Name:        "Space Invaders",
+						Description: "juego escrito en Racket como proyecto final de How to Design Programs.",
+						Link:        Link{"github.com/xeraph-dev/space-invaders.rkt", "https://github.com/xeraph-dev/space-invaders.rkt"},
+					},
+					{
+						Name:        "VSCode Profile Manager",
+						Description: "aplicación macOS en Swift para gestionar perfiles de Visual Studio Code.",
+						Link:        Link{"github.com/xeraph-dev/vscode-profile-manager-macos", "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
+					},
+					{
+						Name:        "Rick and Morty",
+						Description: "cliente macOS para la API de Rick and Morty, escrito en Swift.",
+						Link:        Link{"github.com/xeraph-dev/rick-and-morty-macos", "https://github.com/xeraph-dev/rick-and-morty-macos"},
+					},
+					{
+						Name:        "BettyCook",
+						Description: "aplicación móvil de recetario construida con Flutter.",
+						Link:        Link{"github.com/xeraph-dev/bettycook", "https://github.com/xeraph-dev/bettycook"},
+					},
+				},
+			},
+			Educations: Section[[]Education]{
+				Title: "Educación",
+				Data: []Education{
+					{
+						Name:        "Licenciatura en Matemáticas",
+						Status:      "en curso",
+						Institution: "Universidad de La Habana",
+						StartDate:   Date{2025, "septiembre"},
+					},
+				},
+			},
+			Skills: Section[[]Skill]{
+				Title: "Habilidades",
+				Data: []Skill{
+					{
+						Name:  "Back-end",
+						Items: []string{"Go", "SQL (PostgreSQL, MySQL)", "REST APIs", "Node.js/Express", "Docker", "Linux"},
+					},
+					{
+						Name:  "Front-end",
+						Items: []string{"React", "React Native", "JavaScript", "TypeScript", "Next.js", "Vue", "accesibilidad (WCAG AA)", "pruebas end-to-end (Cypress)"},
+					},
+					{
+						Name:  "Otros",
+						Items: []string{"Git", "Tcl/Tk", "Python", "Bash", "PHP", "Haskell", "Racket", "Swift", "Flutter", "Drupal"},
+					},
+					{
+						Name:  "Plataformas",
+						Items: []string{"GitHub", "Vercel", "Hostinger", "Jira"},
+					},
+					{
+						Name:  "Metodologías",
+						Items: []string{"Scrum", "Cascada"},
+					},
+				},
+			},
+			Languages: Section[[]Language]{
+				Title: "Idiomas",
+				Data: []Language{
+					{
+						Name:  "Español",
+						Level: "nativo",
+					},
+					{
+						Name:  "Inglés",
+						Level: "intermedio",
 					},
 				},
 			},

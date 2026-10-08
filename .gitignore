@@ -39,3 +39,5 @@ go.work.sum
 # html
 /html/*
 !/html/index-*.html
+
+portfolio.tar.gz
