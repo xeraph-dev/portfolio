@@ -254,7 +254,6 @@ article > .experience-dates {
     font-size: 0.92rem;
 }
 
-/* Bloques por proyecto dentro de un empleo */
 article > section {
     margin-top: 0.9rem;
 }
@@ -282,9 +281,6 @@ article li::marker {
     color: var(--marker);
 }
 
-/* ---------- Proyectos: tarjetas ----------
-   Se aplica a la lista de la seccion que contiene enlaces.
-   Con el marcado recomendado: <li><h3><a>..</a></h3><p>..</p></li> */
 main > section > ul:has(> li > a),
 main > section > ul:has(> li > h3) {
     display: grid;
@@ -338,7 +334,6 @@ main > section > ul > li > p {
     font-size: 0.95rem;
 }
 
-/* ---------- Habilidades ---------- */
 dl {
     display: grid;
     grid-template-columns: max-content 1fr;
@@ -378,7 +373,6 @@ main > section#languages > ul > li {
     font-size: 0.95rem;
 }
 
-/* ---------- Boton de tema (opcional) ---------- */
 #theme {
     position: fixed;
     top: 1rem;
@@ -403,7 +397,6 @@ main > section#languages > ul > li {
     transform: scale(1.08);
 }
 
-/* ---------- Pantallas pequenas ---------- */
 @media (max-width: 40rem) {
     dl {
         grid-template-columns: 1fr;
@@ -419,7 +412,6 @@ main > section#languages > ul > li {
     }
 }
 
-/* ---------- Menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -432,7 +424,6 @@ main > section#languages > ul > li {
     }
 }
 
-/* ---------- Impresion: siempre claro y sin adornos ---------- */
 @media print {
     :root {
         --bg: #fff;
