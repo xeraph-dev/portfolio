@@ -5,6 +5,7 @@ import (
 	htmlTemplate "html/template"
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -72,10 +73,12 @@ type Section[T any] struct {
 
 type Meta struct {
 	Language string
+	Site     Link
 }
 
 type Info struct {
 	Name     string
+	Slug     string
 	Title    string
 	Skills   []string
 	Location string
@@ -91,6 +94,15 @@ type Data struct {
 	Educations Section[[]Education]
 	Skills     Section[[]Skill]
 	Languages  Section[[]Language]
+}
+
+func compileTeX(dir string) {
+	if err := os.Chdir(dir); err != nil {
+		log.Fatal(err)
+	}
+	if err := exec.Command("latexmk", "-pdf").Run(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func generateHTML(dir string, data Data, tmpl *htmlTemplate.Template) {
@@ -161,9 +173,11 @@ func main() {
 		{
 			Meta: Meta{
 				Language: "en",
+				Site:     Link{"www.xeraph.dev", "https://www.xeraph.dev"},
 			},
 			Info: Info{
 				Name:     "Adrian René López Cintas",
+				Slug:     "adrian-rene-lopez-cintas",
 				Title:    "Fullstack Engineer",
 				Skills:   []string{"Go", "React", "SQL"},
 				Location: "Havana, Cuba",
@@ -190,7 +204,7 @@ func main() {
 							{
 								Title: "Healthcare care-management platform",
 								Items: []string{
-									"Developed a Go microservice acting as a backend-for-frontend (gateway) that served the platform's web application exclusively, loading large volumes of data from another microservice.",
+									"Developed a Go microservice acting as a backend-for-frontend that served the platform's web application exclusively, loading large volumes of data from another microservice.",
 									"Built the back-end logic of a task-generation system: staff define patient criteria, the system generates follow-up lists, and a detail view lets them contact patients and record outcomes.",
 									"Implemented caching strategies in the service's own PostgreSQL database to avoid repeatedly loading large datasets from the upstream service.",
 									"Fixed a production report page that timed out on every request: it joined 10 tables over millions of rows against a 30 s limit. Redesigned the queries with CTEs and tighter joins, plus pagination and precise filters, bringing response times to 5–20 s depending on the filter volume. Before, it was slow regardless of how few results it returned.",
@@ -255,7 +269,6 @@ func main() {
 								Items: []string{
 									"Worked on a platform built around dynamically generated forms: forms arrived as structured data and the front end rebuilt the UI from them at runtime.",
 									"Built the front end of an e-commerce site in Vue.",
-									"Helped build a complex product almost from scratch (React, Next.js, Redux, Docker).",
 									"Built a mobile app with the core team in a hackathon, working on both the front end (React Native) and the back end (Express).",
 									"Contributed to a React Native music-purchasing app.",
 								},
@@ -287,7 +300,7 @@ func main() {
 						Projects: []JobProject{
 							{
 								Items: []string{
-									"Built two government websites from scratch (Drupal, PHP, PostgreSQL).",
+									"Built two government websites from scratch.",
 									"Developed a Drupal module for user authentication through EnZona, a Cuban digital payments platform.",
 									"Maintained and extended existing government websites by adding new features.",
 								},
@@ -377,7 +390,7 @@ func main() {
 						Items: []string{"GitHub", "Vercel", "Hostinger", "Jira"},
 					},
 					{
-						Name:  "Metodologies",
+						Name:  "Methodologies",
 						Items: []string{"Scrum", "Waterfall"},
 					},
 				},
@@ -400,4 +413,5 @@ func main() {
 		generateHTML(HTML_DIR, data, htmlTmpl)
 		generateTeX(CV_DIR, data, texTmpl)
 	}
+	compileTeX(CV_DIR)
 }

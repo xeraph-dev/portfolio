@@ -32,5 +32,10 @@ go.work.sum
 # .idea/
 # .vscode/
 
-/html
-/cv
+# cv
+/cv/*
+!/cv/cv-*.pdf
+
+# html
+/html/*
+!/html/index-*.html

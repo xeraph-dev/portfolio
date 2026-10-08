@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{{.Info.Name}}</title>
 
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
@@ -19,6 +20,7 @@
                 {{range .Info.Links}}
                 <li><a href="{{.URL}}">{{.Label}}</a></li>
                 {{end}}
+                <li><a download="cv-{{.Info.Slug}}-{{.Meta.Language}}.pdf" href="/cv">CV</a></li>
             </ul>
         </header>
 
@@ -61,7 +63,7 @@
                 <ul>
                     {{range .Projects.Data}}
                     <li>
-                        <a href="{{.Link.URL}}">{{.Name}}</a>: {{.Description}}
+                        <a href="{{.Link.URL}}">{{.Name}}</a> {{.Description}}
                     </li>
                     {{end}}
                 </ul>
