@@ -391,30 +391,6 @@ main > section#languages > ul > li {
     font-size: 0.95rem;
 }
 
-#theme {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    z-index: 10;
-    width: 2.6rem;
-    height: 2.6rem;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: var(--surface);
-    color: var(--text);
-    font-size: 1.1rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-    transition: transform 0.15s ease;
-}
-
-#theme:hover {
-    transform: scale(1.08);
-}
-
 @media (max-width: 40rem) {
     dl {
         grid-template-columns: 1fr;
@@ -479,10 +455,6 @@ main > section#languages > ul > li {
         background: none;
         color: var(--link);
         padding: 0;
-    }
-
-    #theme {
-        display: none;
     }
 
     article,
