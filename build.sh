@@ -16,4 +16,6 @@ for lang in en es; do
 done
 
 cp main.css dist/styles.css
-cp favicon.ico dist/favicon.ico
+
+magick convert logo.svg -resize 1200x630x100% -gravity center -background transparent dist/og.png
+magick convert logo-small.svg -resize 32x32 -background transparent dist/favicon.ico
