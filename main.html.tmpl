@@ -36,10 +36,7 @@
         <meta property="og:image" content="https://xeraph.dev/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta
-            property="og:image:alt"
-            content="{{.Info.Name}}, {{.Info.Title}}"
-        />
+        <meta property="og:image:alt" content="{{.Info.Name}}, {{.Info.Title}}" />
         <meta property="profile:first_name" content="{{.Info.FirstName}}" />
         <meta property="profile:last_name" content="{{.Info.LastName}}" />
         <meta property="profile:username" content="xeraph-dev" />
@@ -48,33 +45,28 @@
         <meta name="twitter:title" content="{{.Info.Name}} | {{.Info.Title}}" />
         <meta name="twitter:description" content="{{.Summary.Data}}" />
         <meta name="twitter:image" content="https://xeraph.dev/og-image.jpg" />
-        <meta
-            name="twitter:image:alt"
-            content="{{.Info.Name}}, {{.Info.Title}}"
-        />
+        <meta name="twitter:image:alt" content="{{.Info.Name}}, {{.Info.Title}}" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
         <header>
             <h1>{{.Info.Name}}</h1>
-            <p class="main-skills">
-                {{.Info.Title}} &middot; {{range $i, $s := .Info.Skills}}{{if
-                $i}} &middot; {{end}}{{$s}}{{end}}
-            </p>
+            <p class="main-skills">{{.Info.Title}}</p>
             <p class="location">{{.Info.Location}}</p>
             <ul>
                 {{range .Info.Links}}
+                    <li><a href="{{.URL}}" rel="me">{{.Label}}</a></li>
+                {{end}}
                 <li>
                     <a
-                        href="{{.URL}}"
-                        {{if .Rel}} rel="{{.Rel}}" {{end}}
-                        {{if .Download}} download="{{.Download}}" {{end}}
-                        {{if .Type}} type="{{.Type}}" {{end}}
+                        download="cv-{{.Info.Slug}}-{{.Meta.Language}}.pdf"
+                        type="application/json"
+                        rel="me"
+                        href="/{{.Meta.Language}}/cv.pdf"
                     >
-                        {{.Label}}
+                            CV
                     </a>
                 </li>
-                {{end}}
             </ul>
         </header>
 
@@ -87,29 +79,26 @@
             <section id="experience" aria-labelledby="experience-title">
                 <h2 id="experience-title">{{.Experience.Title}}</h2>
                 {{range .Experience.Data}}
-                <article>
-                    <h3>{{.Title}}, {{.Employer}}</h3>
-                    <p class="experience-dates">
-                        <time datetime="{{.StartDate.DateTime}}">{{.StartDate.Month}} {{.StartDate.Year}}</time>
-                        &ndash;
-                        {{if .EndDate}}<time datetime="{{.EndDate.DateTime}}">{{.EndDate.Month}} {{.EndDate.Year}}</time>
-                        {{else}}Present{{end}}
-                        &middot; {{.Location}}
-                        {{if .Note}} &middot; {{.Note}}{{end}}
-                    </p>
-                    {{range .Projects}}
-                    <section>
-                        {{if .Title}}
-                        <h4>{{.Title}}</h4>
+                    <article>
+                        <h3>{{.Title}}, {{.Employer}}</h3>
+                        <p class="experience-dates">
+                            <time datetime="{{.StartDate.DateTime}}">{{.StartDate.Month}} {{.StartDate.Year}}</time>
+                            &ndash;
+                            {{if .EndDate}}<time datetime="{{.EndDate.DateTime}}">{{.EndDate.Month}} {{.EndDate.Year}}</time>
+                            {{else}}Present{{end}} &middot; {{.Location}}
+                            {{if .Note}} &middot; {{.Note}}{{end}}
+                        </p>
+                        {{range .Projects}}
+                            <section>
+                                {{if .Title}}<h4>{{.Title}}</h4>{{end}}
+                                <ul>
+                                    {{range .Items}}
+                                        <li>{{.}}</l>
+                                    {{end}}
+                                </ul>
+                            </section>
                         {{end}}
-                        <ul>
-                            {{range .Items}}
-                            <li>{{.}}</li>
-                            {{end}}
-                        </ul>
-                    </section>
-                    {{end}}
-                </article>
+                    </article>
                 {{end}}
             </section>
 
@@ -117,9 +106,9 @@
                 <h2 id="projects-title">{{.Projects.Title}}</h2>
                 <ul>
                     {{range .Projects.Data}}
-                    <li>
-                        <a href="{{.Link.URL}}">{{.Name}}</a> {{.Description}}
-                    </li>
+                        <li>
+                            <a href="{{.Link.URL}}">{{.Name}}</a> {{.Description}}
+                        </li>
                     {{end}}
                 </ul>
             </section>
@@ -127,13 +116,13 @@
             <section id="education" aria-labelledby="education-title">
                 <h2 id="education-title">{{.Educations.Title}}</h2>
                 {{range .Educations.Data}}
-                <article>
-                    <h3>{{.Name}}{{if .Status}} ({{.Status}}){{end}}</h3>
-                    <p>
-                        {{.Institution}} &middot;
-                        <time>{{.StartDate.Month}} {{.StartDate.Year}}</time>
-                    </p>
-                </article>
+                    <article>
+                        <h3>{{.Name}}{{if .Status}} ({{.Status}}){{end}}</h3>
+                        <p>
+                            {{.Institution}} &middot;
+                            <time>{{.StartDate.Month}} {{.StartDate.Year}}</time>
+                        </p>
+                    </article>
                 {{end}}
             </section>
 
@@ -141,11 +130,12 @@
                 <h2 id="skills-title">{{.Skills.Title}}</h2>
                 <dl>
                     {{range .Skills.Data}}
-                    <dt>{{.Name}}</dt>
-                    <dd>
-                        {{range $i, $item := .Items}}{{if $i}},
-                        {{end}}{{$item}}{{end}}
-                    </dd>
+                        <dt>{{.Name}}</dt>
+                        <dd>
+                            {{range $i, $item := .Items}}
+                                {{if $i}},{{end}}{{$item}}
+                            {{end}}
+                        </dd>
                     {{end}}
                 </dl>
             </section>
@@ -154,7 +144,7 @@
                 <h2 id="languages-title">{{.Languages.Title}}</h2>
                 <ul>
                     {{range .Languages.Data}}
-                    <li>{{.Name}} ({{.Level}})</li>
+                        <li>{{.Name}} ({{.Level}})</li>
                     {{end}}
                 </ul>
             </section>

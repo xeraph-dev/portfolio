@@ -20,9 +20,6 @@ const TEX_DELIM_RIGHT = ">>"
 type Link struct {
 	Label    string
 	URL      string
-	Rel      string
-	Type     string
-	Download string
 }
 
 type Date struct {
@@ -157,6 +154,7 @@ func parseTeXTemplate() *textTemplate.Template {
 		"tex": strings.NewReplacer(
 			`\`, `\textbackslash{}`, `&`, `\&`, `%`, `\%`, `$`, `\$`, `#`, `\#`,
 			`_`, `\_`, `{`, `\{`, `}`, `\}`, `~`, `\textasciitilde{}`, `^`, `\textasciicircum{}`,
+			`•`, `\textbullet{}`,
 		).Replace,
 	}
 	tmpl, err := textTemplate.New(MAIN_TEX_FILE).Delims(TEX_DELIM_LEFT, TEX_DELIM_RIGHT).Funcs(funcs).ParseFiles(MAIN_TEX_FILE)
@@ -183,7 +181,7 @@ func main() {
 				FirstName: "Adrian René",
 				LastName:  "López Cintas",
 				Slug:      "adrian-rene-lopez-cintas",
-				Title:     "Fullstack Engineer (Go, React, SQL)",
+				Title:     "Fullstack Engineer • Go • React • SQL",
 				Keywords:  "Fullstack Engineer, Go, React, SQL, Performance Optimization, Web Accessibility (WCAG AA), TypeScript, Microservices",
 				Skills:    []string{"Go", "React", "SQL"},
 				Location:  "Havana, Cuba",
@@ -191,7 +189,6 @@ func main() {
 					{Label: "xeraphdev@gmail.com", URL: "mailto:xeraphdev@gmail.com"},
 					{Label: "github.com/xeraph-dev", URL: "https://github.com/xeraph-dev"},
 					{Label: "linkedin.com/in/adrian-lópez", URL: "https://www.linkedin.com/in/adrian-l%C3%B3pez/"},
-					{Label: "CV", URL: "/en/cv.pdf", Download: "cv-adrian-rene-lopez-cintas-en.pdf", Type: "application/pdf"},
 				},
 			},
 			Summary: Section[string]{
@@ -426,7 +423,7 @@ func main() {
 				FirstName: "Adrian René",
 				LastName:  "López Cintas",
 				Slug:      "adrian-rene-lopez-cintas",
-				Title:     "Ingeniero Fullstack (Go, React, SQL)",
+				Title:     "Ingeniero Fullstack • Go • React • SQL",
 				Keywords:  "Ingeniero Engineer, Go, React, SQL, Optimización de Rendimiento, Accesibilidad Web (WCAG AA), TypeScript, Microservicios",
 				Skills:    []string{"Go", "React", "SQL"},
 				Location:  "La Habana, Cuba",
@@ -434,7 +431,6 @@ func main() {
 					{Label: "xeraphdev@gmail.com", URL: "mailto:xeraphdev@gmail.com"},
 					{Label: "github.com/xeraph-dev", URL: "https://github.com/xeraph-dev"},
 					{Label: "linkedin.com/in/adrian-lópez", URL: "https://www.linkedin.com/in/adrian-l%C3%B3pez/"},
-					{Label: "CV", URL: "/en/cv.pdf", Download: "cv-adrian-rene-lopez-cintas-en.pdf", Type: "application/pdf"},
 				},
 			},
 			Summary: Section[string]{
