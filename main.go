@@ -5,21 +5,30 @@ import (
 	htmlTemplate "html/template"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"text/template"
 	textTemplate "text/template"
 )
 
+const OUT_DIR = "out"
+const MAIN_HTML_FILE = "main.html.tmpl"
+const MAIN_TEX_FILE = "main.tex.tmpl"
+const TEX_DELIM_LEFT = "<<"
+const TEX_DELIM_RIGHT = ">>"
+
 type Link struct {
-	Label string
-	URL   string
+	Label    string
+	URL      string
+	Rel      string
+	Type     string
+	Download string
 }
 
 type Date struct {
-	Year  int
-	Month string
+	Year     int
+	Month    string
+	DateTime string
 }
 
 type Summary struct {
@@ -77,12 +86,15 @@ type Meta struct {
 }
 
 type Info struct {
-	Name     string
-	Slug     string
-	Title    string
-	Skills   []string
-	Location string
-	Links    []Link
+	Name      string
+	FirstName string
+	LastName  string
+	Slug      string
+	Title     string
+	Keywords  string
+	Skills    []string
+	Location  string
+	Links     []Link
 }
 
 type Data struct {
@@ -96,17 +108,8 @@ type Data struct {
 	Languages  Section[[]Language]
 }
 
-func compileTeX(dir string) {
-	if err := os.Chdir(dir); err != nil {
-		log.Fatal(err)
-	}
-	if err := exec.Command("latexmk", "-pdf").Run(); err != nil {
-		log.Fatal(err)
-	}
-}
-
-func generateHTML(dir string, data Data, tmpl *htmlTemplate.Template) {
-	fileName := filepath.Join(dir, fmt.Sprintf("index-%s.html", data.Meta.Language))
+func generateHTML(data Data, tmpl *htmlTemplate.Template) {
+	fileName := filepath.Join(OUT_DIR, fmt.Sprintf("index-%s.html", data.Meta.Language))
 	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
 	if err != nil {
 		log.Fatal(err)
@@ -118,8 +121,8 @@ func generateHTML(dir string, data Data, tmpl *htmlTemplate.Template) {
 	}
 }
 
-func generateTeX(dir string, data Data, tmpl *textTemplate.Template) {
-	fileName := filepath.Join(dir, fmt.Sprintf("cv-%s.tex", data.Meta.Language))
+func generateTeX(data Data, tmpl *textTemplate.Template) {
+	fileName := filepath.Join(OUT_DIR, fmt.Sprintf("cv-%s.tex", data.Meta.Language))
 	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
 	if err != nil {
 		log.Fatal(err)
@@ -132,64 +135,68 @@ func generateTeX(dir string, data Data, tmpl *textTemplate.Template) {
 
 }
 
-func ensureDir(dir string) {
-	if _, err := os.Stat(dir); !os.IsNotExist(err) {
-		os.RemoveAll(dir)
+func ensureOutDir() {
+	if _, err := os.Stat(OUT_DIR); !os.IsNotExist(err) {
+		os.RemoveAll(OUT_DIR)
 	}
-	if err := os.Mkdir(dir, os.ModePerm); err != nil {
+	if err := os.Mkdir(OUT_DIR, os.ModePerm); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func main() {
-	const HTML_DIR = "html"
-	const CV_DIR = "cv"
-	const MAIN_HTML_FILE = "main.html.tmpl"
-	const MAIN_TEX_FILE = "main.tex.tmpl"
-	const TEX_DELIM_LEFT = "<<"
-	const TEX_DELIM_RIGHT = ">>"
+func parseHTMLTemplate() *htmlTemplate.Template {
+	tmpl, err := htmlTemplate.ParseFiles(MAIN_HTML_FILE)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return tmpl
+}
 
+func parseTeXTemplate() *textTemplate.Template {
 	funcs := template.FuncMap{
 		"tex": strings.NewReplacer(
 			`\`, `\textbackslash{}`, `&`, `\&`, `%`, `\%`, `$`, `\$`, `#`, `\#`,
 			`_`, `\_`, `{`, `\{`, `}`, `\}`, `~`, `\textasciitilde{}`, `^`, `\textasciicircum{}`,
 		).Replace,
 	}
-
-	ensureDir(HTML_DIR)
-	ensureDir(CV_DIR)
-
-	htmlTmpl, err := htmlTemplate.ParseFiles(MAIN_HTML_FILE)
+	tmpl, err := textTemplate.New(MAIN_TEX_FILE).Delims(TEX_DELIM_LEFT, TEX_DELIM_RIGHT).Funcs(funcs).ParseFiles(MAIN_TEX_FILE)
 	if err != nil {
 		log.Fatal(err)
 	}
+	return tmpl
+}
 
-	texTmpl, err := textTemplate.New(MAIN_TEX_FILE).Delims(TEX_DELIM_LEFT, TEX_DELIM_RIGHT).Funcs(funcs).ParseFiles(MAIN_TEX_FILE)
-	if err != nil {
-		log.Fatal(err)
-	}
+func main() {
+	ensureOutDir()
+
+	htmlTmpl := parseHTMLTemplate()
+	texTmpl := parseTeXTemplate()
 
 	for _, data := range []Data{
 		{
 			Meta: Meta{
 				Language: "en",
-				Site:     Link{"www.xeraph.dev", "https://www.xeraph.dev"},
+				Site:     Link{Label: "www.xeraph.dev", URL: "https://www.xeraph.dev"},
 			},
 			Info: Info{
-				Name:     "Adrian René López Cintas",
-				Slug:     "adrian-rene-lopez-cintas",
-				Title:    "Fullstack Engineer",
-				Skills:   []string{"Go", "React", "SQL"},
-				Location: "Havana, Cuba",
+				Name:      "Adrian René López Cintas",
+				FirstName: "Adrian René",
+				LastName:  "López Cintas",
+				Slug:      "adrian-rene-lopez-cintas",
+				Title:     "Fullstack Engineer (Go, React, SQL)",
+				Keywords:  "Fullstack Engineer, Go, React, SQL, Performance Optimization, Web Accessibility (WCAG AA), TypeScript, Microservices",
+				Skills:    []string{"Go", "React", "SQL"},
+				Location:  "Havana, Cuba",
 				Links: []Link{
 					{Label: "xeraphdev@gmail.com", URL: "mailto:xeraphdev@gmail.com"},
 					{Label: "github.com/xeraph-dev", URL: "https://github.com/xeraph-dev"},
 					{Label: "linkedin.com/in/adrian-lópez", URL: "https://www.linkedin.com/in/adrian-l%C3%B3pez/"},
+					{Label: "CV", URL: "/en/cv.pdf", Download: "cv-adrian-rene-lopez-cintas-en.pdf", Type: "application/pdf"},
 				},
 			},
 			Summary: Section[string]{
 				Title: "Summary",
-				Data:  "Self-taught fullstack engineer with 3 years of Go and SQL on the back end and 6 years of React on the front end, with experience in query performance optimization on large datasets, accessible web interfaces, and migrating legacy applications to React. Currently in the second year of a BSc in Mathematics.",
+				Data:  "Fullstack engineer with 3 years of Go and SQL on the back end and 6 years of React on the front end, with experience in query performance optimization on large datasets, accessible web interfaces, and migrating legacy applications to React. Currently in the second year of a BSc in Mathematics.",
 			},
 			Experience: Section[[]Job]{
 				Title: "Experience",
@@ -198,8 +205,8 @@ func main() {
 						Title:     "Web Developer (Go / React)",
 						Employer:  "Divertimento",
 						Location:  "Remote",
-						StartDate: Date{2022, "November"},
-						EndDate:   &Date{2025, "November"},
+						StartDate: Date{Year: 2022, Month: "November", DateTime: "2022-11"},
+						EndDate:   &Date{Year: 2025, Month: "November", DateTime: "2025-11"},
 						Projects: []JobProject{
 							{
 								Title: "Healthcare care-management platform",
@@ -227,8 +234,8 @@ func main() {
 						Title:     "Front-end Developer (React)",
 						Employer:  "Freelance",
 						Location:  "Remote",
-						StartDate: Date{2022, "September"},
-						EndDate:   &Date{2022, "November"},
+						StartDate: Date{Year: 2022, Month: "September", DateTime: "2022-09"},
+						EndDate:   &Date{Year: 2022, Month: "November", DateTime: "2022-11"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -243,8 +250,8 @@ func main() {
 						Title:     "Web Developer (PHP / React)",
 						Employer:  "Divertimento",
 						Location:  "Remote",
-						StartDate: Date{2022, "March"},
-						EndDate:   &Date{2022, "August"},
+						StartDate: Date{Year: 2022, Month: "March", DateTime: "2022-03"},
+						EndDate:   &Date{Year: 2022, Month: "August", DateTime: "2022-08"},
 						Projects: []JobProject{
 							{
 								Title: "School e-learning platform",
@@ -262,8 +269,8 @@ func main() {
 						Employer:  "IJP Software",
 						Location:  "Remote",
 						Note:      "Part-time at first",
-						StartDate: Date{2021, "July"},
-						EndDate:   &Date{2022, "July"},
+						StartDate: Date{Year: 2021, Month: "July", DateTime: "2021-07"},
+						EndDate:   &Date{Year: 2022, Month: "July", DateTime: "2022-07"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -280,8 +287,8 @@ func main() {
 						Employer:  "Freelance",
 						Location:  "Remote",
 						Note:      "Part-time",
-						StartDate: Date{2020, "July"},
-						EndDate:   &Date{2021, "July"},
+						StartDate: Date{Year: 2020, Month: "July", DateTime: "2020-07"},
+						EndDate:   &Date{Year: 2021, Month: "July", DateTime: "2021-07"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -295,8 +302,8 @@ func main() {
 						Title:     "Drupal Developer",
 						Employer:  "Xetid",
 						Location:  "Havana, Cuba",
-						StartDate: Date{2019, "October"},
-						EndDate:   &Date{2021, "August"},
+						StartDate: Date{Year: 2019, Month: "October", DateTime: "2019-10"},
+						EndDate:   &Date{Year: 2021, Month: "August", DateTime: "2021-08"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -315,47 +322,47 @@ func main() {
 					{
 						Name:        "Guardias",
 						Description: "cross-platform desktop scheduling app in Tcl/Tk, built as a single static binary; in active development.",
-						Link:        Link{"github.com/xeraph-dev/guardias", "https://github.com/xeraph-dev/guardias"},
+						Link:        Link{Label: "github.com/xeraph-dev/guardias", URL: "https://github.com/xeraph-dev/guardias"},
 					},
 					{
 						Name:        "Sudoku",
 						Description: "desktop sudoku game built with Svelte and Tauri.",
-						Link:        Link{"github.com/xeraph-dev/sudoku", "https://github.com/xeraph-dev/sudoku"},
+						Link:        Link{Label: "github.com/xeraph-dev/sudoku", URL: "https://github.com/xeraph-dev/sudoku"},
 					},
 					{
 						Name:        "text-highlighter",
 						Description: "text-highlighting library written from scratch for the e-learning platform.",
-						Link:        Link{"github.com/xeraph-dev/text-highlighter", "https://github.com/xeraph-dev/text-highlighter"},
+						Link:        Link{Label: "github.com/xeraph-dev/text-highlighter", URL: "https://github.com/xeraph-dev/text-highlighter"},
 					},
 					{
 						Name:        "Channels Watcher Bot",
 						Description: "Telegram bot (Python, Prisma, Docker) that watches channels and forwards messages matching each user's filters.",
-						Link:        Link{"github.com/xeraph-dev/channels-watcher-bot", "https://github.com/xeraph-dev/channels-watcher-bot"},
+						Link:        Link{Label: "github.com/xeraph-dev/channels-watcher-bot", URL: "https://github.com/xeraph-dev/channels-watcher-bot"},
 					},
 					{
 						Name:        "SRI",
 						Description: "information retrieval system for documents based on the vector space model (Python), built in my first year at university.",
-						Link:        Link{"github.com/xeraph-dev/sri", "https://github.com/xeraph-dev/sri"},
+						Link:        Link{Label: "github.com/xeraph-dev/sri", URL: "https://github.com/xeraph-dev/sri"},
 					},
 					{
 						Name:        "Space Invaders",
 						Description: "game written in Racket as the final project of How to Design Programs.",
-						Link:        Link{"github.com/xeraph-dev/space-invaders.rkt", "https://github.com/xeraph-dev/space-invaders.rkt"},
+						Link:        Link{Label: "github.com/xeraph-dev/space-invaders.rkt", URL: "https://github.com/xeraph-dev/space-invaders.rkt"},
 					},
 					{
 						Name:        "VSCode Profile Manager",
 						Description: "macOS app in Swift for managing Visual Studio Code profiles.",
-						Link:        Link{"github.com/xeraph-dev/vscode-profile-manager-macos", "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
+						Link:        Link{Label: "github.com/xeraph-dev/vscode-profile-manager-macos", URL: "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
 					},
 					{
 						Name:        "Rick and Morty",
 						Description: "macOS client for the Rick and Morty API, written in Swift.",
-						Link:        Link{"github.com/xeraph-dev/rick-and-morty-macos", "https://github.com/xeraph-dev/rick-and-morty-macos"},
+						Link:        Link{Label: "github.com/xeraph-dev/rick-and-morty-macos", URL: "https://github.com/xeraph-dev/rick-and-morty-macos"},
 					},
 					{
 						Name:        "BettyCook",
 						Description: "mobile recipe-book app built with Flutter.",
-						Link:        Link{"github.com/xeraph-dev/bettycook", "https://github.com/xeraph-dev/bettycook"},
+						Link:        Link{Label: "github.com/xeraph-dev/bettycook", URL: "https://github.com/xeraph-dev/bettycook"},
 					},
 				},
 			},
@@ -366,7 +373,7 @@ func main() {
 						Name:        "BSc in Mathematics",
 						Status:      "in progress",
 						Institution: "University of Havana",
-						StartDate:   Date{2025, "September"},
+						StartDate:   Date{Year: 2025, Month: "September", DateTime: "2025-09"},
 					},
 				},
 			},
@@ -412,23 +419,27 @@ func main() {
 		{
 			Meta: Meta{
 				Language: "es",
-				Site:     Link{"www.xeraph.dev", "https://www.xeraph.dev"},
+				Site:     Link{Label: "www.xeraph.dev", URL: "https://www.xeraph.dev"},
 			},
 			Info: Info{
-				Name:     "Adrian René López Cintas",
-				Slug:     "adrian-rene-lopez-cintas",
-				Title:    "Ingeniero Fullstack",
-				Skills:   []string{"Go", "React", "SQL"},
-				Location: "La Habana, Cuba",
+				Name:      "Adrian René López Cintas",
+				FirstName: "Adrian René",
+				LastName:  "López Cintas",
+				Slug:      "adrian-rene-lopez-cintas",
+				Title:     "Ingeniero Fullstack (Go, React, SQL)",
+				Keywords:  "Ingeniero Engineer, Go, React, SQL, Optimización de Rendimiento, Accesibilidad Web (WCAG AA), TypeScript, Microservicios",
+				Skills:    []string{"Go", "React", "SQL"},
+				Location:  "La Habana, Cuba",
 				Links: []Link{
 					{Label: "xeraphdev@gmail.com", URL: "mailto:xeraphdev@gmail.com"},
 					{Label: "github.com/xeraph-dev", URL: "https://github.com/xeraph-dev"},
 					{Label: "linkedin.com/in/adrian-lópez", URL: "https://www.linkedin.com/in/adrian-l%C3%B3pez/"},
+					{Label: "CV", URL: "/en/cv.pdf", Download: "cv-adrian-rene-lopez-cintas-en.pdf", Type: "application/pdf"},
 				},
 			},
 			Summary: Section[string]{
 				Title: "Resumen",
-				Data:  "Ingeniero fullstack autodidacta con 3 años de Go y SQL en el back end y 6 años de React en el front end, con experiencia en optimización del rendimiento de consultas sobre grandes conjuntos de datos, interfaces web accesibles y migración de aplicaciones heredadas a React. Actualmente cursando el segundo año de una Licenciatura en Matemáticas.",
+				Data:  "Ingeniero fullstack con 3 años de Go y SQL en el back end y 6 años de React en el front end, con experiencia en optimización del rendimiento de consultas sobre grandes conjuntos de datos, interfaces web accesibles y migración de aplicaciones heredadas a React. Actualmente cursando el segundo año de una Licenciatura en Matemáticas.",
 			},
 			Experience: Section[[]Job]{
 				Title: "Experiencia",
@@ -437,8 +448,8 @@ func main() {
 						Title:     "Desarrollador Web (Go / React)",
 						Employer:  "Divertimento",
 						Location:  "Remoto",
-						StartDate: Date{2022, "noviembre"},
-						EndDate:   &Date{2025, "noviembre"},
+						StartDate: Date{Year: 2022, Month: "noviembre", DateTime: "2022-11"},
+						EndDate:   &Date{Year: 2025, Month: "noviembre", DateTime: "2025-11"},
 						Projects: []JobProject{
 							{
 								Title: "Plataforma de gestión de atención médica",
@@ -466,8 +477,8 @@ func main() {
 						Title:     "Desarrollador Front-end (React)",
 						Employer:  "Freelance",
 						Location:  "Remoto",
-						StartDate: Date{2022, "septiembre"},
-						EndDate:   &Date{2022, "noviembre"},
+						StartDate: Date{Year: 2022, Month: "septiembre", DateTime: "2022-09"},
+						EndDate:   &Date{Year: 2022, Month: "noviembre", DateTime: "2022-11"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -482,8 +493,8 @@ func main() {
 						Title:     "Desarrollador Web (PHP / React)",
 						Employer:  "Divertimento",
 						Location:  "Remoto",
-						StartDate: Date{2022, "marzo"},
-						EndDate:   &Date{2022, "agosto"},
+						StartDate: Date{Year: 2022, Month: "marzo", DateTime: "2022-03"},
+						EndDate:   &Date{Year: 2022, Month: "agosto", DateTime: "2022-08"},
 						Projects: []JobProject{
 							{
 								Title: "Plataforma de aprendizaje en línea para una escuela",
@@ -501,8 +512,8 @@ func main() {
 						Employer:  "IJP Software",
 						Location:  "Remoto",
 						Note:      "Medio tiempo al principio",
-						StartDate: Date{2021, "julio"},
-						EndDate:   &Date{2022, "julio"},
+						StartDate: Date{Year: 2021, Month: "julio", DateTime: "2021-07"},
+						EndDate:   &Date{Year: 2022, Month: "julio", DateTime: "2022-07"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -519,8 +530,8 @@ func main() {
 						Employer:  "Freelance",
 						Location:  "Remoto",
 						Note:      "Medio tiempo",
-						StartDate: Date{2020, "julio"},
-						EndDate:   &Date{2021, "julio"},
+						StartDate: Date{Year: 2020, Month: "julio", DateTime: "2020-07"},
+						EndDate:   &Date{Year: 2021, Month: "julio", DateTime: "2021-07"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -534,8 +545,8 @@ func main() {
 						Title:     "Desarrollador Drupal",
 						Employer:  "Xetid",
 						Location:  "La Habana, Cuba",
-						StartDate: Date{2019, "octubre"},
-						EndDate:   &Date{2021, "agosto"},
+						StartDate: Date{Year: 2019, Month: "octubre", DateTime: "2019-10"},
+						EndDate:   &Date{Year: 2021, Month: "agosto", DateTime: "2021-08"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -554,47 +565,47 @@ func main() {
 					{
 						Name:        "Guardias",
 						Description: "aplicación de escritorio multiplataforma para gestión de horarios en Tcl/Tk, compilada como un único binario estático; en desarrollo activo.",
-						Link:        Link{"github.com/xeraph-dev/guardias", "https://github.com/xeraph-dev/guardias"},
+						Link:        Link{Label: "github.com/xeraph-dev/guardias", URL: "https://github.com/xeraph-dev/guardias"},
 					},
 					{
 						Name:        "Sudoku",
 						Description: "juego de sudoku de escritorio construido con Svelte y Tauri.",
-						Link:        Link{"github.com/xeraph-dev/sudoku", "https://github.com/xeraph-dev/sudoku"},
+						Link:        Link{Label: "github.com/xeraph-dev/sudoku", URL: "https://github.com/xeraph-dev/sudoku"},
 					},
 					{
 						Name:        "text-highlighter",
 						Description: "librería de resaltado de texto escrita desde cero para la plataforma de aprendizaje en línea.",
-						Link:        Link{"github.com/xeraph-dev/text-highlighter", "https://github.com/xeraph-dev/text-highlighter"},
+						Link:        Link{Label: "github.com/xeraph-dev/text-highlighter", URL: "https://github.com/xeraph-dev/text-highlighter"},
 					},
 					{
 						Name:        "Channels Watcher Bot",
 						Description: "bot de Telegram (Python, Prisma, Docker) que observa canales y reenvía mensajes que coinciden con los filtros de cada usuario.",
-						Link:        Link{"github.com/xeraph-dev/channels-watcher-bot", "https://github.com/xeraph-dev/channels-watcher-bot"},
+						Link:        Link{Label: "github.com/xeraph-dev/channels-watcher-bot", URL: "https://github.com/xeraph-dev/channels-watcher-bot"},
 					},
 					{
 						Name:        "SRI",
 						Description: "sistema de recuperación de información para documentos basado en el modelo de espacio vectorial (Python), construido en mi primer año de universidad.",
-						Link:        Link{"github.com/xeraph-dev/sri", "https://github.com/xeraph-dev/sri"},
+						Link:        Link{Label: "github.com/xeraph-dev/sri", URL: "https://github.com/xeraph-dev/sri"},
 					},
 					{
 						Name:        "Space Invaders",
 						Description: "juego escrito en Racket como proyecto final de How to Design Programs.",
-						Link:        Link{"github.com/xeraph-dev/space-invaders.rkt", "https://github.com/xeraph-dev/space-invaders.rkt"},
+						Link:        Link{Label: "github.com/xeraph-dev/space-invaders.rkt", URL: "https://github.com/xeraph-dev/space-invaders.rkt"},
 					},
 					{
 						Name:        "VSCode Profile Manager",
 						Description: "aplicación macOS en Swift para gestionar perfiles de Visual Studio Code.",
-						Link:        Link{"github.com/xeraph-dev/vscode-profile-manager-macos", "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
+						Link:        Link{Label: "github.com/xeraph-dev/vscode-profile-manager-macos", URL: "https://github.com/xeraph-dev/vscode-profile-manager-macos"},
 					},
 					{
 						Name:        "Rick and Morty",
 						Description: "cliente macOS para la API de Rick and Morty, escrito en Swift.",
-						Link:        Link{"github.com/xeraph-dev/rick-and-morty-macos", "https://github.com/xeraph-dev/rick-and-morty-macos"},
+						Link:        Link{Label: "github.com/xeraph-dev/rick-and-morty-macos", URL: "https://github.com/xeraph-dev/rick-and-morty-macos"},
 					},
 					{
 						Name:        "BettyCook",
 						Description: "aplicación móvil de recetario construida con Flutter.",
-						Link:        Link{"github.com/xeraph-dev/bettycook", "https://github.com/xeraph-dev/bettycook"},
+						Link:        Link{Label: "github.com/xeraph-dev/bettycook", URL: "https://github.com/xeraph-dev/bettycook"},
 					},
 				},
 			},
@@ -605,7 +616,7 @@ func main() {
 						Name:        "Licenciatura en Matemáticas",
 						Status:      "en curso",
 						Institution: "Universidad de La Habana",
-						StartDate:   Date{2025, "septiembre"},
+						StartDate:   Date{Year: 2025, Month: "septiembre", DateTime: "2025-09"},
 					},
 				},
 			},
@@ -649,8 +660,7 @@ func main() {
 			},
 		},
 	} {
-		generateHTML(HTML_DIR, data, htmlTmpl)
-		generateTeX(CV_DIR, data, texTmpl)
+		generateHTML(data, htmlTmpl)
+		generateTeX(data, texTmpl)
 	}
-	compileTeX(CV_DIR)
 }
