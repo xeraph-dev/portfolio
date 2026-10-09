@@ -60,7 +60,7 @@
                 <li>
                     <a
                         download="cv-{{.Info.Slug}}-{{.Meta.Language}}.pdf"
-                        type="application/json"
+                        type="application/pdf"
                         rel="me"
                         href="/{{.Meta.Language}}/cv.pdf"
                     >
@@ -93,7 +93,7 @@
                                 {{if .Title}}<h4>{{.Title}}</h4>{{end}}
                                 <ul>
                                     {{range .Items}}
-                                        <li>{{.}}</l>
+                                        <li>{{.}}</li>
                                     {{end}}
                                 </ul>
                             </section>

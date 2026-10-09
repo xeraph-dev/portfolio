@@ -1,8 +1,8 @@
 <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
   <rect width="400" height="150" fill="#0e1117" />
   <text x="50%" y="50%" dy=".35em" text-anchor="middle"
-        font-family="JetBrainsMono Nerd Font"
+        font-family="JetBrains Mono"
         font-weight="800" font-size="60" fill="#e6e9ef">
-    {xeraph}
+            <tspan fill="#7fb0ff">{</tspan>xeraph<tspan fill="#7fb0ff">}</tspan>
   </text>
 </svg>

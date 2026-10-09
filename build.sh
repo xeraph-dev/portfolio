@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 go run .
 
 cd out
@@ -17,5 +19,12 @@ done
 
 cp main.css dist/styles.css
 
-magick convert logo.svg -resize 1200x630x100% -gravity center -background transparent dist/og.png
-magick convert logo-small.svg -resize 32x32 -background transparent dist/favicon.ico
+inkscape logo-small.svg --export-text-to-path --export-plain-svg -o out/logo-small.svg
+inkscape logo.svg --export-text-to-path --export-plain-svg -o out/logo.svg
+
+magick -background none -density 288 out/logo-small.svg \
+    -define icon:auto-resize=48,32,16 dist/favicon.ico
+magick -background none -density 216 out/logo.svg \
+    -resize 1200x630 \
+    -background '#0e1117' -gravity center -extent 1200x630 \
+    -strip dist/og.png

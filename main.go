@@ -424,7 +424,7 @@ func main() {
 				LastName:  "López Cintas",
 				Slug:      "adrian-rene-lopez-cintas",
 				Title:     "Ingeniero Fullstack • Go • React • SQL",
-				Keywords:  "Ingeniero Engineer, Go, React, SQL, Optimización de Rendimiento, Accesibilidad Web (WCAG AA), TypeScript, Microservicios",
+				Keywords:  "Ingeniero Fullstack, Go, React, SQL, Optimización de Rendimiento, Accesibilidad Web (WCAG AA), TypeScript, Microservicios",
 				Skills:    []string{"Go", "React", "SQL"},
 				Location:  "La Habana, Cuba",
 				Links: []Link{
