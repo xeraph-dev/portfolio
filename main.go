@@ -1,13 +1,14 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 	htmlTemplate "html/template"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
-	"text/template"
 	textTemplate "text/template"
 )
 
@@ -18,8 +19,8 @@ const TEX_DELIM_LEFT = "<<"
 const TEX_DELIM_RIGHT = ">>"
 
 type Link struct {
-	Label    string
-	URL      string
+	Label string
+	URL   string
 }
 
 type Date struct {
@@ -77,9 +78,16 @@ type Section[T any] struct {
 	Data  T
 }
 
+type UI struct {
+	Present       string
+	SkipToContent string
+}
+
 type Meta struct {
 	Language string
 	Site     Link
+	CSS      string
+	UI       UI
 }
 
 type Info struct {
@@ -107,11 +115,15 @@ type Data struct {
 
 func generateHTML(data Data, tmpl *htmlTemplate.Template) {
 	fileName := filepath.Join(OUT_DIR, fmt.Sprintf("index-%s.html", data.Meta.Language))
-	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	if err = tmpl.Execute(file, data); err != nil {
 		log.Fatal(err)
@@ -120,11 +132,15 @@ func generateHTML(data Data, tmpl *htmlTemplate.Template) {
 
 func generateTeX(data Data, tmpl *textTemplate.Template) {
 	fileName := filepath.Join(OUT_DIR, fmt.Sprintf("cv-%s.tex", data.Meta.Language))
-	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, os.ModePerm)
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	if err = tmpl.Execute(file, data); err != nil {
 		log.Fatal(err)
@@ -150,7 +166,7 @@ func parseHTMLTemplate() *htmlTemplate.Template {
 }
 
 func parseTeXTemplate() *textTemplate.Template {
-	funcs := template.FuncMap{
+	funcs := textTemplate.FuncMap{
 		"tex": strings.NewReplacer(
 			`\`, `\textbackslash{}`, `&`, `\&`, `%`, `\%`, `$`, `\$`, `#`, `\#`,
 			`_`, `\_`, `{`, `\{`, `}`, `\}`, `~`, `\textasciitilde{}`, `^`, `\textasciicircum{}`,
@@ -164,17 +180,37 @@ func parseTeXTemplate() *textTemplate.Template {
 	return tmpl
 }
 
+func writeCSS() string {
+	css, err := os.ReadFile("main.css")
+	if err != nil {
+		log.Fatal(err)
+	}
+	sum := sha256.Sum256(css)
+	name := "styles." + hex.EncodeToString(sum[:])[:10] + ".css"
+	if err := os.WriteFile(filepath.Join(OUT_DIR, name), css, 0o644); err != nil {
+		log.Fatal(err)
+	}
+	return "/" + name
+}
+
 func main() {
 	ensureOutDir()
 
 	htmlTmpl := parseHTMLTemplate()
 	texTmpl := parseTeXTemplate()
 
+	cssPath := writeCSS()
+
 	for _, data := range []Data{
 		{
 			Meta: Meta{
 				Language: "en",
 				Site:     Link{Label: "www.xeraph.dev", URL: "https://www.xeraph.dev"},
+				CSS:      cssPath,
+				UI: UI{
+					Present: "Present",
+					SkipToContent: "Skip to content",
+				},
 			},
 			Info: Info{
 				Name:      "Adrian René López Cintas",
@@ -265,7 +301,7 @@ func main() {
 						Title:     "Front-end Developer (React)",
 						Employer:  "IJP Software",
 						Location:  "Remote",
-						Note:      "Part-time at first",
+						Note:      "Part-time",
 						StartDate: Date{Year: 2021, Month: "July", DateTime: "2021-07"},
 						EndDate:   &Date{Year: 2022, Month: "July", DateTime: "2022-07"},
 						Projects: []JobProject{
@@ -417,6 +453,11 @@ func main() {
 			Meta: Meta{
 				Language: "es",
 				Site:     Link{Label: "www.xeraph.dev", URL: "https://www.xeraph.dev"},
+				CSS:      cssPath,
+				UI: UI{
+					Present: "Presente",
+					SkipToContent: "Saltar al contenido",
+				},
 			},
 			Info: Info{
 				Name:      "Adrian René López Cintas",

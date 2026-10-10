@@ -5,7 +5,7 @@ set -euo pipefail
 go run .
 
 cd out
-latexmk -pdf
+latexmk -pdf -interaction=nonstopmode -halt-on-error
 cd ..
 
 rm -rf dist
@@ -17,7 +17,7 @@ for lang in en es; do
     cp out/cv-$lang.pdf dist/$lang/cv.pdf
 done
 
-cp main.css dist/styles.css
+cp out/styles.*.css dist/
 
 inkscape logo-small.svg --export-text-to-path --export-plain-svg -o out/logo-small.svg
 inkscape logo.svg --export-text-to-path --export-plain-svg -o out/logo.svg

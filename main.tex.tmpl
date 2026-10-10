@@ -75,7 +75,7 @@
 % ---------- Experience ----------
 \cvsection{<<tex .Experience.Title>>}
 <<- range .Experience.Data>>
-\job{<<tex .Title>>, <<tex .Employer>>}{<<slice .StartDate.Month 0 3>> <<.StartDate.Year>>--<<with .EndDate>><<slice .Month 0 3>> <<.Year>><<else>>Present<<end>> \textbullet{} <<tex .Location>><<if .Note>> \textbullet{} <<tex .Note>><<end>>}{}
+\job{<<tex .Title>>, <<tex .Employer>>}{<<slice .StartDate.Month 0 3>> <<.StartDate.Year>>--<<with .EndDate>><<slice .Month 0 3>> <<.Year>><<else>><<tex .Meta.UI.Present>><<end>> \textbullet{} <<tex .Location>><<if .Note>> \textbullet{} <<tex .Note>><<end>>}{}
   <<- range .Projects>>
     <<- if .Title>>
 \subhead{<<tex .Title>>}
@@ -106,7 +106,7 @@
 \cvsection{<<tex .Skills.Title>>}
 \begin{itemize}
 <<- range .Skills.Data>>
-  \item[] \textbf{<<tex .Name>>:} <<range $i, $s := .Items>><<if $i>>, <<end>><<tex $s>><<end>>
+  \item[] \textbf{<<tex .Name>>:} <<range $i, $s := .Items>><<if $i>> \textbullet{} <<end>><<tex $s>><<end>>
 <<- end>>
 \end{itemize}
 

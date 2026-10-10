@@ -6,7 +6,7 @@
         <title>{{.Info.Name}} | {{.Info.Title}}</title>
 
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="{{.Meta.CSS}}" />
 
         <meta name="description" content="{{.Summary.Data}}" />
         <meta name="keywords" content="{{.Info.Keywords}}" />
@@ -23,15 +23,16 @@
         <meta name="geo.region" content="CU-03" />
         <meta name="geo.placename" content="Havana" />
 
-        <link rel="canonical" href="https://xeraph-dev/{{.Meta.Language}}" />
-        <link rel="alternate" hreflang="en" href="https://xeraph-dev/en" />
-        <link rel="alternate" hreflang="es" href="https://xeraph-dev/es" />
+        <link rel="canonical" href="https://xeraph-dev/{{.Meta.Language}}/" />
+        <link rel="alternate" hreflang="en" href="https://xeraph-dev/en/" />
+        <link rel="alternate" hreflang="es" href="https://xeraph-dev/es/" />
+        <link rel="alternate" hreflang="x-default" href="https://xeraph-dev/en/" />
 
         <meta property="og:locale" content="{{.Meta.Language}}" />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content="{{.Info.Name}} | {{.Info.Title}}" />
         <meta property="og:description" content="{{.Summary.Data}}" />
-        <meta property="og:url" content="https://xeraph.dev" />
+        <meta property="og:url" content="https://xeraph.dev/" />
         <meta property="og:site_name" content="{{.Info.Name}}" />
         <meta property="og:image" content="https://xeraph.dev/og.png" />
         <meta property="og:image:width" content="1200" />
@@ -48,12 +49,12 @@
         <meta name="twitter:image:alt" content="{{.Info.Name}}, {{.Info.Title}}" />
     </head>
     <body>
-        <a class="skip-link" href="#main">Skip to content</a>
+        <a class="skip-link" href="#main">{{.Meta.UI.SkipToContent}}</a>
         <header>
             <h1>{{.Info.Name}}</h1>
             <p class="main-skills">{{.Info.Title}}</p>
             <p class="location">{{.Info.Location}}</p>
-            <ul>
+            <ul class="links">
                 {{range .Info.Links}}
                     <li><a href="{{.URL}}" rel="me">{{.Label}}</a></li>
                 {{end}}
@@ -85,7 +86,7 @@
                             <time datetime="{{.StartDate.DateTime}}">{{.StartDate.Month}} {{.StartDate.Year}}</time>
                             &ndash;
                             {{if .EndDate}}<time datetime="{{.EndDate.DateTime}}">{{.EndDate.Month}} {{.EndDate.Year}}</time>
-                            {{else}}Present{{end}} &middot; {{.Location}}
+                            {{else}}{{.Meta.UI.Present}}{{end}} &middot; {{.Location}}
                             {{if .Note}} &middot; {{.Note}}{{end}}
                         </p>
                         {{range .Projects}}
@@ -133,7 +134,7 @@
                         <dt>{{.Name}}</dt>
                         <dd>
                             {{range $i, $item := .Items}}
-                                {{if $i}},{{end}}{{$item}}
+                                {{if $i}}• {{end}}{{$item}}
                             {{end}}
                         </dd>
                     {{end}}
