@@ -239,7 +239,7 @@ func main() {
 						Employer:  "Divertimento",
 						Location:  "Remote",
 						StartDate: Date{Year: 2022, Month: "November", DateTime: "2022-11"},
-						EndDate:   &Date{Year: 2025, Month: "November", DateTime: "2025-11"},
+						EndDate:   &Date{Year: 2025, Month: "October", DateTime: "2025-10"},
 						Projects: []JobProject{
 							{
 								Title: "Healthcare care-management platform",
@@ -268,7 +268,7 @@ func main() {
 						Employer:  "Freelance",
 						Location:  "Remote",
 						StartDate: Date{Year: 2022, Month: "September", DateTime: "2022-09"},
-						EndDate:   &Date{Year: 2022, Month: "November", DateTime: "2022-11"},
+						EndDate:   &Date{Year: 2022, Month: "October", DateTime: "2022-10"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -283,8 +283,9 @@ func main() {
 						Title:     "Web Developer (PHP / React)",
 						Employer:  "Divertimento",
 						Location:  "Remote",
+						Note:      "Part-time",
 						StartDate: Date{Year: 2022, Month: "March", DateTime: "2022-03"},
-						EndDate:   &Date{Year: 2022, Month: "August", DateTime: "2022-08"},
+						EndDate:   &Date{Year: 2022, Month: "July", DateTime: "2022-07"},
 						Projects: []JobProject{
 							{
 								Title: "School e-learning platform",
@@ -301,9 +302,8 @@ func main() {
 						Title:     "Front-end Developer (React)",
 						Employer:  "IJP Software",
 						Location:  "Remote",
-						Note:      "Part-time",
 						StartDate: Date{Year: 2021, Month: "July", DateTime: "2021-07"},
-						EndDate:   &Date{Year: 2022, Month: "July", DateTime: "2022-07"},
+						EndDate:   &Date{Year: 2022, Month: "June", DateTime: "2022-06"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -321,7 +321,7 @@ func main() {
 						Location:  "Remote",
 						Note:      "Part-time",
 						StartDate: Date{Year: 2020, Month: "July", DateTime: "2020-07"},
-						EndDate:   &Date{Year: 2021, Month: "July", DateTime: "2021-07"},
+						EndDate:   &Date{Year: 2021, Month: "Juny", DateTime: "2021-06"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -486,7 +486,7 @@ func main() {
 						Employer:  "Divertimento",
 						Location:  "Remoto",
 						StartDate: Date{Year: 2022, Month: "noviembre", DateTime: "2022-11"},
-						EndDate:   &Date{Year: 2025, Month: "noviembre", DateTime: "2025-11"},
+						EndDate:   &Date{Year: 2025, Month: "octubre", DateTime: "2025-10"},
 						Projects: []JobProject{
 							{
 								Title: "Plataforma de gestión de atención médica",
@@ -515,7 +515,7 @@ func main() {
 						Employer:  "Freelance",
 						Location:  "Remoto",
 						StartDate: Date{Year: 2022, Month: "septiembre", DateTime: "2022-09"},
-						EndDate:   &Date{Year: 2022, Month: "noviembre", DateTime: "2022-11"},
+						EndDate:   &Date{Year: 2022, Month: "octubre", DateTime: "2022-10"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -530,8 +530,9 @@ func main() {
 						Title:     "Desarrollador Web (PHP / React)",
 						Employer:  "Divertimento",
 						Location:  "Remoto",
+						Note:      "Medio tiempo",
 						StartDate: Date{Year: 2022, Month: "marzo", DateTime: "2022-03"},
-						EndDate:   &Date{Year: 2022, Month: "agosto", DateTime: "2022-08"},
+						EndDate:   &Date{Year: 2022, Month: "julio", DateTime: "2022-07"},
 						Projects: []JobProject{
 							{
 								Title: "Plataforma de aprendizaje en línea para una escuela",
@@ -548,9 +549,8 @@ func main() {
 						Title:     "Desarrollador Front-end (React)",
 						Employer:  "IJP Software",
 						Location:  "Remoto",
-						Note:      "Medio tiempo al principio",
 						StartDate: Date{Year: 2021, Month: "julio", DateTime: "2021-07"},
-						EndDate:   &Date{Year: 2022, Month: "julio", DateTime: "2022-07"},
+						EndDate:   &Date{Year: 2022, Month: "junio", DateTime: "2022-06"},
 						Projects: []JobProject{
 							{
 								Items: []string{
@@ -568,7 +568,7 @@ func main() {
 						Location:  "Remoto",
 						Note:      "Medio tiempo",
 						StartDate: Date{Year: 2020, Month: "julio", DateTime: "2020-07"},
-						EndDate:   &Date{Year: 2021, Month: "julio", DateTime: "2021-07"},
+						EndDate:   &Date{Year: 2021, Month: "junio", DateTime: "2021-06"},
 						Projects: []JobProject{
 							{
 								Items: []string{
